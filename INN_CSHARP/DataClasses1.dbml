@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MG_inkjop" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="INN_CSHARP.Properties.Settings" SettingsPropertyName="MG_inkjopConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.farms" Member="farms">
+    <Type Name="farm">
+      <Column Name="farm_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="farm_name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="farm_code" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="farm_flower" Member="flowers" ThisKey="farm_id" OtherKey="farm_id" Type="flower" />
+    </Type>
+  </Table>
+  <Table Name="dbo.flowers" Member="flowers">
+    <Type Name="flower">
+      <Column Name="fl_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="variety" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colour" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="plu" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="farm_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="barcode" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="mix" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="sticker_text" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="lenght" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="bucket_size" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="sleeve_type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fob" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="price_pr_bunch" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="fairtrade" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="bunch_pr_box" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bunch_pr_bucket" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="stems_pr_bunch" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pake_rete" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="farm_flower" Member="farm" ThisKey="farm_id" OtherKey="farm_id" Type="farm" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
