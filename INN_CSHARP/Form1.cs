@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
+
 namespace INN_CSHARP
 {
     public partial class Form1 : Form
@@ -17,7 +18,23 @@ namespace INN_CSHARP
         SqlDataAdapter dataAdapter;
         System.Data.DataTable table;
         SqlConnection conn;
-        string selectionStatement = "select flowers.variety, flowers.plu, farms.farm_name from flowers, farms where flowers.farm_id = farms.farm_id;";
+        string selectionStatement = "select * from flowers";
+    
+
+
+
+
+        public void resBtn()
+        {
+
+            Color _leftBG = System.Drawing.ColorTranslator.FromHtml("#3b3a3f");
+            button1.BackColor = _leftBG;
+            button2.BackColor = _leftBG;
+            button3.BackColor = _leftBG;
+            button4.BackColor = _leftBG;
+
+        }
+        
 
         public Form1()
         {
@@ -46,8 +63,62 @@ namespace INN_CSHARP
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+
+            Color _leftBG = System.Drawing.ColorTranslator.FromHtml("#3b3a3f");
             dataGridView1.DataSource = bindingSource1;
             GetData(selectionStatement);
+            resBtn();
+            pictureBox1.BackColor = _leftBG;
+
+
+
+
+            tabControl1.Appearance = TabAppearance.FlatButtons;
+            tabControl1.ItemSize = new Size(0, 1);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+
+
+
+       
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            resBtn();
+            Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
+            button1.BackColor = _selected;
+            tabControl1.SelectedIndex = 0;
+
+
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            resBtn();
+            Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
+            button2.BackColor = _selected;
+            tabControl1.SelectedIndex = 1;
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            resBtn();
+            Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
+            button3.BackColor = _selected;
+            tabControl1.SelectedIndex = 2;
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            resBtn();
+            Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
+            button4.BackColor = _selected;
+            tabControl1.SelectedIndex = 3;
+
+        }
+
+
     }
 }
