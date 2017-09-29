@@ -174,6 +174,7 @@ namespace INN_CSHARP
 
             dataGridView1.DataSource = bindingSource1;
             GetData(selectionStatement3, bindingSource1);
+
         }
     }
 }
