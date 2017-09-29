@@ -14,10 +14,14 @@ namespace INN_CSHARP
 {
     public partial class Form1 : Form
     {
-        /* PC
+
+        // PC
         string connString = @"Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        */
+        
+        /*
+        //WINMAC
         string connString = @"Data Source=MACBOOKW10\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        */
         SqlDataAdapter dataAdapter;
         System.Data.DataTable table;
 
@@ -30,21 +34,34 @@ namespace INN_CSHARP
         FROM [MG_inkjop].[dbo].[farms]
         ";
 
-        string selectionStatement3 = @"
-        SELECT 
-              flowers.variety
-              ,flowers.colour
-              ,flowers.plu
-              ,farms.farm_name
-	          ,flowers.mix
-              ,flowers.lenght
-              ,flowers.sleeve_type
-              ,flowers.fob
-              ,flowers.fairtrade
-              ,flowers.stems_pr_bunch
+        //string selectionStatement3 = @"
+        //SELECT 
+        //      flowers.variety
+        //      ,flowers.colour
+        //      ,flowers.plu
+        //      ,farms.farm_name
+	       //   ,flowers.mix
+        //      ,flowers.lenght
+        //      ,flowers.sleeve_type
+        //      ,flowers.fob
+        //      ,flowers.fairtrade
+        //      ,flowers.stems_pr_bunch
 	  
-          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
-          WHERE flowers.farm_id = farms.farm_id and farms.farm_id=2";
+        //  FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
+        //  WHERE flowers.farm_id = farms.farm_id and farms.farm_id=2";
+
+
+
+        //using (var cn = new Data.SqlClient.SqlConnection(yourConnectionString))
+        //using (var cmd = new Data.SqlClient.SqlCommand())
+        //    {
+        //       cn.Open();
+        //       cmd.Connection = cn;
+        //       cmd.CommandType = CommandType.Text;
+        //       cmd.CommandText = "Select * From Table Where Title = @Title";
+        //       cmd.Parameters.Add("@Title", someone);
+        //    }
+        
 
         string selectionStatement = @"
         SELECT 
@@ -72,11 +89,33 @@ namespace INN_CSHARP
             button2.BackColor = _leftBG;
             button3.BackColor = _leftBG;
             button4.BackColor = _leftBG;
+            
         }        
+
+        public  void Que1(int ide)
+        {
+             var selectionStatement3 = @"
+            SELECT 
+              flowers.variety
+              ,flowers.colour
+              ,flowers.plu
+              ,farms.farm_name
+	          ,flowers.mix
+              ,flowers.lenght
+              ,flowers.sleeve_type
+              ,flowers.fob
+              ,flowers.fairtrade
+              ,flowers.stems_pr_bunch
+	  
+          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
+          WHERE flowers.farm_id = farms.farm_id and farms.farm_id="+ ide;
+     
+        }
 
         public Form1()
         {
             InitializeComponent();
+                
         }
         private void GetData(string selectCommand, BindingSource bin)
         {
@@ -170,8 +209,23 @@ namespace INN_CSHARP
             farm_id = dataGridView2[0,dataGridView2.CurrentCell.RowIndex].Value.ToString();
             int sid = Convert.ToInt16(farm_id);
 
+            var selectionStatement3 = @"
+            SELECT 
+              flowers.variety
+              ,flowers.colour
+              ,flowers.plu
+              ,farms.farm_name
+	          ,flowers.mix
+              ,flowers.lenght
+              ,flowers.sleeve_type
+              ,flowers.fob
+              ,flowers.fairtrade
+              ,flowers.stems_pr_bunch
+	  
+          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
+          WHERE flowers.farm_id = farms.farm_id and farms.farm_id=" + sid;
 
-
+            Que1(sid);
             dataGridView1.DataSource = bindingSource1;
             GetData(selectionStatement3, bindingSource1);
 
