@@ -34,34 +34,23 @@ namespace INN_CSHARP
         FROM [MG_inkjop].[dbo].[farms]
         ";
 
-        //string selectionStatement3 = @"
-        //SELECT 
-        //      flowers.variety
-        //      ,flowers.colour
-        //      ,flowers.plu
-        //      ,farms.farm_name
-	       //   ,flowers.mix
-        //      ,flowers.lenght
-        //      ,flowers.sleeve_type
-        //      ,flowers.fob
-        //      ,flowers.fairtrade
-        //      ,flowers.stems_pr_bunch
+        string selectionStatement3 = @"
+        SELECT 
+              flowers.variety
+              ,flowers.colour
+              ,flowers.plu
+              ,farms.farm_name
+	          ,flowers.mix
+              ,flowers.lenght
+              ,flowers.sleeve_type
+              ,flowers.fob
+              ,flowers.fairtrade
+              ,flowers.stems_pr_bunch
 	  
-        //  FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
-        //  WHERE flowers.farm_id = farms.farm_id and farms.farm_id=2";
+          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
+          WHERE flowers.farm_id = farms.farm_id and farms.farm_id=";
 
 
-
-        //using (var cn = new Data.SqlClient.SqlConnection(yourConnectionString))
-        //using (var cmd = new Data.SqlClient.SqlCommand())
-        //    {
-        //       cn.Open();
-        //       cmd.Connection = cn;
-        //       cmd.CommandType = CommandType.Text;
-        //       cmd.CommandText = "Select * From Table Where Title = @Title";
-        //       cmd.Parameters.Add("@Title", someone);
-        //    }
-        
 
         string selectionStatement = @"
         SELECT 
@@ -89,33 +78,10 @@ namespace INN_CSHARP
             button2.BackColor = _leftBG;
             button3.BackColor = _leftBG;
             button4.BackColor = _leftBG;
-            
         }        
-
-        public  void Que1(int ide)
-        {
-             var selectionStatement3 = @"
-            SELECT 
-              flowers.variety
-              ,flowers.colour
-              ,flowers.plu
-              ,farms.farm_name
-	          ,flowers.mix
-              ,flowers.lenght
-              ,flowers.sleeve_type
-              ,flowers.fob
-              ,flowers.fairtrade
-              ,flowers.stems_pr_bunch
-	  
-          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
-          WHERE flowers.farm_id = farms.farm_id and farms.farm_id="+ ide;
-     
-        }
-
         public Form1()
         {
             InitializeComponent();
-                
         }
         private void GetData(string selectCommand, BindingSource bin)
         {
@@ -133,10 +99,7 @@ namespace INN_CSHARP
                 MessageBox.Show(ex.Message);
             }
         }
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -156,8 +119,20 @@ namespace INN_CSHARP
 
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);
-            tabControl1.SizeMode = TabSizeMode.Fixed;          
-       
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+
+            string Sql = "SELECT farms.farm_name FROM[MG_inkjop].[dbo].[farms]";
+            SqlConnection conn = new SqlConnection(connString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(Sql, conn);
+            SqlDataReader DR = cmd.ExecuteReader();
+
+            while (DR.Read())
+            {
+                comboBox1.Items.Add(DR[0]);
+
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -194,41 +169,43 @@ namespace INN_CSHARP
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void tabPage4_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             farm_id = dataGridView2[0,dataGridView2.CurrentCell.RowIndex].Value.ToString();
             int sid = Convert.ToInt16(farm_id);
 
-            var selectionStatement3 = @"
-            SELECT 
-              flowers.variety
-              ,flowers.colour
-              ,flowers.plu
-              ,farms.farm_name
-	          ,flowers.mix
-              ,flowers.lenght
-              ,flowers.sleeve_type
-              ,flowers.fob
-              ,flowers.fairtrade
-              ,flowers.stems_pr_bunch
-	  
-          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
-          WHERE flowers.farm_id = farms.farm_id and farms.farm_id=" + sid;
+            var selectionStatement4 = selectionStatement3 + sid;
 
-            Que1(sid);
+
             dataGridView1.DataSource = bindingSource1;
-            GetData(selectionStatement3, bindingSource1);
+            GetData(selectionStatement4, bindingSource1);
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var farm_id2 = comboBox1.SelectedIndex;
+            var farm_id3 = dataGridView2[0, farm_id2].Value.ToString();
+            MessageBox.Show(farm_id3);
+            
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var farm_id2 = comboBox1.SelectedIndex;
+            farm_id = dataGridView2[0, farm_id2].Value.ToString();
+            
+            
+            int sid = Convert.ToInt16(farm_id);
+            //var farm_id3 = dataGridView2[0, farm_id2].Value.ToString();
+
+            var selectionStatement4 = selectionStatement3 + sid;
+
+
+            dataGridView1.DataSource = bindingSource1;
+            GetData(selectionStatement4, bindingSource1);
         }
     }
 }
