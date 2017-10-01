@@ -27,7 +27,8 @@ namespace INN_CSHARP
         System.Data.DataTable table;
 
         string farm_id;
-        
+
+        string loadLengths = @"SELECT * FROM lengths";
 
         string selectionStatement22 = @"
         SELECT 
@@ -41,15 +42,15 @@ namespace INN_CSHARP
               ,flowers.colour
               ,flowers.plu
               ,farms.farm_name
+              ,lengths.length
 	          ,flowers.mix
-              ,flowers.lenght
               ,flowers.sleeve_type
               ,flowers.fob
               ,flowers.fairtrade
               ,flowers.stems_pr_bunch
 	  
-          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
-          WHERE flowers.farm_id = farms.farm_id ";
+          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths]
+          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id ";
 
 
 
@@ -60,7 +61,6 @@ namespace INN_CSHARP
               ,flowers.plu
               ,farms.farm_name
 	          ,flowers.mix
-              ,flowers.lenght
               ,flowers.sleeve_type
               ,flowers.fob
               ,flowers.fairtrade
@@ -111,6 +111,8 @@ namespace INN_CSHARP
             button1.BackColor = _selected;
 
 
+            dataGridView3.DataSource = bindingSource3;
+            GetData(loadLengths, bindingSource3);
 
             dataGridView2.DataSource = bindingSource2;
             GetData(selectionStatement22, bindingSource2);
@@ -121,7 +123,7 @@ namespace INN_CSHARP
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
-
+            //////////////// fil up comboBox
             string Sql = "SELECT farms.farm_name FROM[MG_inkjop].[dbo].[farms]";
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
@@ -133,7 +135,22 @@ namespace INN_CSHARP
                 comboBox1.Items.Add(DR[0]);
 
             }
+            comboBox1.SelectedIndex = 0;
+            conn.Close();
+            //////////////// fil up comboBox
+            string Sql2 = "SELECT lengths.length FROM[MG_inkjop].[dbo].[lengths]";
+            conn.Open();
 
+            SqlCommand cmd2 = new SqlCommand(Sql2, conn);
+            SqlDataReader DR2 = cmd2.ExecuteReader();
+
+            while (DR2.Read())
+            {
+                comboBox2.Items.Add(DR2[0]);
+
+            }
+            comboBox2.SelectedIndex = 0;
+            conn.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -212,8 +229,30 @@ namespace INN_CSHARP
             else
             {
                 selectionStatement4 = selectionStatement3 + far + sid;
+                dataGridView1.DataSource = bindingSource1;
+                GetData(selectionStatement4, bindingSource1);
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string far = "and lengths.length_id=";
+            var farm_id2 = comboBox2.SelectedIndex;
+            farm_id = dataGridView3[0, farm_id2].Value.ToString();
 
 
+            int sid = Convert.ToInt16(farm_id);
+            //var farm_id3 = dataGridView2[0, farm_id2].Value.ToString();
+            string selectionStatement4;
+            if (sid == 1)
+            {
+                selectionStatement4 = selectionStatement3;
+                dataGridView1.DataSource = bindingSource1;
+                GetData(selectionStatement4, bindingSource1);
+            }
+            else
+            {
+                selectionStatement4 = selectionStatement3 + far + sid;
                 dataGridView1.DataSource = bindingSource1;
                 GetData(selectionStatement4, bindingSource1);
             }

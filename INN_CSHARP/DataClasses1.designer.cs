@@ -36,10 +36,13 @@ namespace INN_CSHARP
     partial void Insertflower(flower instance);
     partial void Updateflower(flower instance);
     partial void Deleteflower(flower instance);
+    partial void Insertlengths(lengths instance);
+    partial void Updatelengths(lengths instance);
+    partial void Deletelengths(lengths instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::INN_CSHARP.Properties.Settings.Default.MG_inkjopConnectionString, mappingSource)
+				base(global::INN_CSHARP.Properties.Settings.Default.MG_inkjopConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -81,6 +84,14 @@ namespace INN_CSHARP
 			get
 			{
 				return this.GetTable<flower>();
+			}
+		}
+		
+		public System.Data.Linq.Table<lengths> lengths
+		{
+			get
+			{
+				return this.GetTable<lengths>();
 			}
 		}
 	}
@@ -241,31 +252,33 @@ namespace INN_CSHARP
 		
 		private string _barcode;
 		
-		private byte _mix;
+		private bool _mix;
 		
 		private string _sticker_text;
 		
-		private string _lenght;
+		private int _length_id;
 		
-		private string _bucket_size;
+		private short _bucket_size;
 		
 		private string _sleeve_type;
 		
-		private double _fob;
+		private decimal _fob;
 		
-		private double _price_pr_bunch;
+		private decimal _price_pr_bunch;
 		
-		private byte _fairtrade;
+		private bool _fairtrade;
 		
-		private int _bunch_pr_box;
+		private short _bunch_pr_box;
 		
-		private int _bunch_pr_bucket;
+		private byte _bunch_pr_bucket;
 		
-		private int _stems_pr_bunch;
+		private byte _stems_pr_bunch;
 		
-		private int _pake_rete;
+		private int _pak_rate;
 		
 		private EntityRef<farm> _farm;
+		
+		private EntityRef<lengths> _lengths;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -283,35 +296,36 @@ namespace INN_CSHARP
     partial void Onfarm_idChanged();
     partial void OnbarcodeChanging(string value);
     partial void OnbarcodeChanged();
-    partial void OnmixChanging(byte value);
+    partial void OnmixChanging(bool value);
     partial void OnmixChanged();
     partial void Onsticker_textChanging(string value);
     partial void Onsticker_textChanged();
-    partial void OnlenghtChanging(string value);
-    partial void OnlenghtChanged();
-    partial void Onbucket_sizeChanging(string value);
+    partial void Onlength_idChanging(int value);
+    partial void Onlength_idChanged();
+    partial void Onbucket_sizeChanging(short value);
     partial void Onbucket_sizeChanged();
     partial void Onsleeve_typeChanging(string value);
     partial void Onsleeve_typeChanged();
-    partial void OnfobChanging(double value);
+    partial void OnfobChanging(decimal value);
     partial void OnfobChanged();
-    partial void Onprice_pr_bunchChanging(double value);
+    partial void Onprice_pr_bunchChanging(decimal value);
     partial void Onprice_pr_bunchChanged();
-    partial void OnfairtradeChanging(byte value);
+    partial void OnfairtradeChanging(bool value);
     partial void OnfairtradeChanged();
-    partial void Onbunch_pr_boxChanging(int value);
+    partial void Onbunch_pr_boxChanging(short value);
     partial void Onbunch_pr_boxChanged();
-    partial void Onbunch_pr_bucketChanging(int value);
+    partial void Onbunch_pr_bucketChanging(byte value);
     partial void Onbunch_pr_bucketChanged();
-    partial void Onstems_pr_bunchChanging(int value);
+    partial void Onstems_pr_bunchChanging(byte value);
     partial void Onstems_pr_bunchChanged();
-    partial void Onpake_reteChanging(int value);
-    partial void Onpake_reteChanged();
+    partial void Onpak_rateChanging(int value);
+    partial void Onpak_rateChanged();
     #endregion
 		
 		public flower()
 		{
 			this._farm = default(EntityRef<farm>);
+			this._lengths = default(EntityRef<lengths>);
 			OnCreated();
 		}
 		
@@ -375,7 +389,7 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_plu", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_plu", DbType="Char(6) NOT NULL", CanBeNull=false)]
 		public string plu
 		{
 			get
@@ -419,7 +433,7 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_barcode", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_barcode", DbType="Char(14) NOT NULL", CanBeNull=false)]
 		public string barcode
 		{
 			get
@@ -439,8 +453,8 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mix", DbType="TinyInt NOT NULL")]
-		public byte mix
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mix", DbType="Bit NOT NULL")]
+		public bool mix
 		{
 			get
 			{
@@ -479,28 +493,32 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lenght", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
-		public string lenght
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_length_id", DbType="Int NOT NULL")]
+		public int length_id
 		{
 			get
 			{
-				return this._lenght;
+				return this._length_id;
 			}
 			set
 			{
-				if ((this._lenght != value))
+				if ((this._length_id != value))
 				{
-					this.OnlenghtChanging(value);
+					if (this._lengths.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onlength_idChanging(value);
 					this.SendPropertyChanging();
-					this._lenght = value;
-					this.SendPropertyChanged("lenght");
-					this.OnlenghtChanged();
+					this._length_id = value;
+					this.SendPropertyChanged("length_id");
+					this.Onlength_idChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bucket_size", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
-		public string bucket_size
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bucket_size", DbType="SmallInt NOT NULL")]
+		public short bucket_size
 		{
 			get
 			{
@@ -519,7 +537,7 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sleeve_type", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sleeve_type", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string sleeve_type
 		{
 			get
@@ -539,8 +557,8 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fob", DbType="Float NOT NULL")]
-		public double fob
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fob", DbType="Decimal(18,2) NOT NULL")]
+		public decimal fob
 		{
 			get
 			{
@@ -559,8 +577,8 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price_pr_bunch", DbType="Float NOT NULL")]
-		public double price_pr_bunch
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price_pr_bunch", DbType="Decimal(18,2) NOT NULL")]
+		public decimal price_pr_bunch
 		{
 			get
 			{
@@ -579,8 +597,8 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fairtrade", DbType="TinyInt NOT NULL")]
-		public byte fairtrade
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fairtrade", DbType="Bit NOT NULL")]
+		public bool fairtrade
 		{
 			get
 			{
@@ -599,8 +617,8 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bunch_pr_box", DbType="Int NOT NULL")]
-		public int bunch_pr_box
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bunch_pr_box", DbType="SmallInt NOT NULL")]
+		public short bunch_pr_box
 		{
 			get
 			{
@@ -619,8 +637,8 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bunch_pr_bucket", DbType="Int NOT NULL")]
-		public int bunch_pr_bucket
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bunch_pr_bucket", DbType="TinyInt NOT NULL")]
+		public byte bunch_pr_bucket
 		{
 			get
 			{
@@ -639,8 +657,8 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_stems_pr_bunch", DbType="Int NOT NULL")]
-		public int stems_pr_bunch
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_stems_pr_bunch", DbType="TinyInt NOT NULL")]
+		public byte stems_pr_bunch
 		{
 			get
 			{
@@ -659,22 +677,22 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pake_rete", DbType="Int NOT NULL")]
-		public int pake_rete
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pak_rate", DbType="Int NOT NULL")]
+		public int pak_rate
 		{
 			get
 			{
-				return this._pake_rete;
+				return this._pak_rate;
 			}
 			set
 			{
-				if ((this._pake_rete != value))
+				if ((this._pak_rate != value))
 				{
-					this.Onpake_reteChanging(value);
+					this.Onpak_rateChanging(value);
 					this.SendPropertyChanging();
-					this._pake_rete = value;
-					this.SendPropertyChanged("pake_rete");
-					this.Onpake_reteChanged();
+					this._pak_rate = value;
+					this.SendPropertyChanged("pak_rate");
+					this.Onpak_rateChanged();
 				}
 			}
 		}
@@ -713,6 +731,40 @@ namespace INN_CSHARP
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="length_flower", Storage="_lengths", ThisKey="length_id", OtherKey="length_id", IsForeignKey=true)]
+		public lengths lengths
+		{
+			get
+			{
+				return this._lengths.Entity;
+			}
+			set
+			{
+				lengths previousValue = this._lengths.Entity;
+				if (((previousValue != value) 
+							|| (this._lengths.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._lengths.Entity = null;
+						previousValue.flowers.Remove(this);
+					}
+					this._lengths.Entity = value;
+					if ((value != null))
+					{
+						value.flowers.Add(this);
+						this._length_id = value.length_id;
+					}
+					else
+					{
+						this._length_id = default(int);
+					}
+					this.SendPropertyChanged("lengths");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -731,6 +783,120 @@ namespace INN_CSHARP
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.lengths")]
+	public partial class lengths : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _length_id;
+		
+		private string _length1;
+		
+		private EntitySet<flower> _flowers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onlength_idChanging(int value);
+    partial void Onlength_idChanged();
+    partial void Onlength1Changing(string value);
+    partial void Onlength1Changed();
+    #endregion
+		
+		public lengths()
+		{
+			this._flowers = new EntitySet<flower>(new Action<flower>(this.attach_flowers), new Action<flower>(this.detach_flowers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_length_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int length_id
+		{
+			get
+			{
+				return this._length_id;
+			}
+			set
+			{
+				if ((this._length_id != value))
+				{
+					this.Onlength_idChanging(value);
+					this.SendPropertyChanging();
+					this._length_id = value;
+					this.SendPropertyChanged("length_id");
+					this.Onlength_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="length", Storage="_length1", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string length1
+		{
+			get
+			{
+				return this._length1;
+			}
+			set
+			{
+				if ((this._length1 != value))
+				{
+					this.Onlength1Changing(value);
+					this.SendPropertyChanging();
+					this._length1 = value;
+					this.SendPropertyChanged("length1");
+					this.Onlength1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="length_flower", Storage="_flowers", ThisKey="length_id", OtherKey="length_id")]
+		public EntitySet<flower> flowers
+		{
+			get
+			{
+				return this._flowers;
+			}
+			set
+			{
+				this._flowers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_flowers(flower entity)
+		{
+			this.SendPropertyChanging();
+			entity.lengths = this;
+		}
+		
+		private void detach_flowers(flower entity)
+		{
+			this.SendPropertyChanging();
+			entity.lengths = null;
 		}
 	}
 }
