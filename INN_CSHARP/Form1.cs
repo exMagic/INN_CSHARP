@@ -49,7 +49,7 @@ namespace INN_CSHARP
               ,flowers.stems_pr_bunch
 	  
           FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
-          WHERE flowers.farm_id = farms.farm_id and farms.farm_id=";
+          WHERE flowers.farm_id = farms.farm_id ";
 
 
 
@@ -195,18 +195,28 @@ namespace INN_CSHARP
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string far = "and farms.farm_id=";
             var farm_id2 = comboBox1.SelectedIndex;
             farm_id = dataGridView2[0, farm_id2].Value.ToString();
             
             
             int sid = Convert.ToInt16(farm_id);
             //var farm_id3 = dataGridView2[0, farm_id2].Value.ToString();
+            string selectionStatement4;
+            if (sid == 1)
+            {
+                selectionStatement4 = selectionStatement3;
+                dataGridView1.DataSource = bindingSource1;
+                GetData(selectionStatement4, bindingSource1);
+            }
+            else
+            {
+                selectionStatement4 = selectionStatement3 + far + sid;
 
-            var selectionStatement4 = selectionStatement3 + sid;
 
-
-            dataGridView1.DataSource = bindingSource1;
-            GetData(selectionStatement4, bindingSource1);
+                dataGridView1.DataSource = bindingSource1;
+                GetData(selectionStatement4, bindingSource1);
+            }
         }
     }
 }
