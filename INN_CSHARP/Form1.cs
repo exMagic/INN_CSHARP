@@ -27,6 +27,7 @@ namespace INN_CSHARP
         System.Data.DataTable table;
 
         string farm_id;
+        string length_id;
 
         string loadLengths = @"SELECT * FROM lengths";
 
@@ -79,7 +80,7 @@ namespace INN_CSHARP
             button2.BackColor = _leftBG;
             button3.BackColor = _leftBG;
             button4.BackColor = _leftBG;
-        }        
+        }
         public Form1()
         {
             InitializeComponent();
@@ -92,7 +93,7 @@ namespace INN_CSHARP
                 table = new System.Data.DataTable();
                 table.Locale = System.Globalization.CultureInfo.InvariantCulture;
                 dataAdapter.Fill(table);
-                
+
                 bin.DataSource = table;
             }
             catch (SqlException ex)
@@ -118,7 +119,7 @@ namespace INN_CSHARP
             GetData(selectionStatement22, bindingSource2);
 
             dataGridView1.DataSource = bindingSource1;
-            GetData(selectionStatement , bindingSource1);
+            GetData(selectionStatement, bindingSource1);
 
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);
@@ -132,10 +133,10 @@ namespace INN_CSHARP
 
             while (DR.Read())
             {
-                comboBox1.Items.Add(DR[0]);
+                cbFarm.Items.Add(DR[0]);
 
             }
-            comboBox1.SelectedIndex = 0;
+            cbFarm.SelectedIndex = 0;
             conn.Close();
             //////////////// fil up comboBox
             string Sql2 = "SELECT lengths.length FROM[MG_inkjop].[dbo].[lengths]";
@@ -146,10 +147,10 @@ namespace INN_CSHARP
 
             while (DR2.Read())
             {
-                comboBox2.Items.Add(DR2[0]);
+                cbLength.Items.Add(DR2[0]);
 
             }
-            comboBox2.SelectedIndex = 0;
+            cbLength.SelectedIndex = 0;
             conn.Close();
         }
 
@@ -191,7 +192,7 @@ namespace INN_CSHARP
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            farm_id = dataGridView2[0,dataGridView2.CurrentCell.RowIndex].Value.ToString();
+            farm_id = dataGridView2[0, dataGridView2.CurrentCell.RowIndex].Value.ToString();
             int sid = Convert.ToInt16(farm_id);
 
             var selectionStatement4 = selectionStatement3 + sid;
@@ -204,58 +205,37 @@ namespace INN_CSHARP
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var farm_id2 = comboBox1.SelectedIndex;
+            var farm_id2 = cbFarm.SelectedIndex;
             var farm_id3 = dataGridView2[0, farm_id2].Value.ToString();
             MessageBox.Show(farm_id3);
-            
+
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        public void updateFlowersCB()
         {
-            string far = "and farms.farm_id=";
-            var farm_id2 = comboBox1.SelectedIndex;
-            farm_id = dataGridView2[0, farm_id2].Value.ToString();
-            
-            
-            int sid = Convert.ToInt16(farm_id);
-            //var farm_id3 = dataGridView2[0, farm_id2].Value.ToString();
-            string selectionStatement4;
-            if (sid == 1)
-            {
-                selectionStatement4 = selectionStatement3;
-                dataGridView1.DataSource = bindingSource1;
-                GetData(selectionStatement4, bindingSource1);
-            }
-            else
-            {
-                selectionStatement4 = selectionStatement3 + far + sid;
-                dataGridView1.DataSource = bindingSource1;
-                GetData(selectionStatement4, bindingSource1);
-            }
+
+        }
+        public string whFarm;
+        public string whLen;
+        public string selectionStatement4;
+
+
+        private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            farm_id = dataGridView2[0, cbFarm.SelectedIndex].Value.ToString();
+            if (farm_id == "1") whFarm = " ";
+            else whFarm = "and farms.farm_id=" + farm_id.ToString();
+            selectionStatement4 = selectionStatement3 + whFarm + whLen;
+            GetData(selectionStatement4, bindingSource1);
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbLength_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string far = "and lengths.length_id=";
-            var farm_id2 = comboBox2.SelectedIndex;
-            farm_id = dataGridView3[0, farm_id2].Value.ToString();
-
-
-            int sid = Convert.ToInt16(farm_id);
-            //var farm_id3 = dataGridView2[0, farm_id2].Value.ToString();
-            string selectionStatement4;
-            if (sid == 1)
-            {
-                selectionStatement4 = selectionStatement3;
-                dataGridView1.DataSource = bindingSource1;
-                GetData(selectionStatement4, bindingSource1);
-            }
-            else
-            {
-                selectionStatement4 = selectionStatement3 + far + sid;
-                dataGridView1.DataSource = bindingSource1;
-                GetData(selectionStatement4, bindingSource1);
-            }
+            length_id = dataGridView3[0, cbLength.SelectedIndex].Value.ToString();
+            if (length_id == "1") whLen = " ";
+            else whLen = "and lengths.length_id=" + length_id.ToString();
+            selectionStatement4 = selectionStatement3 + whFarm + whLen;
+            GetData(selectionStatement4, bindingSource1);
         }
     }
 }
