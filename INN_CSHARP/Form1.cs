@@ -211,10 +211,14 @@ namespace INN_CSHARP
 
         }
 
-        public void updateFlowersCB()
-        {
-
-        }
+        //public void updateFlowersCB()
+        //{
+        //    farm_id = dataGridView2[0, cbFarm.SelectedIndex].Value.ToString();
+        //    if (farm_id == "1") whFarm = " ";
+        //    else whFarm = "and farms.farm_id=" + farm_id.ToString();
+        //    selectionStatement4 = selectionStatement3 + whFarm + whLen;
+        //    GetData(selectionStatement4, bindingSource1);
+        //}
         public string whFarm;
         public string whLen;
         public string selectionStatement4;

@@ -51,6 +51,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -86,6 +88,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(146, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(713, 705);
             this.dataGridView1.TabIndex = 0;
             // 
@@ -106,6 +109,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.cbLength);
             this.tabPage1.Controls.Add(this.dataGridView3);
             this.tabPage1.Controls.Add(this.cbFarm);
@@ -122,9 +127,9 @@
             // cbLength
             // 
             this.cbLength.FormattingEnabled = true;
-            this.cbLength.Location = new System.Drawing.Point(6, 228);
+            this.cbLength.Location = new System.Drawing.Point(6, 63);
             this.cbLength.Name = "cbLength";
-            this.cbLength.Size = new System.Drawing.Size(118, 21);
+            this.cbLength.Size = new System.Drawing.Size(104, 21);
             this.cbLength.TabIndex = 4;
             this.cbLength.SelectedIndexChanged += new System.EventHandler(this.cbLength_SelectedIndexChanged);
             // 
@@ -133,18 +138,19 @@
             this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(6, 96);
+            this.dataGridView3.Location = new System.Drawing.Point(135, 65);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersVisible = false;
-            this.dataGridView3.Size = new System.Drawing.Size(118, 104);
+            this.dataGridView3.Size = new System.Drawing.Size(118, 19);
             this.dataGridView3.TabIndex = 3;
+            this.dataGridView3.Visible = false;
             // 
             // cbFarm
             // 
             this.cbFarm.FormattingEnabled = true;
-            this.cbFarm.Location = new System.Drawing.Point(6, 45);
+            this.cbFarm.Location = new System.Drawing.Point(6, 23);
             this.cbFarm.Name = "cbFarm";
-            this.cbFarm.Size = new System.Drawing.Size(118, 21);
+            this.cbFarm.Size = new System.Drawing.Size(104, 21);
             this.cbFarm.TabIndex = 2;
             this.cbFarm.SelectedIndexChanged += new System.EventHandler(this.cbFarm_SelectedIndexChanged);
             // 
@@ -153,11 +159,12 @@
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 8);
+            this.dataGridView2.Location = new System.Drawing.Point(135, 23);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(41, 12);
+            this.dataGridView2.Size = new System.Drawing.Size(118, 21);
             this.dataGridView2.TabIndex = 1;
+            this.dataGridView2.Visible = false;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // tabPage2
@@ -328,6 +335,24 @@
             // 
             this.bindingSource3.DataSource = typeof(INN_CSHARP.lengths);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Farm:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 47);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Length:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage2.ResumeLayout(false);
@@ -385,6 +411,8 @@
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.BindingSource bindingSource3;
         private System.Windows.Forms.ComboBox cbLength;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }
 
