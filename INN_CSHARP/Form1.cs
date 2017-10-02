@@ -39,6 +39,7 @@ namespace INN_CSHARP
 
         string selectionStatement3 = @"
         SELECT 
+                flowers.fl_id,
               flowers.variety
               ,flowers.colour
               ,flowers.plu
@@ -119,7 +120,8 @@ namespace INN_CSHARP
             GetData(selectionStatement22, bindingSource2);
 
             dataGridView1.DataSource = bindingSource1;
-            GetData(selectionStatement, bindingSource1);
+            dataGridView1.Columns[0].Visible = false;
+            //GetData(selectionStatement, bindingSource1);
 
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);
@@ -240,6 +242,13 @@ namespace INN_CSHARP
             else whLen = "and lengths.length_id=" + length_id.ToString();
             selectionStatement4 = selectionStatement3 + whFarm + whLen;
             GetData(selectionStatement4, bindingSource1);
+        }
+        public static int idToEdit;
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            idToEdit = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+            EditFl frm = new EditFl();
+            frm.Show();
         }
     }
 }
