@@ -120,7 +120,9 @@ namespace INN_CSHARP
             GetData(selectionStatement22, bindingSource2);
 
             dataGridView1.DataSource = bindingSource1;
-            dataGridView1.Columns[0].Visible = false;
+            //uncoment this...
+            //dataGridView1.Columns[0].Visible = false;
+            
             //GetData(selectionStatement, bindingSource1);
 
             tabControl1.Appearance = TabAppearance.FlatButtons;

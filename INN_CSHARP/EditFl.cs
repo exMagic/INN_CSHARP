@@ -27,17 +27,21 @@ namespace INN_CSHARP
 
         string selectionStatement3 = @"
         SELECT 
-                flowers.fl_id,
-              flowers.variety
-              ,flowers.colour
-              ,flowers.plu
-              ,farms.farm_name
-              ,lengths.length
-	          ,flowers.mix
-              ,flowers.sleeve_type
-              ,flowers.fob
-              ,flowers.fairtrade
-              ,flowers.stems_pr_bunch
+                  flowers.fl_id
+                  ,flowers.variety
+                  ,flowers.colour
+                  ,flowers.plu
+                  ,farms.farm_id
+                ,flowers.mix
+                ,flowers.sticker_text
+                ,flowers.length_id
+                ,flowers.bucket_size
+                ,flowers.sleeve_type
+                ,flowers.fob
+                ,flowers.fairtrade
+                ,flowers.bunch_pr_bucket
+                ,flowers.stems_pr_bunch
+                ,flowers.pak_rate
 	  
           FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths]
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id ";
@@ -71,6 +75,48 @@ namespace INN_CSHARP
             label2.Text = idToEdit2.ToString();
             dataGridView1.DataSource = bindingSource1;
             GetData(selectionStatement3, bindingSource1);
+
+            
+            int rowIndex = -1;
+            
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+               // MessageBox.Show(row.Cells[0].Value.ToString());
+                if (row.Cells[0].Value.ToString() == idToEdit2.ToString())
+                {
+                    rowIndex = row.Index;
+                    break;
+                }
+            }
+
+            txtEVariety.Text = dataGridView1[1, rowIndex].Value.ToString();
+            txtEColour.Text = dataGridView1[2, rowIndex].Value.ToString();
+            txtEPlu.Text = dataGridView1[3, rowIndex].Value.ToString();
+            txtEFarm.Text = dataGridView1[4, rowIndex].Value.ToString();
+            txtEMix.Text = dataGridView1[5, rowIndex].Value.ToString();
+            txtESticker.Text = dataGridView1[6, rowIndex].Value.ToString();
+            txtELength.Text = dataGridView1[7, rowIndex].Value.ToString();
+            txtEBucket.Text = dataGridView1[8, rowIndex].Value.ToString();
+            txtESleeve.Text = dataGridView1[9, rowIndex].Value.ToString();
+            txtEFob.Text = dataGridView1[10, rowIndex].Value.ToString();
+            txtEFaitrade.Text = dataGridView1[11, rowIndex].Value.ToString();
+            txtEBunchPBucket.Text = dataGridView1[12, rowIndex].Value.ToString();
+            txtEStems.Text = dataGridView1[13, rowIndex].Value.ToString();
+            txtEPak.Text = dataGridView1[14, rowIndex].Value.ToString();
+           
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string save = @" UPDATE[MG_inkjop].[dbo].[flowers] SET flowers.variety = '" + txtEVariety.Text + "'" +
+                ", flowers.colour = '"+txtEColour.Text+"'" +
+                "WHERE fl_id = 12";
+
+            GetData(save, bindingSource1);
+            //Form1.reload();
+            this.Close();
         }
     }
 }
