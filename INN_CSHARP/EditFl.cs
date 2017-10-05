@@ -110,9 +110,23 @@ namespace INN_CSHARP
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string save = @" UPDATE[MG_inkjop].[dbo].[flowers] SET flowers.variety = '" + txtEVariety.Text + "'" +
+            string save = @" UPDATE[MG_inkjop].[dbo].[flowers]
+                SET flowers.variety = '" + txtEVariety.Text + "'" +
                 ", flowers.colour = '"+txtEColour.Text+"'" +
-                "WHERE fl_id = 12";
+                ", flowers.plu = '" + txtEPlu.Text + "'" +
+                ", flowers.farm_id = '" + txtEFarm.Text + "'" +
+                ", flowers.mix = '" + txtEMix.Text + "'" +
+                ", flowers.sticker_text = '" + txtESticker.Text + "'" +
+                ", flowers.length_id = '" + txtELength.Text + "'" +
+                ", flowers.bucket_size = '" + txtEBucket.Text + "'" +
+                ", flowers.sleeve_type = '" + txtESleeve.Text + "'" +
+                ", flowers.fob = '" + txtEFob.Text + "'" +
+                ", flowers.fairtrade = '" + txtEFaitrade.Text + "'" +
+                ", flowers.bunch_pr_bucket = '" + txtEBunchPBucket.Text + "'" +
+                ", flowers.stems_pr_bunch = '" + txtEStems.Text + "'" +
+                ", flowers.pak_rate = '" + txtEPak.Text + "'" +
+
+                "WHERE fl_id = " + label2.Text;
 
             GetData(save, bindingSource1);
             //Form1.reload();

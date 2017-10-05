@@ -120,9 +120,10 @@ namespace INN_CSHARP
             GetData(selectionStatement22, bindingSource2);
 
             dataGridView1.DataSource = bindingSource1;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //uncoment this...
             //dataGridView1.Columns[0].Visible = false;
-            
+
             //GetData(selectionStatement, bindingSource1);
 
             tabControl1.Appearance = TabAppearance.FlatButtons;
@@ -134,7 +135,8 @@ namespace INN_CSHARP
             conn.Open();
             SqlCommand cmd = new SqlCommand(Sql, conn);
             SqlDataReader DR = cmd.ExecuteReader();
-
+            string All = "All";
+            cbFarm.Items.Add(All);
             while (DR.Read())
             {
                 cbFarm.Items.Add(DR[0]);
@@ -148,7 +150,7 @@ namespace INN_CSHARP
 
             SqlCommand cmd2 = new SqlCommand(Sql2, conn);
             SqlDataReader DR2 = cmd2.ExecuteReader();
-
+            cbLength.Items.Add(All);
             while (DR2.Read())
             {
                 cbLength.Items.Add(DR2[0]);
@@ -198,10 +200,7 @@ namespace INN_CSHARP
         {
             farm_id = dataGridView2[0, dataGridView2.CurrentCell.RowIndex].Value.ToString();
             int sid = Convert.ToInt16(farm_id);
-
             var selectionStatement4 = selectionStatement3 + sid;
-
-
             dataGridView1.DataSource = bindingSource1;
             GetData(selectionStatement4, bindingSource1);
 
@@ -215,33 +214,46 @@ namespace INN_CSHARP
 
         }
 
-        //public void updateFlowersCB()
-        //{
-        //    farm_id = dataGridView2[0, cbFarm.SelectedIndex].Value.ToString();
-        //    if (farm_id == "1") whFarm = " ";
-        //    else whFarm = "and farms.farm_id=" + farm_id.ToString();
-        //    selectionStatement4 = selectionStatement3 + whFarm + whLen;
-        //    GetData(selectionStatement4, bindingSource1);
-        //}
         public string whFarm;
         public string whLen;
         public string selectionStatement4;
 
-
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
         {
-            farm_id = dataGridView2[0, cbFarm.SelectedIndex].Value.ToString();
-            if (farm_id == "1") whFarm = " ";
-            else whFarm = "and farms.farm_id=" + farm_id.ToString();
+            if (cbFarm.SelectedIndex == 0) whFarm = " ";
+            else
+            {
+                int selectedFarmId;
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Cells[1].Value.ToString() == cbFarm.SelectedItem.ToString())
+                    {
+                        selectedFarmId = Convert.ToInt32(row.Cells[0].Value);
+                        whFarm = "and farms.farm_id=" + selectedFarmId.ToString();
+                        break;
+                    }
+                }
+            }
             selectionStatement4 = selectionStatement3 + whFarm + whLen;
             GetData(selectionStatement4, bindingSource1);
         }
 
         private void cbLength_SelectedIndexChanged(object sender, EventArgs e)
         {
-            length_id = dataGridView3[0, cbLength.SelectedIndex].Value.ToString();
-            if (length_id == "1") whLen = " ";
-            else whLen = "and lengths.length_id=" + length_id.ToString();
+            if (cbLength.SelectedIndex == 0) whLen = " ";
+            else
+            {
+                int selectedLengthId;
+                foreach (DataGridViewRow row in dataGridView3.Rows)
+                {
+                    if (row.Cells[1].Value.ToString() == cbLength.SelectedItem.ToString())
+                    {
+                        selectedLengthId = Convert.ToInt32(row.Cells[0].Value);
+                        whLen = "and lengths.length_id=" + selectedLengthId.ToString();
+                        break;
+                    }
+                }
+            }
             selectionStatement4 = selectionStatement3 + whFarm + whLen;
             GetData(selectionStatement4, bindingSource1);
         }
@@ -249,8 +261,15 @@ namespace INN_CSHARP
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             idToEdit = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+
             EditFl frm = new EditFl();
+            frm.FormClosing += new FormClosingEventHandler(this.Edit_FormClosing);
             frm.Show();
+        }
+
+        private void Edit_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            GetData(selectionStatement4, bindingSource1);
         }
     }
 }
