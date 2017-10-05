@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFl.Designer.cs">
+      <DependentUpon>AddFl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataClasses1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -65,6 +71,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddFl.resx">
+      <DependentUpon>AddFl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditFl.resx">
       <DependentUpon>EditFl.cs</DependentUpon>
     </EmbeddedResource>

@@ -271,5 +271,37 @@ namespace INN_CSHARP
         {
             GetData(selectionStatement4, bindingSource1);
         }
+
+        private void btnFAdd_Click(object sender, EventArgs e)
+        {
+            AddFl frm = new AddFl();
+            frm.FormClosing += new FormClosingEventHandler(this.Add_FormClosing);
+            frm.Show();
+        }
+        private void Add_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            GetData(selectionStatement4, bindingSource1);
+        }
+
+        private void btnFDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete () flower from database? This Action can not be undone", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+
+                //MessageBox.Show(dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString());
+                var idToDelete = dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString();
+                string delete = @"DELETE FROM [dbo].[flowers] WHERE fl_id=" + idToDelete;
+                GetData(delete, bindingSource1);
+            }
+            
+            GetData(selectionStatement4, bindingSource1);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

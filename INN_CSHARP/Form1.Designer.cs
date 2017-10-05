@@ -53,6 +53,8 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnFAdd = new System.Windows.Forms.Button();
+            this.btnFDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -110,6 +112,8 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.btnFDelete);
+            this.tabPage1.Controls.Add(this.btnFAdd);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.cbLength);
@@ -257,6 +261,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(197, 1075);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // button3
             // 
@@ -354,6 +359,26 @@
             // 
             this.bindingSource3.DataSource = typeof(INN_CSHARP.lengths);
             // 
+            // btnFAdd
+            // 
+            this.btnFAdd.Location = new System.Drawing.Point(24, 132);
+            this.btnFAdd.Name = "btnFAdd";
+            this.btnFAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnFAdd.TabIndex = 7;
+            this.btnFAdd.Text = "Add";
+            this.btnFAdd.UseVisualStyleBackColor = true;
+            this.btnFAdd.Click += new System.EventHandler(this.btnFAdd_Click);
+            // 
+            // btnFDelete
+            // 
+            this.btnFDelete.Location = new System.Drawing.Point(24, 161);
+            this.btnFDelete.Name = "btnFDelete";
+            this.btnFDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnFDelete.TabIndex = 8;
+            this.btnFDelete.Text = "Delete";
+            this.btnFDelete.UseVisualStyleBackColor = true;
+            this.btnFDelete.Click += new System.EventHandler(this.btnFDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -414,6 +439,8 @@
         private System.Windows.Forms.ComboBox cbLength;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnFAdd;
+        private System.Windows.Forms.Button btnFDelete;
     }
 }
 

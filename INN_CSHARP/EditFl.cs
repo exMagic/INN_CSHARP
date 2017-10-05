@@ -129,7 +129,6 @@ namespace INN_CSHARP
                 "WHERE fl_id = " + label2.Text;
 
             GetData(save, bindingSource1);
-            //Form1.reload();
             this.Close();
         }
     }
