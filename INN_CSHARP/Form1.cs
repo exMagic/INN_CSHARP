@@ -128,7 +128,7 @@ namespace INN_CSHARP
 
             //GetData(selectionStatement, bindingSource1);
 
-            tabControl1.Appearance = TabAppearance.FlatButtons;
+            tabControl1.Appearance = TabAppearance.Buttons;
 
             tabControl1.ItemSize = new Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
