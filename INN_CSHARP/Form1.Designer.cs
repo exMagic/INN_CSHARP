@@ -30,9 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.TabControl tabControl1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.btnFEdit = new System.Windows.Forms.Button();
+            this.btnFDelete = new System.Windows.Forms.Button();
+            this.btnFAdd = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.cbLength = new System.Windows.Forms.ComboBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.cbFarm = new System.Windows.Forms.ComboBox();
@@ -48,15 +55,12 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
-            this.btnFAdd = new System.Windows.Forms.Button();
-            this.btnFDelete = new System.Windows.Forms.Button();
+            tabControl1 = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -87,31 +91,33 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.GridColor = System.Drawing.Color.DarkGray;
-            this.dataGridView1.Location = new System.Drawing.Point(146, 3);
+            this.dataGridView1.Location = new System.Drawing.Point(146, 57);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(713, 705);
+            this.dataGridView1.Size = new System.Drawing.Size(701, 634);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // tabControl1
             // 
-            this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(209, 0);
-            this.tabControl1.Multiline = true;
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(889, 719);
-            this.tabControl1.TabIndex = 1;
+            tabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
+            tabControl1.Controls.Add(this.tabPage1);
+            tabControl1.Controls.Add(this.tabPage2);
+            tabControl1.Controls.Add(this.tabPage3);
+            tabControl1.Controls.Add(this.tabPage4);
+            tabControl1.Location = new System.Drawing.Point(209, 0);
+            tabControl1.Multiline = true;
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new System.Drawing.Size(889, 719);
+            tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.button5);
+            this.tabPage1.Controls.Add(this.btnFEdit);
             this.tabPage1.Controls.Add(this.btnFDelete);
             this.tabPage1.Controls.Add(this.btnFAdd);
             this.tabPage1.Controls.Add(this.label5);
@@ -129,10 +135,99 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             // 
+            // button5
+            // 
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.Gray;
+            this.button5.Location = new System.Drawing.Point(238, 16);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(132, 28);
+            this.button5.TabIndex = 10;
+            this.button5.Text = "Lagre som kopi";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // btnFEdit
+            // 
+            this.btnFEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFEdit.BackgroundImage")));
+            this.btnFEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnFEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFEdit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnFEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFEdit.ForeColor = System.Drawing.Color.Gray;
+            this.btnFEdit.Location = new System.Drawing.Point(376, 16);
+            this.btnFEdit.Name = "btnFEdit";
+            this.btnFEdit.Size = new System.Drawing.Size(88, 28);
+            this.btnFEdit.TabIndex = 9;
+            this.btnFEdit.Text = "Rediger";
+            this.btnFEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFEdit.UseVisualStyleBackColor = true;
+            this.btnFEdit.Click += new System.EventHandler(this.btnFEdit_Click);
+            // 
+            // btnFDelete
+            // 
+            this.btnFDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFDelete.BackgroundImage")));
+            this.btnFDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnFDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnFDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFDelete.ForeColor = System.Drawing.Color.Gray;
+            this.btnFDelete.Location = new System.Drawing.Point(470, 16);
+            this.btnFDelete.Name = "btnFDelete";
+            this.btnFDelete.Size = new System.Drawing.Size(72, 28);
+            this.btnFDelete.TabIndex = 8;
+            this.btnFDelete.Text = "Slett";
+            this.btnFDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFDelete.UseVisualStyleBackColor = true;
+            this.btnFDelete.Click += new System.EventHandler(this.btnFDelete_Click);
+            // 
+            // btnFAdd
+            // 
+            this.btnFAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
+            this.btnFAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFAdd.BackgroundImage")));
+            this.btnFAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(51)))));
+            this.btnFAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFAdd.ForeColor = System.Drawing.Color.White;
+            this.btnFAdd.Location = new System.Drawing.Point(146, 16);
+            this.btnFAdd.Name = "btnFAdd";
+            this.btnFAdd.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btnFAdd.Size = new System.Drawing.Size(86, 28);
+            this.btnFAdd.TabIndex = 7;
+            this.btnFAdd.Text = "Ny";
+            this.btnFAdd.UseVisualStyleBackColor = false;
+            this.btnFAdd.Click += new System.EventHandler(this.btnFAdd_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 105);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Length:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Farm:";
+            // 
             // cbLength
             // 
             this.cbLength.FormattingEnabled = true;
-            this.cbLength.Location = new System.Drawing.Point(6, 78);
+            this.cbLength.Location = new System.Drawing.Point(9, 128);
             this.cbLength.Name = "cbLength";
             this.cbLength.Size = new System.Drawing.Size(104, 21);
             this.cbLength.TabIndex = 4;
@@ -143,17 +238,17 @@
             this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(135, 65);
+            this.dataGridView3.Location = new System.Drawing.Point(6, 208);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersVisible = false;
-            this.dataGridView3.Size = new System.Drawing.Size(118, 19);
+            this.dataGridView3.Size = new System.Drawing.Size(118, 10);
             this.dataGridView3.TabIndex = 3;
             this.dataGridView3.Visible = false;
             // 
             // cbFarm
             // 
             this.cbFarm.FormattingEnabled = true;
-            this.cbFarm.Location = new System.Drawing.Point(6, 23);
+            this.cbFarm.Location = new System.Drawing.Point(9, 73);
             this.cbFarm.Name = "cbFarm";
             this.cbFarm.Size = new System.Drawing.Size(104, 21);
             this.cbFarm.TabIndex = 2;
@@ -164,13 +259,12 @@
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(135, 23);
+            this.dataGridView2.Location = new System.Drawing.Point(6, 166);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(118, 21);
+            this.dataGridView2.Size = new System.Drawing.Size(118, 10);
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.Visible = false;
-            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // tabPage2
             // 
@@ -329,24 +423,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Farm:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 62);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Length:";
-            // 
             // bindingSource1
             // 
             this.bindingSource1.DataSource = typeof(INN_CSHARP.flower);
@@ -359,26 +435,6 @@
             // 
             this.bindingSource3.DataSource = typeof(INN_CSHARP.lengths);
             // 
-            // btnFAdd
-            // 
-            this.btnFAdd.Location = new System.Drawing.Point(24, 132);
-            this.btnFAdd.Name = "btnFAdd";
-            this.btnFAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnFAdd.TabIndex = 7;
-            this.btnFAdd.Text = "Add";
-            this.btnFAdd.UseVisualStyleBackColor = true;
-            this.btnFAdd.Click += new System.EventHandler(this.btnFAdd_Click);
-            // 
-            // btnFDelete
-            // 
-            this.btnFDelete.Location = new System.Drawing.Point(24, 161);
-            this.btnFDelete.Name = "btnFDelete";
-            this.btnFDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnFDelete.TabIndex = 8;
-            this.btnFDelete.Text = "Delete";
-            this.btnFDelete.UseVisualStyleBackColor = true;
-            this.btnFDelete.Click += new System.EventHandler(this.btnFDelete_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,7 +442,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1245, 765);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(tabControl1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -395,7 +451,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
@@ -417,7 +473,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.BindingSource bindingSource1;
@@ -441,6 +496,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnFAdd;
         private System.Windows.Forms.Button btnFDelete;
+        private System.Windows.Forms.Button btnFEdit;
+        private System.Windows.Forms.Button button5;
     }
 }
 

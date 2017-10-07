@@ -15,11 +15,11 @@ namespace INN_CSHARP
     public partial class AddFl : Form
     {
         // PC
-        /*
+        //
         string connString = @"Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         
-        */
-        //WINMAC
+        //
+        /*WINMAC
         string connString = @"Data Source=MACBOOKW10\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //*/
         SqlDataAdapter dataAdapter;

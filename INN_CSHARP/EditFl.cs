@@ -15,11 +15,11 @@ namespace INN_CSHARP
     public partial class EditFl : Form
     {
         // PC
-        /*
+        //
         string connString = @"Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         
-        */
-        //WINMAC
+        //
+        /*/WINMAC
         string connString = @"Data Source=MACBOOKW10\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //*/
         SqlDataAdapter dataAdapter;
@@ -127,8 +127,25 @@ namespace INN_CSHARP
                 ", flowers.pak_rate = '" + txtEPak.Text + "'" +
 
                 "WHERE fl_id = " + label2.Text;
+            string save2 = @" UPDATE[MG_inkjop].[dbo].[flowers]
+                SET flowers.variety = '" + txtEVariety.Text + "'" +
+                ", flowers.colour = '" + txtEColour.Text + "'" +
+                ", flowers.plu = '" + txtEPlu.Text + "'" +
+                ", flowers.farm_id = '" + txtEFarm.Text + "'" +
+                ", flowers.mix = '" + txtEMix.Text + "'" +
+                ", flowers.sticker_text = '" + txtESticker.Text + "'" +
+                ", flowers.length_id = '" + txtELength.Text + "'" +
+                ", flowers.bucket_size = '" + txtEBucket.Text + "'" +
+                ", flowers.sleeve_type = '" + txtESleeve.Text + "'" +
+                ", flowers.fob = '" + txtEFob.Text + "'" +
+                ", flowers.fairtrade = '" + txtEFaitrade.Text + "'" +
+                ", flowers.bunch_pr_bucket = '" + txtEBunchPBucket.Text + "'" +
+                ", flowers.stems_pr_bunch = '" + txtEStems.Text + "'" +
+                ", flowers.pak_rate = '" + txtEPak.Text + "'" +
 
-            GetData(save, bindingSource1);
+                "WHERE fl_id = " + label2.Text;
+
+            GetData(save2, bindingSource1);
             this.Close();
         }
     }

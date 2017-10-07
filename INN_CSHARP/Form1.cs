@@ -16,11 +16,11 @@ namespace INN_CSHARP
     {
 
         // PC
-        /*
+        //
         string connString = @"Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         
-        */
-        //WINMAC
+        //
+        /*/WINMAC
         string connString = @"Data Source=MACBOOKW10\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //*/
         SqlDataAdapter dataAdapter;
@@ -39,8 +39,10 @@ namespace INN_CSHARP
 
         string selectionStatement3 = @"
         SELECT 
-                flowers.fl_id,
-              flowers.variety
+                flowers.fl_id
+              ,flowers.variety
+              ,flowers.sticker_text
+              ,flowers.bucket_size
               ,flowers.colour
               ,flowers.plu
               ,farms.farm_name
@@ -122,7 +124,7 @@ namespace INN_CSHARP
             dataGridView1.DataSource = bindingSource1;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //uncoment this...
-            //dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[0].Visible = false;
 
             //GetData(selectionStatement, bindingSource1);
 
@@ -159,7 +161,7 @@ namespace INN_CSHARP
             cbLength.SelectedIndex = 0;
             conn.Close();
         }
-
+        ///////////////////////  MENU
         private void button1_Click(object sender, EventArgs e)
         {
             resBtn();
@@ -193,31 +195,33 @@ namespace INN_CSHARP
             tabControl1.SelectedIndex = 3;
 
         }
+        /////////////////////// END MENU
 
 
 
-        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            farm_id = dataGridView2[0, dataGridView2.CurrentCell.RowIndex].Value.ToString();
-            int sid = Convert.ToInt16(farm_id);
-            var selectionStatement4 = selectionStatement3 + sid;
-            dataGridView1.DataSource = bindingSource1;
-            GetData(selectionStatement4, bindingSource1);
+        //private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    farm_id = dataGridView2[0, dataGridView2.CurrentCell.RowIndex].Value.ToString();
+        //    int sid = Convert.ToInt16(farm_id);
+        //    var selectionStatement4 = selectionStatement3 + sid;
+        //    dataGridView1.DataSource = bindingSource1;
+        //    GetData(selectionStatement4, bindingSource1);
 
-        }
+        //}
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            var farm_id2 = cbFarm.SelectedIndex;
-            var farm_id3 = dataGridView2[0, farm_id2].Value.ToString();
-            MessageBox.Show(farm_id3);
+        //private void button5_Click(object sender, EventArgs e)
+        //{
+        //    var farm_id2 = cbFarm.SelectedIndex;
+        //    var farm_id3 = dataGridView2[0, farm_id2].Value.ToString();
+        //    MessageBox.Show(farm_id3);
 
-        }
+        //}
 
         public string whFarm;
         public string whLen;
         public string selectionStatement4;
 
+        // FARM FILTER ///////////////////////////////////////////////////////////////
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbFarm.SelectedIndex == 0) whFarm = " ";
@@ -237,7 +241,7 @@ namespace INN_CSHARP
             selectionStatement4 = selectionStatement3 + whFarm + whLen;
             GetData(selectionStatement4, bindingSource1);
         }
-
+        // LENGTH FILTER ///////////////////////////////////////////////////////////////
         private void cbLength_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbLength.SelectedIndex == 0) whLen = " ";
@@ -257,11 +261,18 @@ namespace INN_CSHARP
             selectionStatement4 = selectionStatement3 + whFarm + whLen;
             GetData(selectionStatement4, bindingSource1);
         }
+        // EDIT ///////////////////////////////////////////////////////////////
         public static int idToEdit;
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             idToEdit = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-
+            EditFl frm = new EditFl();
+            frm.FormClosing += new FormClosingEventHandler(this.Edit_FormClosing);
+            frm.Show();
+        }
+        private void btnFEdit_Click(object sender, EventArgs e)
+        {
+            idToEdit = Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString());
             EditFl frm = new EditFl();
             frm.FormClosing += new FormClosingEventHandler(this.Edit_FormClosing);
             frm.Show();
@@ -271,7 +282,7 @@ namespace INN_CSHARP
         {
             GetData(selectionStatement4, bindingSource1);
         }
-
+        // ADD ///////////////////////////////////////////////////////////////
         private void btnFAdd_Click(object sender, EventArgs e)
         {
             AddFl frm = new AddFl();
@@ -282,7 +293,7 @@ namespace INN_CSHARP
         {
             GetData(selectionStatement4, bindingSource1);
         }
-
+        // DELETE ///////////////////////////////////////////////////////////////
         private void btnFDelete_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete () flower from database? This Action can not be undone", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -303,5 +314,7 @@ namespace INN_CSHARP
         {
 
         }
+
+
     }
 }
