@@ -128,9 +128,11 @@ namespace INN_CSHARP
 
             //GetData(selectionStatement, bindingSource1);
 
-            //tabControl1.Appearance = TabAppearance.FlatButtons;
-            //tabControl1.ItemSize = new Size(0, 1);
-            //tabControl1.SizeMode = TabSizeMode.Fixed;
+            tabControl1.Appearance = TabAppearance.FlatButtons;
+
+            tabControl1.ItemSize = new Size(0, 1);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+
             //////////////// fil up comboBox
             string Sql = "SELECT farms.farm_name FROM[MG_inkjop].[dbo].[farms]";
             SqlConnection conn = new SqlConnection(connString);
@@ -167,14 +169,14 @@ namespace INN_CSHARP
             resBtn();
             Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
             button1.BackColor = _selected;
-            //tabControl1.SelectedIndex = 0;
+            tabControl1.SelectedIndex = 0;
         }
         private void button2_Click(object sender, EventArgs e)
         {
             resBtn();
             Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
             button2.BackColor = _selected;
-            //tabControl1.SelectedIndex = 1;
+            tabControl1.SelectedIndex = 1;
 
         }
 
@@ -183,7 +185,7 @@ namespace INN_CSHARP
             resBtn();
             Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
             button3.BackColor = _selected;
-            //tabControl1.SelectedIndex = 2;
+            tabControl1.SelectedIndex = 2;
 
         }
 
@@ -192,7 +194,7 @@ namespace INN_CSHARP
             resBtn();
             Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
             button4.BackColor = _selected;
-            //tabControl1.SelectedIndex = 3;
+            tabControl1.SelectedIndex = 3;
 
         }
         /////////////////////// END MENU
