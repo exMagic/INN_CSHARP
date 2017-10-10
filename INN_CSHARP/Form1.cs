@@ -47,7 +47,7 @@ namespace INN_CSHARP
               ,farms.farm_name
               ,lengths.length
 	          ,flowers.mix
-              ,flowers.sleeve_type
+              ,flowers.sleeve_id
               ,flowers.fob
               ,flowers.fairtrade
               ,flowers.stems_pr_bunch
@@ -64,7 +64,7 @@ namespace INN_CSHARP
               ,flowers.plu
               ,farms.farm_name
 	          ,flowers.mix
-              ,flowers.sleeve_type
+              ,flowers.sleeve_id
               ,flowers.fob
               ,flowers.fairtrade
               ,flowers.stems_pr_bunch

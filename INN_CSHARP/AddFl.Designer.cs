@@ -40,7 +40,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtESleeve = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtELength = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtESticker = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -54,11 +53,15 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.cbFarm = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
             this.cheMix = new System.Windows.Forms.CheckBox();
             this.cheFt = new System.Windows.Forms.CheckBox();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.cbLengths = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -77,6 +80,7 @@
             this.txtEPak.Name = "txtEPak";
             this.txtEPak.Size = new System.Drawing.Size(100, 20);
             this.txtEPak.TabIndex = 59;
+            this.txtEPak.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEPak_KeyPress);
             // 
             // label14
             // 
@@ -93,6 +97,7 @@
             this.txtEStems.Name = "txtEStems";
             this.txtEStems.Size = new System.Drawing.Size(100, 20);
             this.txtEStems.TabIndex = 57;
+            this.txtEStems.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEStems_KeyPress);
             // 
             // label15
             // 
@@ -109,6 +114,7 @@
             this.txtEBunchPBucket.Name = "txtEBunchPBucket";
             this.txtEBunchPBucket.Size = new System.Drawing.Size(100, 20);
             this.txtEBunchPBucket.TabIndex = 55;
+            this.txtEBunchPBucket.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEBunchPBucket_KeyPress);
             // 
             // label13
             // 
@@ -125,6 +131,7 @@
             this.txtEFob.Name = "txtEFob";
             this.txtEFob.Size = new System.Drawing.Size(100, 20);
             this.txtEFob.TabIndex = 51;
+            this.txtEFob.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEFob_KeyPress);
             // 
             // label11
             // 
@@ -151,21 +158,14 @@
             this.label10.TabIndex = 48;
             this.label10.Text = "sleeve type:";
             // 
-            // txtELength
-            // 
-            this.txtELength.Location = new System.Drawing.Point(133, 99);
-            this.txtELength.Name = "txtELength";
-            this.txtELength.Size = new System.Drawing.Size(100, 20);
-            this.txtELength.TabIndex = 45;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(130, 83);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 13);
+            this.label8.Size = new System.Drawing.Size(66, 13);
             this.label8.TabIndex = 44;
-            this.label8.Text = "Length id:";
+            this.label8.Text = "Length (cm):";
             // 
             // txtESticker
             // 
@@ -188,9 +188,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(448, 44);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.Size = new System.Drawing.Size(33, 13);
             this.label5.TabIndex = 38;
-            this.label5.Text = "Farm_id:";
+            this.label5.Text = "Farm:";
             // 
             // txtEPlu
             // 
@@ -263,15 +263,6 @@
             this.dataGridView1.TabIndex = 62;
             this.dataGridView1.Visible = false;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(806, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 63;
-            this.label2.Text = "label2";
-            // 
             // cheMix
             // 
             this.cheMix.AutoSize = true;
@@ -292,14 +283,37 @@
             this.cheFt.Text = "Fairtrade";
             this.cheFt.UseVisualStyleBackColor = true;
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(73, 250);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(47, 19);
+            this.dataGridView2.TabIndex = 66;
+            this.dataGridView2.Visible = false;
+            // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = typeof(INN_CSHARP.lengths);
+            // 
+            // cbLengths
+            // 
+            this.cbLengths.FormattingEnabled = true;
+            this.cbLengths.Location = new System.Drawing.Point(133, 98);
+            this.cbLengths.Name = "cbLengths";
+            this.cbLengths.Size = new System.Drawing.Size(100, 21);
+            this.cbLengths.TabIndex = 67;
+            this.cbLengths.SelectedIndexChanged += new System.EventHandler(this.cbLengths_SelectedIndexChanged);
+            // 
             // Ny
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(894, 281);
+            this.Controls.Add(this.cbLengths);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.cheFt);
             this.Controls.Add(this.cheMix);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cbFarm);
             this.Controls.Add(this.btnAdd);
@@ -313,7 +327,6 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtESleeve);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtELength);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtESticker);
             this.Controls.Add(this.label7);
@@ -333,6 +346,8 @@
             this.Load += new System.EventHandler(this.AddFl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,7 +366,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtESleeve;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtELength;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtESticker;
         private System.Windows.Forms.Label label7;
@@ -365,8 +379,10 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ComboBox cbFarm;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cheMix;
         private System.Windows.Forms.CheckBox cheFt;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.BindingSource bindingSource2;
+        private System.Windows.Forms.ComboBox cbLengths;
     }
 }

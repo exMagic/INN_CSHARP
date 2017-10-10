@@ -35,7 +35,7 @@ namespace INN_CSHARP
         //        ,flowers.mix
         //        ,flowers.sticker_text
         //        ,flowers.length_id
-        //        ,flowers.sleeve_type
+        //        ,flowers.sleeve_id
         //        ,flowers.fob
         //        ,flowers.fairtrade
         //        ,flowers.bunch_pr_bucket
@@ -67,6 +67,7 @@ namespace INN_CSHARP
         string mix;
         string ft;
         string selectedFarmId;
+        string selectedLength;
         
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -82,7 +83,7 @@ namespace INN_CSHARP
            ,[mix]
            ,[sticker_text]
            ,[length_id]
-           ,[sleeve_type]
+           ,[sleeve_id]
            ,[fob]
            ,[fairtrade]
            ,[bunch_pr_bucket]
@@ -95,7 +96,7 @@ namespace INN_CSHARP
                 ",'" + selectedFarmId + "'" +
                 ",'" + mix + "'" +
                 ",'" + txtESticker.Text + "'" +
-                ",'" + txtELength.Text + "'" +
+                ",'" + selectedLength + "'" +
                 ",'" + txtESleeve.Text + "'" +
                 ",'" + txtEFob.Text + "'" +
                 ",'" + ft + "'" +
@@ -109,29 +110,39 @@ namespace INN_CSHARP
 
         }
         string select = @"SELECT * FROM [MG_inkjop].[dbo].[farms]";
+        string selectLengths = @"SELECT * FROM [MG_inkjop].[dbo].[lengths]";
+
 
         private void AddFl_Load(object sender, EventArgs e)
         {
+            //fill up dataGridView by Farms
             dataGridView1.DataSource = bindingSource1;
             GetData(select, bindingSource1);
-
+            //fill up dataGridView by Lengths
+            dataGridView2.DataSource = bindingSource2;
+            GetData(selectLengths, bindingSource2);
+            //fill up combo box by Farms
             string Sql = "SELECT farms.farm_name FROM[MG_inkjop].[dbo].[farms]";
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(Sql, conn);
             SqlDataReader DR = cmd.ExecuteReader();
-            while (DR.Read())
-            {
-                cbFarm.Items.Add(DR[0]);
-
-            }
+            while (DR.Read())cbFarm.Items.Add(DR[0]);
             cbFarm.SelectedIndex = 0;
             conn.Close();
+            //fill up combo box by Farms
+            string Sql2 = "SELECT lengths.length FROM[MG_inkjop].[dbo].[lengths]";
+            SqlConnection conn2 = new SqlConnection(connString);
+            conn2.Open();
+            SqlCommand cmd2 = new SqlCommand(Sql2, conn2);
+            SqlDataReader DR2 = cmd2.ExecuteReader();
+            while (DR2.Read()) cbLengths.Items.Add(DR2[0]);
+            cbLengths.SelectedIndex = 0;
+            conn2.Close();
 
         }
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Cells[1].Value.ToString() == cbFarm.SelectedItem.ToString())
@@ -140,15 +151,41 @@ namespace INN_CSHARP
                     break;
                 }
             }
-
-
-            
+        }
+        private void cbLengths_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row.Cells[1].Value.ToString() == cbLengths.SelectedItem.ToString())
+                {
+                    selectedLength = row.Cells[0].Value.ToString();
+                    break;
+                }
+            }
         }
 
-        private void txtEPlu_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtEPlu_KeyPress(object sender, KeyPressEventArgs e)// allow only digit
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+        private void txtEBunchPBucket_KeyPress(object sender, KeyPressEventArgs e)// allow only digit
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+        private void txtEStems_KeyPress(object sender, KeyPressEventArgs e)// allow only digit
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+        private void txtEPak_KeyPress(object sender, KeyPressEventArgs e)// allow only digit
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
+        private void txtEFob_KeyPress(object sender, KeyPressEventArgs e)// allow only decimal
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) e.Handled = true;
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
+        }
     }
 }

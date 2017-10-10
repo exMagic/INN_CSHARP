@@ -35,7 +35,7 @@ namespace INN_CSHARP
                 ,flowers.mix
                 ,flowers.sticker_text
                 ,flowers.length_id
-                ,flowers.sleeve_type
+                ,flowers.sleeve_id
                 ,flowers.fob
                 ,flowers.fairtrade
                 ,flowers.bunch_pr_bucket
@@ -95,12 +95,12 @@ namespace INN_CSHARP
             txtEMix.Text = dataGridView1[5, rowIndex].Value.ToString();
             txtESticker.Text = dataGridView1[6, rowIndex].Value.ToString();
             txtELength.Text = dataGridView1[7, rowIndex].Value.ToString();
-            txtESleeve.Text = dataGridView1[9, rowIndex].Value.ToString();
-            txtEFob.Text = dataGridView1[10, rowIndex].Value.ToString();
-            txtEFaitrade.Text = dataGridView1[11, rowIndex].Value.ToString();
-            txtEBunchPBucket.Text = dataGridView1[12, rowIndex].Value.ToString();
-            txtEStems.Text = dataGridView1[13, rowIndex].Value.ToString();
-            txtEPak.Text = dataGridView1[14, rowIndex].Value.ToString();
+            txtESleeve.Text = dataGridView1[8, rowIndex].Value.ToString();
+            txtEFob.Text = dataGridView1[9, rowIndex].Value.ToString();
+            txtEFaitrade.Text = dataGridView1[10, rowIndex].Value.ToString();
+            txtEBunchPBucket.Text = dataGridView1[11, rowIndex].Value.ToString();
+            txtEStems.Text = dataGridView1[12, rowIndex].Value.ToString();
+            txtEPak.Text = dataGridView1[13, rowIndex].Value.ToString();
            
 
 
@@ -116,7 +116,7 @@ namespace INN_CSHARP
                 ", flowers.mix = '" + txtEMix.Text + "'" +
                 ", flowers.sticker_text = '" + txtESticker.Text + "'" +
                 ", flowers.length_id = '" + txtELength.Text + "'" +
-                ", flowers.sleeve_type = '" + txtESleeve.Text + "'" +
+                ", flowers.sleeve_id = '" + txtESleeve.Text + "'" +
                 ", flowers.fob = '" + txtEFob.Text + "'" +
                 ", flowers.fairtrade = '" + txtEFaitrade.Text + "'" +
                 ", flowers.bunch_pr_bucket = '" + txtEBunchPBucket.Text + "'" +
@@ -132,7 +132,7 @@ namespace INN_CSHARP
                 ", flowers.mix = '" + txtEMix.Text + "'" +
                 ", flowers.sticker_text = '" + txtESticker.Text + "'" +
                 ", flowers.length_id = '" + txtELength.Text + "'" +
-                ", flowers.sleeve_type = '" + txtESleeve.Text + "'" +
+                ", flowers.sleeve_id = '" + txtESleeve.Text + "'" +
                 ", flowers.fob = '" + txtEFob.Text + "'" +
                 ", flowers.fairtrade = '" + txtEFaitrade.Text + "'" +
                 ", flowers.bunch_pr_bucket = '" + txtEBunchPBucket.Text + "'" +
