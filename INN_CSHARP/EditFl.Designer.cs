@@ -46,8 +46,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtELength = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtEBucket = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.txtESleeve = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtEFob = new System.Windows.Forms.TextBox();
@@ -202,22 +200,6 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "Length id:";
             // 
-            // txtEBucket
-            // 
-            this.txtEBucket.Location = new System.Drawing.Point(222, 87);
-            this.txtEBucket.Name = "txtEBucket";
-            this.txtEBucket.Size = new System.Drawing.Size(100, 20);
-            this.txtEBucket.TabIndex = 18;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(219, 71);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 13);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "bucket size:";
-            // 
             // txtESleeve
             // 
             this.txtESleeve.Location = new System.Drawing.Point(328, 87);
@@ -342,8 +324,6 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtESleeve);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtEBucket);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.txtELength);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtESticker);
@@ -388,8 +368,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtELength;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtEBucket;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtESleeve;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtEFob;

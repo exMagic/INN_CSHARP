@@ -42,7 +42,6 @@ namespace INN_CSHARP
                 flowers.fl_id
               ,flowers.variety
               ,flowers.sticker_text
-              ,flowers.bucket_size
               ,flowers.colour
               ,flowers.plu
               ,farms.farm_name
@@ -287,7 +286,7 @@ namespace INN_CSHARP
         // ADD ///////////////////////////////////////////////////////////////
         private void btnFAdd_Click(object sender, EventArgs e)
         {
-            AddFl frm = new AddFl();
+            Ny frm = new Ny();
             frm.FormClosing += new FormClosingEventHandler(this.Add_FormClosing);
             frm.Show();
         }
@@ -298,7 +297,7 @@ namespace INN_CSHARP
         // DELETE ///////////////////////////////////////////////////////////////
         private void btnFDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete () flower from database? This Action can not be undone", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete "+ dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString() + " flower from database? This Action can not be undone", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
             if (dialogResult == DialogResult.Yes)
             {

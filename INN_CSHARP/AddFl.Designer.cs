@@ -1,6 +1,6 @@
 ﻿namespace INN_CSHARP
 {
-    partial class AddFl
+    partial class Ny
     {
         /// <summary>
         /// Required designer variable.
@@ -36,21 +36,14 @@
             this.label15 = new System.Windows.Forms.Label();
             this.txtEBunchPBucket = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtEFaitrade = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.txtEFob = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtESleeve = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtEBucket = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.txtELength = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtESticker = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtEMix = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtEFarm = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtEPlu = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,7 +52,13 @@
             this.txtEVariety = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.cbFarm = new System.Windows.Forms.ComboBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cheMix = new System.Windows.Forms.CheckBox();
+            this.cheFt = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -120,22 +119,6 @@
             this.label13.TabIndex = 54;
             this.label13.Text = "bunch_pr_bucket";
             // 
-            // txtEFaitrade
-            // 
-            this.txtEFaitrade.Location = new System.Drawing.Point(560, 99);
-            this.txtEFaitrade.Name = "txtEFaitrade";
-            this.txtEFaitrade.Size = new System.Drawing.Size(100, 20);
-            this.txtEFaitrade.TabIndex = 53;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(557, 83);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(48, 13);
-            this.label12.TabIndex = 52;
-            this.label12.Text = "fairtrade:";
-            // 
             // txtEFob
             // 
             this.txtEFob.Location = new System.Drawing.Point(451, 99);
@@ -167,22 +150,6 @@
             this.label10.Size = new System.Drawing.Size(64, 13);
             this.label10.TabIndex = 48;
             this.label10.Text = "sleeve type:";
-            // 
-            // txtEBucket
-            // 
-            this.txtEBucket.Location = new System.Drawing.Point(239, 99);
-            this.txtEBucket.Name = "txtEBucket";
-            this.txtEBucket.Size = new System.Drawing.Size(100, 20);
-            this.txtEBucket.TabIndex = 47;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(236, 83);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 13);
-            this.label9.TabIndex = 46;
-            this.label9.Text = "bucket size:";
             // 
             // txtELength
             // 
@@ -216,29 +183,6 @@
             this.label7.TabIndex = 42;
             this.label7.Text = "Sticker text";
             // 
-            // txtEMix
-            // 
-            this.txtEMix.Location = new System.Drawing.Point(560, 60);
-            this.txtEMix.Name = "txtEMix";
-            this.txtEMix.Size = new System.Drawing.Size(100, 20);
-            this.txtEMix.TabIndex = 41;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(557, 44);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(26, 13);
-            this.label6.TabIndex = 40;
-            this.label6.Text = "Mix:";
-            // 
-            // txtEFarm
-            // 
-            this.txtEFarm.Location = new System.Drawing.Point(451, 60);
-            this.txtEFarm.Name = "txtEFarm";
-            this.txtEFarm.Size = new System.Drawing.Size(100, 20);
-            this.txtEFarm.TabIndex = 39;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -254,6 +198,7 @@
             this.txtEPlu.Name = "txtEPlu";
             this.txtEPlu.Size = new System.Drawing.Size(100, 20);
             this.txtEPlu.TabIndex = 37;
+            this.txtEPlu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEPlu_KeyPress);
             // 
             // label4
             // 
@@ -300,11 +245,63 @@
             // 
             this.bindingSource1.DataSource = typeof(INN_CSHARP.flower);
             // 
-            // AddFl
+            // cbFarm
+            // 
+            this.cbFarm.FormattingEnabled = true;
+            this.cbFarm.Location = new System.Drawing.Point(451, 59);
+            this.cbFarm.Name = "cbFarm";
+            this.cbFarm.Size = new System.Drawing.Size(100, 21);
+            this.cbFarm.TabIndex = 61;
+            this.cbFarm.SelectedIndexChanged += new System.EventHandler(this.cbFarm_SelectedIndexChanged);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 250);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(44, 19);
+            this.dataGridView1.TabIndex = 62;
+            this.dataGridView1.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(806, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 63;
+            this.label2.Text = "label2";
+            // 
+            // cheMix
+            // 
+            this.cheMix.AutoSize = true;
+            this.cheMix.Location = new System.Drawing.Point(563, 59);
+            this.cheMix.Name = "cheMix";
+            this.cheMix.Size = new System.Drawing.Size(42, 17);
+            this.cheMix.TabIndex = 64;
+            this.cheMix.Text = "Mix";
+            this.cheMix.UseVisualStyleBackColor = true;
+            // 
+            // cheFt
+            // 
+            this.cheFt.AutoSize = true;
+            this.cheFt.Location = new System.Drawing.Point(563, 102);
+            this.cheFt.Name = "cheFt";
+            this.cheFt.Size = new System.Drawing.Size(67, 17);
+            this.cheFt.TabIndex = 65;
+            this.cheFt.Text = "Fairtrade";
+            this.cheFt.UseVisualStyleBackColor = true;
+            // 
+            // Ny
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(894, 281);
+            this.Controls.Add(this.cheFt);
+            this.Controls.Add(this.cheMix);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.cbFarm);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtEPak);
             this.Controls.Add(this.label14);
@@ -312,21 +309,14 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtEBunchPBucket);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.txtEFaitrade);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.txtEFob);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtESleeve);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtEBucket);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.txtELength);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtESticker);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtEMix);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtEFarm);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtEPlu);
             this.Controls.Add(this.label4);
@@ -334,9 +324,15 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtEVariety);
             this.Controls.Add(this.label1);
-            this.Name = "AddFl";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "Ny";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = " ";
+            this.Load += new System.EventHandler(this.AddFl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,21 +347,14 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtEBunchPBucket;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtEFaitrade;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtEFob;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtESleeve;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtEBucket;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtELength;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtESticker;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtEMix;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtEFarm;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtEPlu;
         private System.Windows.Forms.Label label4;
@@ -374,5 +363,10 @@
         private System.Windows.Forms.TextBox txtEVariety;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.ComboBox cbFarm;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox cheMix;
+        private System.Windows.Forms.CheckBox cheFt;
     }
 }

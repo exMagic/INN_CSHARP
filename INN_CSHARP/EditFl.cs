@@ -35,7 +35,6 @@ namespace INN_CSHARP
                 ,flowers.mix
                 ,flowers.sticker_text
                 ,flowers.length_id
-                ,flowers.bucket_size
                 ,flowers.sleeve_type
                 ,flowers.fob
                 ,flowers.fairtrade
@@ -96,7 +95,6 @@ namespace INN_CSHARP
             txtEMix.Text = dataGridView1[5, rowIndex].Value.ToString();
             txtESticker.Text = dataGridView1[6, rowIndex].Value.ToString();
             txtELength.Text = dataGridView1[7, rowIndex].Value.ToString();
-            txtEBucket.Text = dataGridView1[8, rowIndex].Value.ToString();
             txtESleeve.Text = dataGridView1[9, rowIndex].Value.ToString();
             txtEFob.Text = dataGridView1[10, rowIndex].Value.ToString();
             txtEFaitrade.Text = dataGridView1[11, rowIndex].Value.ToString();
@@ -118,7 +116,6 @@ namespace INN_CSHARP
                 ", flowers.mix = '" + txtEMix.Text + "'" +
                 ", flowers.sticker_text = '" + txtESticker.Text + "'" +
                 ", flowers.length_id = '" + txtELength.Text + "'" +
-                ", flowers.bucket_size = '" + txtEBucket.Text + "'" +
                 ", flowers.sleeve_type = '" + txtESleeve.Text + "'" +
                 ", flowers.fob = '" + txtEFob.Text + "'" +
                 ", flowers.fairtrade = '" + txtEFaitrade.Text + "'" +
@@ -135,7 +132,6 @@ namespace INN_CSHARP
                 ", flowers.mix = '" + txtEMix.Text + "'" +
                 ", flowers.sticker_text = '" + txtESticker.Text + "'" +
                 ", flowers.length_id = '" + txtELength.Text + "'" +
-                ", flowers.bucket_size = '" + txtEBucket.Text + "'" +
                 ", flowers.sleeve_type = '" + txtESleeve.Text + "'" +
                 ", flowers.fob = '" + txtEFob.Text + "'" +
                 ", flowers.fairtrade = '" + txtEFaitrade.Text + "'" +
