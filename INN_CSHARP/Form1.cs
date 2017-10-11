@@ -42,36 +42,36 @@ namespace INN_CSHARP
                 flowers.fl_id
               ,flowers.variety
               ,flowers.sticker_text
-              ,flowers.colour
+              ,colours.colour
               ,flowers.plu
               ,farms.farm_name
               ,lengths.length
 	          ,flowers.mix
-              ,flowers.sleeve_id
+              ,sleeves.sleeve
               ,flowers.fob
               ,flowers.fairtrade
               ,flowers.stems_pr_bunch
 	  
-          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths]
-          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id ";
+          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves]
+          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id ";
 
 
 
-        string selectionStatement = @"
-        SELECT 
-              flowers.variety
-              ,flowers.colour
-              ,flowers.plu
-              ,farms.farm_name
-	          ,flowers.mix
-              ,flowers.sleeve_id
-              ,flowers.fob
-              ,flowers.fairtrade
-              ,flowers.stems_pr_bunch
+        //string selectionStatement = @"
+        //SELECT 
+        //      flowers.variety
+        //      ,flowers.colour
+        //      ,flowers.plu
+        //      ,farms.farm_name
+	       //   ,flowers.mix
+        //      ,flowers.sleeve_id
+        //      ,flowers.fob
+        //      ,flowers.fairtrade
+        //      ,flowers.stems_pr_bunch
 	  
-          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
-          WHERE flowers.farm_id = farms.farm_id
-        ";
+        //  FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms]
+        //  WHERE flowers.farm_id = farms.farm_id
+        //";
 
 
 

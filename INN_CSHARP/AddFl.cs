@@ -25,25 +25,7 @@ namespace INN_CSHARP
         SqlDataAdapter dataAdapter;
         System.Data.DataTable table;
 
-        //string selectionStatement3 = @"
-        //SELECT 
-        //          flowers.fl_id
-        //          ,flowers.variety
-        //          ,flowers.colour
-        //          ,flowers.plu
-        //          ,farms.farm_id
-        //        ,flowers.mix
-        //        ,flowers.sticker_text
-        //        ,flowers.length_id
-        //        ,flowers.sleeve_id
-        //        ,flowers.fob
-        //        ,flowers.fairtrade
-        //        ,flowers.bunch_pr_bucket
-        //        ,flowers.stems_pr_bunch
-        //        ,flowers.pak_rate
-	  
-        //  FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths]
-        //  WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id ";
+       
         public Ny()
         {
             InitializeComponent();
@@ -68,7 +50,9 @@ namespace INN_CSHARP
         string ft;
         string selectedFarmId;
         string selectedLength;
-        
+        string selectedColour ="1";
+        string selectedSleeve="1";
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (cheMix.Checked) mix = "1";
@@ -77,7 +61,7 @@ namespace INN_CSHARP
             string add = @" INSERT INTO[MG_inkjop].[dbo].[flowers]
 
            ([variety]
-           ,[colour]
+           ,[colour_id]
            ,[plu]
            ,[farm_id]
            ,[mix]
@@ -91,28 +75,40 @@ namespace INN_CSHARP
            ,[pak_rate])
      VALUES
            ('" + txtEVariety.Text + "'" +
-                ",'" + txtEColour.Text + "'" +
+                ",'" + selectedColour + "'" +
                 ",'" + txtEPlu.Text + "'" +
                 ",'" + selectedFarmId + "'" +
                 ",'" + mix + "'" +
                 ",'" + txtESticker.Text + "'" +
                 ",'" + selectedLength + "'" +
-                ",'" + txtESleeve.Text + "'" +
+                ",'" + selectedSleeve + "'" +
                 ",'" + txtEFob.Text + "'" +
                 ",'" + ft + "'" +
                 ",'" + txtEBunchPBucket.Text + "'" +
                 ",'" + txtEStems.Text + "'" +
                 ",'" + txtEPak.Text + "')";
 
-
             GetData(add, bindingSource1);
             this.Close();
-
         }
+
         string select = @"SELECT * FROM [MG_inkjop].[dbo].[farms]";
         string selectLengths = @"SELECT * FROM [MG_inkjop].[dbo].[lengths]";
+        string selectColour = @"SELECT * FROM [MG_inkjop].[dbo].[colours]";
+        string selectSleeve = @"SELECT * FROM [MG_inkjop].[dbo].[sleeves]";
+        string Sql;
 
-
+        private void fillUpCb(ComboBox cb)
+        {
+            //fill up combo box by Farms
+            SqlConnection conn = new SqlConnection(connString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(Sql, conn);
+            SqlDataReader DR = cmd.ExecuteReader();
+            while (DR.Read()) cb.Items.Add(DR[0]);
+            cb.SelectedIndex = 0;
+            conn.Close();
+        }
         private void AddFl_Load(object sender, EventArgs e)
         {
             //fill up dataGridView by Farms
@@ -121,47 +117,59 @@ namespace INN_CSHARP
             //fill up dataGridView by Lengths
             dataGridView2.DataSource = bindingSource2;
             GetData(selectLengths, bindingSource2);
-            //fill up combo box by Farms
-            string Sql = "SELECT farms.farm_name FROM[MG_inkjop].[dbo].[farms]";
-            SqlConnection conn = new SqlConnection(connString);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(Sql, conn);
-            SqlDataReader DR = cmd.ExecuteReader();
-            while (DR.Read())cbFarm.Items.Add(DR[0]);
-            cbFarm.SelectedIndex = 0;
-            conn.Close();
-            //fill up combo box by Farms
-            string Sql2 = "SELECT lengths.length FROM[MG_inkjop].[dbo].[lengths]";
-            SqlConnection conn2 = new SqlConnection(connString);
-            conn2.Open();
-            SqlCommand cmd2 = new SqlCommand(Sql2, conn2);
-            SqlDataReader DR2 = cmd2.ExecuteReader();
-            while (DR2.Read()) cbLengths.Items.Add(DR2[0]);
-            cbLengths.SelectedIndex = 0;
-            conn2.Close();
+            ////fill up dataGridView by Colours
+            dataGridView3.DataSource = bindingSource3;
+            GetData(selectColour, bindingSource3);
+            ////fill up dataGridView by Sleeves
+            dataGridView4.DataSource = bindingSource4;
+            GetData(selectSleeve, bindingSource4);
+
+
+            //fill up combo boxes
+            Sql = "SELECT farms.farm_name FROM[MG_inkjop].[dbo].[farms]";
+            fillUpCb(cbFarm);
+            Sql = "SELECT lengths.length FROM[MG_inkjop].[dbo].[lengths]";
+            fillUpCb(cbLengths);
+            Sql = "SELECT colours.colour FROM[MG_inkjop].[dbo].[colours]";
+            fillUpCb(cbColour);
+            Sql = "SELECT sleeves.sleeve FROM[MG_inkjop].[dbo].[sleeves]";
+            fillUpCb(cbSleeve);
+
+
 
         }
-        private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
+        string valueFromCb;
+        private void findValueCb(DataGridView dgv, int col, ComboBox cb)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dgv.Rows)
             {
-                if (row.Cells[1].Value.ToString() == cbFarm.SelectedItem.ToString())
+                if (row.Cells[col].Value.ToString() == cb.SelectedItem.ToString())
                 {
-                    selectedFarmId = row.Cells[0].Value.ToString();
+                    valueFromCb = row.Cells[0].Value.ToString();
                     break;
                 }
             }
+        }
+
+        private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            findValueCb(dataGridView1, 1, cbFarm);
+            selectedFarmId = valueFromCb;
         }
         private void cbLengths_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                if (row.Cells[1].Value.ToString() == cbLengths.SelectedItem.ToString())
-                {
-                    selectedLength = row.Cells[0].Value.ToString();
-                    break;
-                }
-            }
+            findValueCb(dataGridView2, 1, cbLengths);
+            selectedLength = valueFromCb;
+        }
+        private void cbColour_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            findValueCb(dataGridView3, 1, cbColour);
+            selectedColour = valueFromCb;
+        }
+        private void cbSleeve_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            findValueCb(dataGridView4, 1, cbSleeve);
+            selectedSleeve = valueFromCb;
         }
 
         private void txtEPlu_KeyPress(object sender, KeyPressEventArgs e)// allow only digit
@@ -187,5 +195,7 @@ namespace INN_CSHARP
             // only allow one decimal point
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
         }
+
+
     }
 }

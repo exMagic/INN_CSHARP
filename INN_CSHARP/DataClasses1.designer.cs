@@ -30,19 +30,25 @@ namespace INN_CSHARP
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Insertfarm(farm instance);
-    partial void Updatefarm(farm instance);
-    partial void Deletefarm(farm instance);
     partial void Insertflower(flower instance);
     partial void Updateflower(flower instance);
     partial void Deleteflower(flower instance);
+    partial void Insertfarm(farm instance);
+    partial void Updatefarm(farm instance);
+    partial void Deletefarm(farm instance);
+    partial void Insertcolour(colour instance);
+    partial void Updatecolour(colour instance);
+    partial void Deletecolour(colour instance);
     partial void Insertlengths(lengths instance);
     partial void Updatelengths(lengths instance);
     partial void Deletelengths(lengths instance);
+    partial void Insertsleeve(sleeve instance);
+    partial void Updatesleeve(sleeve instance);
+    partial void Deletesleeve(sleeve instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::INN_CSHARP.Properties.Settings.Default.MG_inkjopConnectionString1, mappingSource)
+				base(global::INN_CSHARP.Properties.Settings.Default.MG_inkjopConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -71,6 +77,14 @@ namespace INN_CSHARP
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<flower> flowers
+		{
+			get
+			{
+				return this.GetTable<flower>();
+			}
+		}
+		
 		public System.Data.Linq.Table<farm> farms
 		{
 			get
@@ -79,11 +93,11 @@ namespace INN_CSHARP
 			}
 		}
 		
-		public System.Data.Linq.Table<flower> flowers
+		public System.Data.Linq.Table<colour> colours
 		{
 			get
 			{
-				return this.GetTable<flower>();
+				return this.GetTable<colour>();
 			}
 		}
 		
@@ -94,143 +108,13 @@ namespace INN_CSHARP
 				return this.GetTable<lengths>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.farms")]
-	public partial class farm : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _farm_id;
-		
-		private string _farm_name;
-		
-		private string _farm_code;
-		
-		private EntitySet<flower> _flowers;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onfarm_idChanging(int value);
-    partial void Onfarm_idChanged();
-    partial void Onfarm_nameChanging(string value);
-    partial void Onfarm_nameChanged();
-    partial void Onfarm_codeChanging(string value);
-    partial void Onfarm_codeChanged();
-    #endregion
-		
-		public farm()
-		{
-			this._flowers = new EntitySet<flower>(new Action<flower>(this.attach_flowers), new Action<flower>(this.detach_flowers));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_farm_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int farm_id
+		public System.Data.Linq.Table<sleeve> sleeves
 		{
 			get
 			{
-				return this._farm_id;
+				return this.GetTable<sleeve>();
 			}
-			set
-			{
-				if ((this._farm_id != value))
-				{
-					this.Onfarm_idChanging(value);
-					this.SendPropertyChanging();
-					this._farm_id = value;
-					this.SendPropertyChanged("farm_id");
-					this.Onfarm_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_farm_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string farm_name
-		{
-			get
-			{
-				return this._farm_name;
-			}
-			set
-			{
-				if ((this._farm_name != value))
-				{
-					this.Onfarm_nameChanging(value);
-					this.SendPropertyChanging();
-					this._farm_name = value;
-					this.SendPropertyChanged("farm_name");
-					this.Onfarm_nameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_farm_code", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string farm_code
-		{
-			get
-			{
-				return this._farm_code;
-			}
-			set
-			{
-				if ((this._farm_code != value))
-				{
-					this.Onfarm_codeChanging(value);
-					this.SendPropertyChanging();
-					this._farm_code = value;
-					this.SendPropertyChanged("farm_code");
-					this.Onfarm_codeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="farm_flower", Storage="_flowers", ThisKey="farm_id", OtherKey="farm_id")]
-		public EntitySet<flower> flowers
-		{
-			get
-			{
-				return this._flowers;
-			}
-			set
-			{
-				this._flowers.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_flowers(flower entity)
-		{
-			this.SendPropertyChanging();
-			entity.farm = this;
-		}
-		
-		private void detach_flowers(flower entity)
-		{
-			this.SendPropertyChanging();
-			entity.farm = null;
 		}
 	}
 	
@@ -244,13 +128,11 @@ namespace INN_CSHARP
 		
 		private string _variety;
 		
-		private string _colour;
+		private int _colour;
 		
 		private string _plu;
 		
 		private int _farm_id;
-		
-		private string _barcode;
 		
 		private bool _mix;
 		
@@ -258,17 +140,11 @@ namespace INN_CSHARP
 		
 		private int _length_id;
 		
-		private short _bucket_size;
-		
-		private string _sleeve_type;
+		private int _sleeve_id;
 		
 		private decimal _fob;
 		
-		private decimal _price_pr_bunch;
-		
 		private bool _fairtrade;
-		
-		private short _bunch_pr_box;
 		
 		private byte _bunch_pr_bucket;
 		
@@ -278,7 +154,11 @@ namespace INN_CSHARP
 		
 		private EntityRef<farm> _farm;
 		
-		private EntityRef<lengths> _lengths;
+		private EntityRef<colour> _colour1;
+		
+		private EntityRef<lengths> _length;
+		
+		private EntityRef<sleeve> _sleeve;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -288,32 +168,24 @@ namespace INN_CSHARP
     partial void Onfl_idChanged();
     partial void OnvarietyChanging(string value);
     partial void OnvarietyChanged();
-    partial void OncolourChanging(string value);
+    partial void OncolourChanging(int value);
     partial void OncolourChanged();
     partial void OnpluChanging(string value);
     partial void OnpluChanged();
     partial void Onfarm_idChanging(int value);
     partial void Onfarm_idChanged();
-    partial void OnbarcodeChanging(string value);
-    partial void OnbarcodeChanged();
     partial void OnmixChanging(bool value);
     partial void OnmixChanged();
     partial void Onsticker_textChanging(string value);
     partial void Onsticker_textChanged();
     partial void Onlength_idChanging(int value);
     partial void Onlength_idChanged();
-    partial void Onbucket_sizeChanging(short value);
-    partial void Onbucket_sizeChanged();
-    partial void Onsleeve_typeChanging(string value);
-    partial void Onsleeve_typeChanged();
+    partial void Onsleeve_idChanging(int value);
+    partial void Onsleeve_idChanged();
     partial void OnfobChanging(decimal value);
     partial void OnfobChanged();
-    partial void Onprice_pr_bunchChanging(decimal value);
-    partial void Onprice_pr_bunchChanged();
     partial void OnfairtradeChanging(bool value);
     partial void OnfairtradeChanged();
-    partial void Onbunch_pr_boxChanging(short value);
-    partial void Onbunch_pr_boxChanged();
     partial void Onbunch_pr_bucketChanging(byte value);
     partial void Onbunch_pr_bucketChanged();
     partial void Onstems_pr_bunchChanging(byte value);
@@ -325,7 +197,9 @@ namespace INN_CSHARP
 		public flower()
 		{
 			this._farm = default(EntityRef<farm>);
-			this._lengths = default(EntityRef<lengths>);
+			this._colour1 = default(EntityRef<colour>);
+			this._length = default(EntityRef<lengths>);
+			this._sleeve = default(EntityRef<sleeve>);
 			OnCreated();
 		}
 		
@@ -369,8 +243,8 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colour", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string colour
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colour", DbType="Int NOT NULL")]
+		public int colour
 		{
 			get
 			{
@@ -380,6 +254,10 @@ namespace INN_CSHARP
 			{
 				if ((this._colour != value))
 				{
+					if (this._colour1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OncolourChanging(value);
 					this.SendPropertyChanging();
 					this._colour = value;
@@ -429,26 +307,6 @@ namespace INN_CSHARP
 					this._farm_id = value;
 					this.SendPropertyChanged("farm_id");
 					this.Onfarm_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_barcode", DbType="Char(14) NOT NULL", CanBeNull=false)]
-		public string barcode
-		{
-			get
-			{
-				return this._barcode;
-			}
-			set
-			{
-				if ((this._barcode != value))
-				{
-					this.OnbarcodeChanging(value);
-					this.SendPropertyChanging();
-					this._barcode = value;
-					this.SendPropertyChanged("barcode");
-					this.OnbarcodeChanged();
 				}
 			}
 		}
@@ -504,7 +362,7 @@ namespace INN_CSHARP
 			{
 				if ((this._length_id != value))
 				{
-					if (this._lengths.HasLoadedOrAssignedValue)
+					if (this._length.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -517,42 +375,26 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bucket_size", DbType="SmallInt NOT NULL")]
-		public short bucket_size
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sleeve_id", DbType="Int NOT NULL")]
+		public int sleeve_id
 		{
 			get
 			{
-				return this._bucket_size;
+				return this._sleeve_id;
 			}
 			set
 			{
-				if ((this._bucket_size != value))
+				if ((this._sleeve_id != value))
 				{
-					this.Onbucket_sizeChanging(value);
+					if (this._sleeve.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onsleeve_idChanging(value);
 					this.SendPropertyChanging();
-					this._bucket_size = value;
-					this.SendPropertyChanged("bucket_size");
-					this.Onbucket_sizeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sleeve_type", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string sleeve_type
-		{
-			get
-			{
-				return this._sleeve_type;
-			}
-			set
-			{
-				if ((this._sleeve_type != value))
-				{
-					this.Onsleeve_typeChanging(value);
-					this.SendPropertyChanging();
-					this._sleeve_type = value;
-					this.SendPropertyChanged("sleeve_type");
-					this.Onsleeve_typeChanged();
+					this._sleeve_id = value;
+					this.SendPropertyChanged("sleeve_id");
+					this.Onsleeve_idChanged();
 				}
 			}
 		}
@@ -577,26 +419,6 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price_pr_bunch", DbType="Decimal(18,2) NOT NULL")]
-		public decimal price_pr_bunch
-		{
-			get
-			{
-				return this._price_pr_bunch;
-			}
-			set
-			{
-				if ((this._price_pr_bunch != value))
-				{
-					this.Onprice_pr_bunchChanging(value);
-					this.SendPropertyChanging();
-					this._price_pr_bunch = value;
-					this.SendPropertyChanged("price_pr_bunch");
-					this.Onprice_pr_bunchChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fairtrade", DbType="Bit NOT NULL")]
 		public bool fairtrade
 		{
@@ -613,26 +435,6 @@ namespace INN_CSHARP
 					this._fairtrade = value;
 					this.SendPropertyChanged("fairtrade");
 					this.OnfairtradeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bunch_pr_box", DbType="SmallInt NOT NULL")]
-		public short bunch_pr_box
-		{
-			get
-			{
-				return this._bunch_pr_box;
-			}
-			set
-			{
-				if ((this._bunch_pr_box != value))
-				{
-					this.Onbunch_pr_boxChanging(value);
-					this.SendPropertyChanging();
-					this._bunch_pr_box = value;
-					this.SendPropertyChanged("bunch_pr_box");
-					this.Onbunch_pr_boxChanged();
 				}
 			}
 		}
@@ -731,26 +533,60 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="length_flower", Storage="_lengths", ThisKey="length_id", OtherKey="length_id", IsForeignKey=true)]
-		public lengths lengths
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="colour_flower", Storage="_colour1", ThisKey="colour", OtherKey="colour_id", IsForeignKey=true)]
+		public colour colour1
 		{
 			get
 			{
-				return this._lengths.Entity;
+				return this._colour1.Entity;
 			}
 			set
 			{
-				lengths previousValue = this._lengths.Entity;
+				colour previousValue = this._colour1.Entity;
 				if (((previousValue != value) 
-							|| (this._lengths.HasLoadedOrAssignedValue == false)))
+							|| (this._colour1.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._lengths.Entity = null;
+						this._colour1.Entity = null;
 						previousValue.flowers.Remove(this);
 					}
-					this._lengths.Entity = value;
+					this._colour1.Entity = value;
+					if ((value != null))
+					{
+						value.flowers.Add(this);
+						this._colour = value.colour_id;
+					}
+					else
+					{
+						this._colour = default(int);
+					}
+					this.SendPropertyChanged("colour1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="length_flower", Storage="_length", ThisKey="length_id", OtherKey="length_id", IsForeignKey=true)]
+		public lengths lengths
+		{
+			get
+			{
+				return this._length.Entity;
+			}
+			set
+			{
+				lengths previousValue = this._length.Entity;
+				if (((previousValue != value) 
+							|| (this._length.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._length.Entity = null;
+						previousValue.flowers.Remove(this);
+					}
+					this._length.Entity = value;
 					if ((value != null))
 					{
 						value.flowers.Add(this);
@@ -761,6 +597,40 @@ namespace INN_CSHARP
 						this._length_id = default(int);
 					}
 					this.SendPropertyChanged("lengths");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="sleeve_flower", Storage="_sleeve", ThisKey="sleeve_id", OtherKey="sleeve_id", IsForeignKey=true)]
+		public sleeve sleeve
+		{
+			get
+			{
+				return this._sleeve.Entity;
+			}
+			set
+			{
+				sleeve previousValue = this._sleeve.Entity;
+				if (((previousValue != value) 
+							|| (this._sleeve.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._sleeve.Entity = null;
+						previousValue.flowers.Remove(this);
+					}
+					this._sleeve.Entity = value;
+					if ((value != null))
+					{
+						value.flowers.Add(this);
+						this._sleeve_id = value.sleeve_id;
+					}
+					else
+					{
+						this._sleeve_id = default(int);
+					}
+					this.SendPropertyChanged("sleeve");
 				}
 			}
 		}
@@ -783,6 +653,258 @@ namespace INN_CSHARP
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.farms")]
+	public partial class farm : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _farm_id;
+		
+		private string _farm_name;
+		
+		private string _farm_code;
+		
+		private EntitySet<flower> _flowers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onfarm_idChanging(int value);
+    partial void Onfarm_idChanged();
+    partial void Onfarm_nameChanging(string value);
+    partial void Onfarm_nameChanged();
+    partial void Onfarm_codeChanging(string value);
+    partial void Onfarm_codeChanged();
+    #endregion
+		
+		public farm()
+		{
+			this._flowers = new EntitySet<flower>(new Action<flower>(this.attach_flowers), new Action<flower>(this.detach_flowers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_farm_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int farm_id
+		{
+			get
+			{
+				return this._farm_id;
+			}
+			set
+			{
+				if ((this._farm_id != value))
+				{
+					this.Onfarm_idChanging(value);
+					this.SendPropertyChanging();
+					this._farm_id = value;
+					this.SendPropertyChanged("farm_id");
+					this.Onfarm_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_farm_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string farm_name
+		{
+			get
+			{
+				return this._farm_name;
+			}
+			set
+			{
+				if ((this._farm_name != value))
+				{
+					this.Onfarm_nameChanging(value);
+					this.SendPropertyChanging();
+					this._farm_name = value;
+					this.SendPropertyChanged("farm_name");
+					this.Onfarm_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_farm_code", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string farm_code
+		{
+			get
+			{
+				return this._farm_code;
+			}
+			set
+			{
+				if ((this._farm_code != value))
+				{
+					this.Onfarm_codeChanging(value);
+					this.SendPropertyChanging();
+					this._farm_code = value;
+					this.SendPropertyChanged("farm_code");
+					this.Onfarm_codeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="farm_flower", Storage="_flowers", ThisKey="farm_id", OtherKey="farm_id")]
+		public EntitySet<flower> flowers
+		{
+			get
+			{
+				return this._flowers;
+			}
+			set
+			{
+				this._flowers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_flowers(flower entity)
+		{
+			this.SendPropertyChanging();
+			entity.farm = this;
+		}
+		
+		private void detach_flowers(flower entity)
+		{
+			this.SendPropertyChanging();
+			entity.farm = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.colours")]
+	public partial class colour : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _colour_id;
+		
+		private string _colour1;
+		
+		private EntitySet<flower> _flowers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Oncolour_idChanging(int value);
+    partial void Oncolour_idChanged();
+    partial void Oncolour1Changing(string value);
+    partial void Oncolour1Changed();
+    #endregion
+		
+		public colour()
+		{
+			this._flowers = new EntitySet<flower>(new Action<flower>(this.attach_flowers), new Action<flower>(this.detach_flowers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_colour_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int colour_id
+		{
+			get
+			{
+				return this._colour_id;
+			}
+			set
+			{
+				if ((this._colour_id != value))
+				{
+					this.Oncolour_idChanging(value);
+					this.SendPropertyChanging();
+					this._colour_id = value;
+					this.SendPropertyChanged("colour_id");
+					this.Oncolour_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="colour", Storage="_colour1", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string colour1
+		{
+			get
+			{
+				return this._colour1;
+			}
+			set
+			{
+				if ((this._colour1 != value))
+				{
+					this.Oncolour1Changing(value);
+					this.SendPropertyChanging();
+					this._colour1 = value;
+					this.SendPropertyChanged("colour1");
+					this.Oncolour1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="colour_flower", Storage="_flowers", ThisKey="colour_id", OtherKey="colour")]
+		public EntitySet<flower> flowers
+		{
+			get
+			{
+				return this._flowers;
+			}
+			set
+			{
+				this._flowers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_flowers(flower entity)
+		{
+			this.SendPropertyChanging();
+			entity.colour1 = this;
+		}
+		
+		private void detach_flowers(flower entity)
+		{
+			this.SendPropertyChanging();
+			entity.colour1 = null;
 		}
 	}
 	
@@ -897,6 +1019,144 @@ namespace INN_CSHARP
 		{
 			this.SendPropertyChanging();
 			entity.lengths = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.sleeves")]
+	public partial class sleeve : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _sleeve_id;
+		
+		private string _sleeve1;
+		
+		private string _slevve_plu;
+		
+		private EntitySet<flower> _flowers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onsleeve_idChanging(int value);
+    partial void Onsleeve_idChanged();
+    partial void Onsleeve1Changing(string value);
+    partial void Onsleeve1Changed();
+    partial void Onslevve_pluChanging(string value);
+    partial void Onslevve_pluChanged();
+    #endregion
+		
+		public sleeve()
+		{
+			this._flowers = new EntitySet<flower>(new Action<flower>(this.attach_flowers), new Action<flower>(this.detach_flowers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sleeve_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int sleeve_id
+		{
+			get
+			{
+				return this._sleeve_id;
+			}
+			set
+			{
+				if ((this._sleeve_id != value))
+				{
+					this.Onsleeve_idChanging(value);
+					this.SendPropertyChanging();
+					this._sleeve_id = value;
+					this.SendPropertyChanged("sleeve_id");
+					this.Onsleeve_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="sleeve", Storage="_sleeve1", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string sleeve1
+		{
+			get
+			{
+				return this._sleeve1;
+			}
+			set
+			{
+				if ((this._sleeve1 != value))
+				{
+					this.Onsleeve1Changing(value);
+					this.SendPropertyChanging();
+					this._sleeve1 = value;
+					this.SendPropertyChanged("sleeve1");
+					this.Onsleeve1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_slevve_plu", DbType="Char(6)")]
+		public string slevve_plu
+		{
+			get
+			{
+				return this._slevve_plu;
+			}
+			set
+			{
+				if ((this._slevve_plu != value))
+				{
+					this.Onslevve_pluChanging(value);
+					this.SendPropertyChanging();
+					this._slevve_plu = value;
+					this.SendPropertyChanged("slevve_plu");
+					this.Onslevve_pluChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="sleeve_flower", Storage="_flowers", ThisKey="sleeve_id", OtherKey="sleeve_id")]
+		public EntitySet<flower> flowers
+		{
+			get
+			{
+				return this._flowers;
+			}
+			set
+			{
+				this._flowers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_flowers(flower entity)
+		{
+			this.SendPropertyChanging();
+			entity.sleeve = this;
+		}
+		
+		private void detach_flowers(flower entity)
+		{
+			this.SendPropertyChanging();
+			entity.sleeve = null;
 		}
 	}
 }

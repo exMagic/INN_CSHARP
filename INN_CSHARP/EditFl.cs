@@ -35,8 +35,7 @@ namespace INN_CSHARP
                 ,flowers.mix
                 ,flowers.sticker_text
                 ,flowers.length_id
-                ,flowers.sleeve_id
-                ,flowers.fob
+                ,flowers.sleeve_id                ,flowers.fob
                 ,flowers.fairtrade
                 ,flowers.bunch_pr_bucket
                 ,flowers.stems_pr_bunch

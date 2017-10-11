@@ -1,35 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MG_inkjop" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=MACBOOKW10\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="INN_CSHARP.Properties.Settings" SettingsPropertyName="MG_inkjopConnectionString1" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.farms" Member="farms">
-    <Type Name="farm">
-      <Column Name="farm_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="farm_name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="farm_code" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="farm_flower" Member="flowers" ThisKey="farm_id" OtherKey="farm_id" Type="flower" />
-    </Type>
-  </Table>
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="INN_CSHARP.Properties.Settings" SettingsPropertyName="MG_inkjopConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.flowers" Member="flowers">
     <Type Name="flower">
       <Column Name="fl_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="variety" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="colour" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="colour" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="plu" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
       <Column Name="farm_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="barcode" Type="System.String" DbType="Char(14) NOT NULL" CanBeNull="false" />
       <Column Name="mix" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="sticker_text" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="length_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="bucket_size" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="sleeve_type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="sleeve_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="fob" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="price_pr_bunch" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="fairtrade" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="bunch_pr_box" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="bunch_pr_bucket" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="stems_pr_bunch" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="pak_rate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="farm_flower" Member="farm" ThisKey="farm_id" OtherKey="farm_id" Type="farm" IsForeignKey="true" />
-      <Association Name="length_flower" Member="lengths" ThisKey="length_id" OtherKey="length_id" Type="lengths" IsForeignKey="true" />
+      <Association Name="colour_flower" Member="colour1" ThisKey="colour" OtherKey="colour_id" Type="colour" IsForeignKey="true" />
+      <Association Name="length_flower" Member="lengths" Storage="_length" ThisKey="length_id" OtherKey="length_id" Type="lengths" IsForeignKey="true" />
+      <Association Name="sleeve_flower" Member="sleeve" ThisKey="sleeve_id" OtherKey="sleeve_id" Type="sleeve" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.farms" Member="farms">
+    <Type Name="farm">
+      <Column Name="farm_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="farm_name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="farm_code" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Association Name="farm_flower" Member="flowers" ThisKey="farm_id" OtherKey="farm_id" Type="flower" />
+    </Type>
+  </Table>
+  <Table Name="dbo.colours" Member="colours">
+    <Type Name="colour">
+      <Column Name="colour_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="colour" Member="colour1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="colour_flower" Member="flowers" ThisKey="colour_id" OtherKey="colour" Type="flower" />
     </Type>
   </Table>
   <Table Name="dbo.lengths" Member="lengths">
@@ -37,6 +42,14 @@
       <Column Name="length_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="length" Member="length1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="length_flower" Member="flowers" ThisKey="length_id" OtherKey="length_id" Type="flower" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sleeves" Member="sleeves">
+    <Type Name="sleeve">
+      <Column Name="sleeve_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sleeve" Member="sleeve1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="slevve_plu" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Association Name="sleeve_flower" Member="flowers" ThisKey="sleeve_id" OtherKey="sleeve_id" Type="flower" />
     </Type>
   </Table>
 </Database>
