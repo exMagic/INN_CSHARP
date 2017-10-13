@@ -26,23 +26,17 @@ namespace INN_CSHARP
         System.Data.DataTable table;
 
         string selectionStatement3 = @"
-        SELECT 
-                  flowers.fl_id
-                  ,flowers.variety
-                  ,flowers.colour
-                  ,flowers.plu
-                  ,farms.farm_id
-                ,flowers.mix
-                ,flowers.sticker_text
-                ,flowers.length_id
-                ,flowers.sleeve_id                ,flowers.fob
-                ,flowers.fairtrade
-                ,flowers.bunch_pr_bucket
-                ,flowers.stems_pr_bunch
-                ,flowers.pak_rate
-	  
-          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths]
-          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id ";
+        SELECT *
+          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves]
+          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id  ";
+        
+        string select = @"SELECT * FROM [MG_inkjop].[dbo].[farms]";
+        string selectLengths = @"SELECT * FROM [MG_inkjop].[dbo].[lengths]";
+        string selectColour = @"SELECT * FROM [MG_inkjop].[dbo].[colours]";
+        string selectSleeve = @"SELECT * FROM [MG_inkjop].[dbo].[sleeves]";
+        string Sql;
+        int rowIndex = -1;
+        int fci;
 
 
         public EditFl()
@@ -65,17 +59,65 @@ namespace INN_CSHARP
                 MessageBox.Show(ex.Message);
             }
         }
-
+        private void fillUpCb(ComboBox cb)
+        {
+            //fill up combo box by Farms
+            SqlConnection conn = new SqlConnection(connString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(Sql, conn);
+            SqlDataReader DR = cmd.ExecuteReader();
+            while (DR.Read()) cb.Items.Add(DR[0]);
+            cb.SelectedIndex = 0;
+            conn.Close();
+        }
+        private void findCbIndex(ComboBox cb, int col)
+        {
+            int i=0;
+            foreach (var item in cb.Items)
+            {                
+                if (item.ToString() == dataGridView1[col, rowIndex].Value.ToString())
+                {
+                    fci = i;
+                    break;
+                }
+                i++;
+            }
+        }
 
         private void EditFl_Load(object sender, EventArgs e)
         {
+            //fill up dataGridView by Farms
+            dataGridView1.DataSource = bindingSource1;
+            GetData(select, bindingSource1);
+            ////fill up dataGridView by Lengths
+            //dataGridView2.DataSource = bindingSource2;
+            //GetData(selectLengths, bindingSource2);
+            //////fill up dataGridView by Colours
+            //dataGridView3.DataSource = bindingSource3;
+            //GetData(selectColour, bindingSource3);
+            //////fill up dataGridView by Sleeves
+            //dataGridView4.DataSource = bindingSource4;
+            //GetData(selectSleeve, bindingSource4);
+
+
+            //fill up combo boxes
+            Sql = "SELECT farms.farm_name FROM[MG_inkjop].[dbo].[farms]";
+            fillUpCb(cbFarm);
+            Sql = "SELECT lengths.length FROM[MG_inkjop].[dbo].[lengths]";
+            fillUpCb(cbLengths);
+            Sql = "SELECT colours.colour FROM[MG_inkjop].[dbo].[colours]";
+            fillUpCb(cbColour);
+            Sql = "SELECT sleeves.sleeve FROM[MG_inkjop].[dbo].[sleeves]";
+            fillUpCb(cbSleeve);
+
             int idToEdit2 = Form1.idToEdit;
             label2.Text = idToEdit2.ToString();
+
             dataGridView1.DataSource = bindingSource1;
             GetData(selectionStatement3, bindingSource1);
 
             
-            int rowIndex = -1;
+            
             
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -83,64 +125,60 @@ namespace INN_CSHARP
                 if (row.Cells[0].Value.ToString() == idToEdit2.ToString())
                 {
                     rowIndex = row.Index;
+
                     break;
                 }
             }
+            
+            findCbIndex(cbColour, 20);
+            cbColour.SelectedIndex = fci;
+
+            findCbIndex(cbFarm, 15);
+            cbFarm.SelectedIndex = fci;
+
+            findCbIndex(cbLengths, 18);
+            cbLengths.SelectedIndex = fci;
+            findCbIndex(cbSleeve, 22);
+            cbSleeve.SelectedIndex = fci;
+
 
             txtEVariety.Text = dataGridView1[1, rowIndex].Value.ToString();
-            txtEColour.Text = dataGridView1[2, rowIndex].Value.ToString();
+            //txtEColour.Text = dataGridView1[2, rowIndex].Value.ToString();
             txtEPlu.Text = dataGridView1[3, rowIndex].Value.ToString();
-            txtEFarm.Text = dataGridView1[4, rowIndex].Value.ToString();
-            txtEMix.Text = dataGridView1[5, rowIndex].Value.ToString();
+            //txtEFarm.Text = dataGridView1[4, rowIndex].Value.ToString();
+            //txtEMix.Text = dataGridView1[5, rowIndex].Value.ToString();
             txtESticker.Text = dataGridView1[6, rowIndex].Value.ToString();
-            txtELength.Text = dataGridView1[7, rowIndex].Value.ToString();
-            txtESleeve.Text = dataGridView1[8, rowIndex].Value.ToString();
+            //txtELength.Text = dataGridView1[7, rowIndex].Value.ToString();
+            //txtESleeve.Text = dataGridView1[8, rowIndex].Value.ToString();
             txtEFob.Text = dataGridView1[9, rowIndex].Value.ToString();
-            txtEFaitrade.Text = dataGridView1[10, rowIndex].Value.ToString();
+            //txtEFaitrade.Text = dataGridView1[10, rowIndex].Value.ToString();
             txtEBunchPBucket.Text = dataGridView1[11, rowIndex].Value.ToString();
             txtEStems.Text = dataGridView1[12, rowIndex].Value.ToString();
             txtEPak.Text = dataGridView1[13, rowIndex].Value.ToString();
-           
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string save = @" UPDATE[MG_inkjop].[dbo].[flowers]
-                SET flowers.variety = '" + txtEVariety.Text + "'" +
-                ", flowers.colour = '"+txtEColour.Text+"'" +
-                ", flowers.plu = '" + txtEPlu.Text + "'" +
-                ", flowers.farm_id = '" + txtEFarm.Text + "'" +
-                ", flowers.mix = '" + txtEMix.Text + "'" +
-                ", flowers.sticker_text = '" + txtESticker.Text + "'" +
-                ", flowers.length_id = '" + txtELength.Text + "'" +
-                ", flowers.sleeve_id = '" + txtESleeve.Text + "'" +
-                ", flowers.fob = '" + txtEFob.Text + "'" +
-                ", flowers.fairtrade = '" + txtEFaitrade.Text + "'" +
-                ", flowers.bunch_pr_bucket = '" + txtEBunchPBucket.Text + "'" +
-                ", flowers.stems_pr_bunch = '" + txtEStems.Text + "'" +
-                ", flowers.pak_rate = '" + txtEPak.Text + "'" +
+            
 
-                "WHERE fl_id = " + label2.Text;
-            string save2 = @" UPDATE[MG_inkjop].[dbo].[flowers]
-                SET flowers.variety = '" + txtEVariety.Text + "'" +
-                ", flowers.colour = '" + txtEColour.Text + "'" +
-                ", flowers.plu = '" + txtEPlu.Text + "'" +
-                ", flowers.farm_id = '" + txtEFarm.Text + "'" +
-                ", flowers.mix = '" + txtEMix.Text + "'" +
-                ", flowers.sticker_text = '" + txtESticker.Text + "'" +
-                ", flowers.length_id = '" + txtELength.Text + "'" +
-                ", flowers.sleeve_id = '" + txtESleeve.Text + "'" +
-                ", flowers.fob = '" + txtEFob.Text + "'" +
-                ", flowers.fairtrade = '" + txtEFaitrade.Text + "'" +
-                ", flowers.bunch_pr_bucket = '" + txtEBunchPBucket.Text + "'" +
-                ", flowers.stems_pr_bunch = '" + txtEStems.Text + "'" +
-                ", flowers.pak_rate = '" + txtEPak.Text + "'" +
+            //string save2 = @" UPDATE[MG_inkjop].[dbo].[flowers]
+            //    SET flowers.variety = '" + txtEVariety.Text + "'" +
+            //    ", flowers.colour = '" + txtEColour.Text + "'" +
+            //    ", flowers.plu = '" + txtEPlu.Text + "'" +
+            //    ", flowers.farm_id = '" + txtEFarm.Text + "'" +
+            //    ", flowers.mix = '" + txtEMix.Text + "'" +
+            //    ", flowers.sticker_text = '" + txtESticker.Text + "'" +
+            //    ", flowers.length_id = '" + txtELength.Text + "'" +
+            //    ", flowers.sleeve_id = '" + txtESleeve.Text + "'" +
+            //    ", flowers.fob = '" + txtEFob.Text + "'" +
+            //    ", flowers.fairtrade = '" + txtEFaitrade.Text + "'" +
+            //    ", flowers.bunch_pr_bucket = '" + txtEBunchPBucket.Text + "'" +
+            //    ", flowers.stems_pr_bunch = '" + txtEStems.Text + "'" +
+            //    ", flowers.pak_rate = '" + txtEPak.Text + "'" +
 
-                "WHERE fl_id = " + label2.Text;
+            //    "WHERE fl_id = " + label2.Text;
 
-            GetData(save2, bindingSource1);
+            //GetData(save2, bindingSource1);
             this.Close();
         }
     }
