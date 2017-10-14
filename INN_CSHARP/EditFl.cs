@@ -30,13 +30,22 @@ namespace INN_CSHARP
           FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves]
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id  ";
         
-        string select = @"SELECT * FROM [MG_inkjop].[dbo].[farms]";
         string selectLengths = @"SELECT * FROM [MG_inkjop].[dbo].[lengths]";
-        string selectColour = @"SELECT * FROM [MG_inkjop].[dbo].[colours]";
-        string selectSleeve = @"SELECT * FROM [MG_inkjop].[dbo].[sleeves]";
+        string selectColours = @"SELECT * FROM [MG_inkjop].[dbo].[colours]";
+        string selectFarms = @"SELECT * FROM [MG_inkjop].[dbo].[farms]";
+        string selectSleeves = @"SELECT * FROM [MG_inkjop].[dbo].[sleeves]";
+
         string Sql;
         int rowIndex = -1;
         int fci;
+        bool che;
+        string newLengthId;
+        string newColourId;
+        string newFarmId;
+        string newSleeveId;
+        string newMix;
+        string newFt;
+
 
 
         public EditFl()
@@ -83,22 +92,56 @@ namespace INN_CSHARP
                 i++;
             }
         }
+        private void findCheckBoxStatus(CheckBox ce, int col)
+        {
+            if (dataGridView1[col, rowIndex].Value.ToString() == "True") che = true;
+        }
+        private void findComboValues()
+        {
+            foreach (DataGridViewRow row in dataGridView2.Rows)// find new lengthID
+            {
+                if (row.Cells[1].Value.ToString() == cbLengths.SelectedItem.ToString())
+                {
+                    newLengthId = row.Cells[0].Value.ToString();
+                    break;
+                }
+            }
+            foreach (DataGridViewRow row in dataGridView3.Rows)// find new colourID
+            {
+                if (row.Cells[1].Value.ToString() == cbColour.SelectedItem.ToString())
+                {
+                    newColourId = row.Cells[0].Value.ToString();
+                    break;
+                }
+            }
+            foreach (DataGridViewRow row in dataGridView4.Rows)// find new farmId
+            {
+                if (row.Cells[1].Value.ToString() == cbFarm.SelectedItem.ToString())
+                {
+                    newFarmId = row.Cells[0].Value.ToString();
+                    break;
+                }
+            }
+            foreach (DataGridViewRow row in dataGridView5.Rows)// find new sleeveId
+            {
+                if (row.Cells[1].Value.ToString() == cbSleeve.SelectedItem.ToString())
+                {
+                    newSleeveId = row.Cells[0].Value.ToString();
+                    break;
+                }
+            }
 
+        }
         private void EditFl_Load(object sender, EventArgs e)
         {
-            //fill up dataGridView by Farms
-            dataGridView1.DataSource = bindingSource1;
-            GetData(select, bindingSource1);
-            ////fill up dataGridView by Lengths
-            //dataGridView2.DataSource = bindingSource2;
-            //GetData(selectLengths, bindingSource2);
-            //////fill up dataGridView by Colours
-            //dataGridView3.DataSource = bindingSource3;
-            //GetData(selectColour, bindingSource3);
-            //////fill up dataGridView by Sleeves
-            //dataGridView4.DataSource = bindingSource4;
-            //GetData(selectSleeve, bindingSource4);
-
+            dataGridView2.DataSource = bindingSource2;//fill up lengths table
+            GetData(selectLengths, bindingSource2);
+            dataGridView3.DataSource = bindingSource3;//fill up colours table
+            GetData(selectColours, bindingSource3);
+            dataGridView4.DataSource = bindingSource5;//fill up farms table
+            GetData(selectFarms, bindingSource5);
+            dataGridView5.DataSource = bindingSource4;//fill up sleeves table
+            GetData(selectSleeves, bindingSource4);
 
             //fill up combo boxes
             Sql = "SELECT farms.farm_name FROM[MG_inkjop].[dbo].[farms]";
@@ -112,73 +155,61 @@ namespace INN_CSHARP
 
             int idToEdit2 = Form1.idToEdit;
             label2.Text = idToEdit2.ToString();
-
             dataGridView1.DataSource = bindingSource1;
             GetData(selectionStatement3, bindingSource1);
-
-            
-            
-            
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-               // MessageBox.Show(row.Cells[0].Value.ToString());
+                //MessageBox.Show(row.Cells[0].Value.ToString());
                 if (row.Cells[0].Value.ToString() == idToEdit2.ToString())
                 {
                     rowIndex = row.Index;
-
                     break;
                 }
             }
-            
-            findCbIndex(cbColour, 20);
+            findCbIndex(cbColour, 20);//check and set proper item in combobox
             cbColour.SelectedIndex = fci;
-
-            findCbIndex(cbFarm, 15);
+            findCbIndex(cbFarm, 15);//check and set proper item in combobox
             cbFarm.SelectedIndex = fci;
-
-            findCbIndex(cbLengths, 18);
+            findCbIndex(cbLengths, 18);//check and set proper item in combobox
             cbLengths.SelectedIndex = fci;
-            findCbIndex(cbSleeve, 22);
+            findCbIndex(cbSleeve, 22);//check and set proper item in combobox
             cbSleeve.SelectedIndex = fci;
-
-
             txtEVariety.Text = dataGridView1[1, rowIndex].Value.ToString();
-            //txtEColour.Text = dataGridView1[2, rowIndex].Value.ToString();
             txtEPlu.Text = dataGridView1[3, rowIndex].Value.ToString();
-            //txtEFarm.Text = dataGridView1[4, rowIndex].Value.ToString();
-            //txtEMix.Text = dataGridView1[5, rowIndex].Value.ToString();
             txtESticker.Text = dataGridView1[6, rowIndex].Value.ToString();
-            //txtELength.Text = dataGridView1[7, rowIndex].Value.ToString();
-            //txtESleeve.Text = dataGridView1[8, rowIndex].Value.ToString();
             txtEFob.Text = dataGridView1[9, rowIndex].Value.ToString();
-            //txtEFaitrade.Text = dataGridView1[10, rowIndex].Value.ToString();
             txtEBunchPBucket.Text = dataGridView1[11, rowIndex].Value.ToString();
             txtEStems.Text = dataGridView1[12, rowIndex].Value.ToString();
             txtEPak.Text = dataGridView1[13, rowIndex].Value.ToString();
+            findCheckBoxStatus(cheMix, 5);// check and set "mix" checkbox
+            if (che == true) cheMix.Checked = true;
+            else cheMix.Checked = false;
+            findCheckBoxStatus(cheFt, 10);// check and set "fairtrade" checkbox
+            if (che == true) cheFt.Checked = true;
+            else cheFt.Checked = false;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            findComboValues();
+            //MessageBox.Show(newLengthId+newColourId+ newFarmId+ newSleeveId);
+            string save2 = @" UPDATE[MG_inkjop].[dbo].[flowers]
+                SET flowers.variety = '" + txtEVariety.Text + "'" +
+                ", flowers.colour_id = '" + newColourId + "'" +
+                ", flowers.plu = '" + txtEPlu.Text + "'" +
+                ", flowers.farm_id = '" + newFarmId + "'" +
+                ", flowers.mix = '" + newMix + "'" +
+                ", flowers.sticker_text = '" + txtESticker.Text + "'" +
+                ", flowers.length_id = '" + newLengthId + "'" +
+                ", flowers.sleeve_id = '" + newSleeveId + "'" +
+                ", flowers.fob = '" + txtEFob.Text + "'" +
+                ", flowers.fairtrade = '" + newFt + "'" +
+                ", flowers.bunch_pr_bucket = '" + txtEBunchPBucket.Text + "'" +
+                ", flowers.stems_pr_bunch = '" + txtEStems.Text + "'" +
+                ", flowers.pak_rate = '" + txtEPak.Text + "'" +
 
-            //string save2 = @" UPDATE[MG_inkjop].[dbo].[flowers]
-            //    SET flowers.variety = '" + txtEVariety.Text + "'" +
-            //    ", flowers.colour = '" + txtEColour.Text + "'" +
-            //    ", flowers.plu = '" + txtEPlu.Text + "'" +
-            //    ", flowers.farm_id = '" + txtEFarm.Text + "'" +
-            //    ", flowers.mix = '" + txtEMix.Text + "'" +
-            //    ", flowers.sticker_text = '" + txtESticker.Text + "'" +
-            //    ", flowers.length_id = '" + txtELength.Text + "'" +
-            //    ", flowers.sleeve_id = '" + txtESleeve.Text + "'" +
-            //    ", flowers.fob = '" + txtEFob.Text + "'" +
-            //    ", flowers.fairtrade = '" + txtEFaitrade.Text + "'" +
-            //    ", flowers.bunch_pr_bucket = '" + txtEBunchPBucket.Text + "'" +
-            //    ", flowers.stems_pr_bunch = '" + txtEStems.Text + "'" +
-            //    ", flowers.pak_rate = '" + txtEPak.Text + "'" +
+                "WHERE fl_id = " + label2.Text;
 
-            //    "WHERE fl_id = " + label2.Text;
-
-            //GetData(save2, bindingSource1);
+            GetData(save2, bindingSource1);
             this.Close();
         }
     }
