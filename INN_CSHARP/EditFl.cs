@@ -38,13 +38,13 @@ namespace INN_CSHARP
         string Sql;
         int rowIndex = -1;
         int fci;
-        bool che;
         string newLengthId;
         string newColourId;
         string newFarmId;
         string newSleeveId;
         string newMix;
         string newFt;
+        string fob;
 
 
 
@@ -92,10 +92,6 @@ namespace INN_CSHARP
                 i++;
             }
         }
-        private void findCheckBoxStatus(CheckBox ce, int col)
-        {
-            if (dataGridView1[col, rowIndex].Value.ToString() == "True") che = true;
-        }
         private void findComboValues()
         {
             foreach (DataGridViewRow row in dataGridView2.Rows)// find new lengthID
@@ -130,7 +126,12 @@ namespace INN_CSHARP
                     break;
                 }
             }
-
+            if (cheFt.Checked) newFt = "1";
+            else newFt = "0";
+            if (cheMix.Checked) newMix = "1";
+            else newMix = "0";
+            decimal f = Convert.ToDecimal(txtEFob.Text.Replace('.',','));
+            fob = f.ToString().Replace(',','.');
         }
         private void EditFl_Load(object sender, EventArgs e)
         {
@@ -181,17 +182,15 @@ namespace INN_CSHARP
             txtEBunchPBucket.Text = dataGridView1[11, rowIndex].Value.ToString();
             txtEStems.Text = dataGridView1[12, rowIndex].Value.ToString();
             txtEPak.Text = dataGridView1[13, rowIndex].Value.ToString();
-            findCheckBoxStatus(cheMix, 5);// check and set "mix" checkbox
-            if (che == true) cheMix.Checked = true;
+            if (dataGridView1[5, rowIndex].Value.ToString() == "True") cheMix.Checked = true; // check and set "mix" checkbox
             else cheMix.Checked = false;
-            findCheckBoxStatus(cheFt, 10);// check and set "fairtrade" checkbox
-            if (che == true) cheFt.Checked = true;
+            if (dataGridView1[10, rowIndex].Value.ToString() == "True") cheFt.Checked = true; // check and set "fairtrade" checkbox
             else cheFt.Checked = false;
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)//save button
         {
             findComboValues();
-            //MessageBox.Show(newLengthId+newColourId+ newFarmId+ newSleeveId);
+            
             string save2 = @" UPDATE[MG_inkjop].[dbo].[flowers]
                 SET flowers.variety = '" + txtEVariety.Text + "'" +
                 ", flowers.colour_id = '" + newColourId + "'" +
@@ -201,7 +200,7 @@ namespace INN_CSHARP
                 ", flowers.sticker_text = '" + txtESticker.Text + "'" +
                 ", flowers.length_id = '" + newLengthId + "'" +
                 ", flowers.sleeve_id = '" + newSleeveId + "'" +
-                ", flowers.fob = '" + txtEFob.Text + "'" +
+                ", flowers.fob = '" + fob + "'" +
                 ", flowers.fairtrade = '" + newFt + "'" +
                 ", flowers.bunch_pr_bucket = '" + txtEBunchPBucket.Text + "'" +
                 ", flowers.stems_pr_bunch = '" + txtEStems.Text + "'" +
@@ -212,5 +211,6 @@ namespace INN_CSHARP
             GetData(save2, bindingSource1);
             this.Close();
         }
+
     }
 }

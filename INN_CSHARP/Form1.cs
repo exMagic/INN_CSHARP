@@ -161,6 +161,7 @@ namespace INN_CSHARP
             }
             cbLength.SelectedIndex = 0;
             conn.Close();
+            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
         }
         ///////////////////////  MENU
         private void button1_Click(object sender, EventArgs e)
@@ -241,6 +242,8 @@ namespace INN_CSHARP
             }
             selectionStatement4 = selectionStatement3 + whFarm + whLen;
             GetData(selectionStatement4, bindingSource1);
+            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
+
         }
         // LENGTH FILTER ///////////////////////////////////////////////////////////////
         private void cbLength_SelectedIndexChanged(object sender, EventArgs e)
@@ -261,6 +264,8 @@ namespace INN_CSHARP
             }
             selectionStatement4 = selectionStatement3 + whFarm + whLen;
             GetData(selectionStatement4, bindingSource1);
+            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
+
         }
         // EDIT ///////////////////////////////////////////////////////////////
         public static int idToEdit;
