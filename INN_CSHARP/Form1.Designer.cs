@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cbLength = new System.Windows.Forms.ComboBox();
@@ -44,6 +45,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnRemoveFF = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnFAdd = new System.Windows.Forms.Button();
@@ -52,8 +54,8 @@
             this.btnFDelete = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.cbOrders = new System.Windows.Forms.ComboBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.dataGridViewO1 = new System.Windows.Forms.DataGridView();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -62,6 +64,21 @@
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnRemoveFL = new System.Windows.Forms.Button();
+            this.dataGridViewO1 = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblDeparture = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblArrival = new System.Windows.Forms.Label();
+            this.lblDatecode = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblAmountBoxes = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblAmountSteems = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblAmountBuckets = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -70,13 +87,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewO1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewO1)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -150,14 +167,14 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.GridColor = System.Drawing.Color.DarkGray;
             this.dataGridView1.Location = new System.Drawing.Point(411, 163);
             this.dataGridView1.Name = "dataGridView1";
@@ -272,6 +289,8 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.btnRemoveFL);
+            this.tabPage5.Controls.Add(this.btnRemoveFF);
             this.tabPage5.Controls.Add(this.label2);
             this.tabPage5.Controls.Add(this.label1);
             this.tabPage5.Controls.Add(this.btnFAdd);
@@ -293,6 +312,24 @@
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveFF
+            // 
+            this.btnRemoveFF.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemoveFF.BackgroundImage")));
+            this.btnRemoveFF.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnRemoveFF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRemoveFF.FlatAppearance.BorderSize = 0;
+            this.btnRemoveFF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveFF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveFF.ForeColor = System.Drawing.Color.Gray;
+            this.btnRemoveFF.Location = new System.Drawing.Point(380, 180);
+            this.btnRemoveFF.Name = "btnRemoveFF";
+            this.btnRemoveFF.Size = new System.Drawing.Size(21, 20);
+            this.btnRemoveFF.TabIndex = 14;
+            this.btnRemoveFF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnRemoveFF, "fjern filter");
+            this.btnRemoveFF.UseVisualStyleBackColor = true;
+            this.btnRemoveFF.Click += new System.EventHandler(this.btnRemoveFF_Click);
             // 
             // label2
             // 
@@ -397,8 +434,21 @@
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.pictureBox4);
+            this.tabPage6.Controls.Add(this.lblAmountBuckets);
+            this.tabPage6.Controls.Add(this.label11);
+            this.tabPage6.Controls.Add(this.lblAmountSteems);
+            this.tabPage6.Controls.Add(this.label10);
+            this.tabPage6.Controls.Add(this.lblAmountBoxes);
+            this.tabPage6.Controls.Add(this.label9);
+            this.tabPage6.Controls.Add(this.lblDatecode);
+            this.tabPage6.Controls.Add(this.label8);
+            this.tabPage6.Controls.Add(this.lblArrival);
+            this.tabPage6.Controls.Add(this.label7);
+            this.tabPage6.Controls.Add(this.lblDeparture);
+            this.tabPage6.Controls.Add(this.label3);
             this.tabPage6.Controls.Add(this.dataGridViewO1);
+            this.tabPage6.Controls.Add(this.cbOrders);
+            this.tabPage6.Controls.Add(this.pictureBox4);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
@@ -407,6 +457,16 @@
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
             this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
+            // 
+            // cbOrders
+            // 
+            this.cbOrders.FormattingEnabled = true;
+            this.cbOrders.Location = new System.Drawing.Point(260, 115);
+            this.cbOrders.Name = "cbOrders";
+            this.cbOrders.Size = new System.Drawing.Size(121, 21);
+            this.cbOrders.TabIndex = 14;
+            this.cbOrders.Text = "Velg order nummer";
+            this.cbOrders.SelectedIndexChanged += new System.EventHandler(this.cbOrders_SelectedIndexChanged);
             // 
             // pictureBox4
             // 
@@ -419,15 +479,6 @@
             this.pictureBox4.Size = new System.Drawing.Size(1231, 55);
             this.pictureBox4.TabIndex = 13;
             this.pictureBox4.TabStop = false;
-            // 
-            // dataGridViewO1
-            // 
-            this.dataGridViewO1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewO1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewO1.Location = new System.Drawing.Point(301, 115);
-            this.dataGridViewO1.Name = "dataGridViewO1";
-            this.dataGridViewO1.Size = new System.Drawing.Size(762, 254);
-            this.dataGridViewO1.TabIndex = 0;
             // 
             // tabPage7
             // 
@@ -483,6 +534,157 @@
             // 
             this.bindingSourceOrders.DataSource = typeof(INN_CSHARP.orders);
             // 
+            // btnRemoveFL
+            // 
+            this.btnRemoveFL.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemoveFL.BackgroundImage")));
+            this.btnRemoveFL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnRemoveFL.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRemoveFL.FlatAppearance.BorderSize = 0;
+            this.btnRemoveFL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveFL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveFL.ForeColor = System.Drawing.Color.Gray;
+            this.btnRemoveFL.Location = new System.Drawing.Point(380, 235);
+            this.btnRemoveFL.Name = "btnRemoveFL";
+            this.btnRemoveFL.Size = new System.Drawing.Size(21, 20);
+            this.btnRemoveFL.TabIndex = 15;
+            this.btnRemoveFL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnRemoveFL, "fjern filter");
+            this.btnRemoveFL.UseVisualStyleBackColor = true;
+            this.btnRemoveFL.Click += new System.EventHandler(this.btnRemoveFL_Click);
+            // 
+            // dataGridViewO1
+            // 
+            this.dataGridViewO1.AllowUserToAddRows = false;
+            this.dataGridViewO1.AllowUserToDeleteRows = false;
+            this.dataGridViewO1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewO1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridViewO1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dataGridViewO1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewO1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewO1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewO1.GridColor = System.Drawing.Color.DarkGray;
+            this.dataGridViewO1.Location = new System.Drawing.Point(399, 115);
+            this.dataGridViewO1.Name = "dataGridViewO1";
+            this.dataGridViewO1.ReadOnly = true;
+            this.dataGridViewO1.RowHeadersVisible = false;
+            this.dataGridViewO1.Size = new System.Drawing.Size(463, 473);
+            this.dataGridViewO1.TabIndex = 15;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(399, 78);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Departure:";
+            // 
+            // lblDeparture
+            // 
+            this.lblDeparture.AutoSize = true;
+            this.lblDeparture.Location = new System.Drawing.Point(453, 78);
+            this.lblDeparture.Name = "lblDeparture";
+            this.lblDeparture.Size = new System.Drawing.Size(35, 13);
+            this.lblDeparture.TabIndex = 17;
+            this.lblDeparture.Text = "label6";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(592, 78);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Arrival:";
+            // 
+            // lblArrival
+            // 
+            this.lblArrival.AutoSize = true;
+            this.lblArrival.Location = new System.Drawing.Point(628, 78);
+            this.lblArrival.Name = "lblArrival";
+            this.lblArrival.Size = new System.Drawing.Size(35, 13);
+            this.lblArrival.TabIndex = 19;
+            this.lblArrival.Text = "label8";
+            // 
+            // lblDatecode
+            // 
+            this.lblDatecode.AutoSize = true;
+            this.lblDatecode.Location = new System.Drawing.Point(818, 78);
+            this.lblDatecode.Name = "lblDatecode";
+            this.lblDatecode.Size = new System.Drawing.Size(35, 13);
+            this.lblDatecode.TabIndex = 21;
+            this.lblDatecode.Text = "label8";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(764, 78);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(57, 13);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Datecode:";
+            // 
+            // lblAmountBoxes
+            // 
+            this.lblAmountBoxes.AutoSize = true;
+            this.lblAmountBoxes.Location = new System.Drawing.Point(969, 78);
+            this.lblAmountBoxes.Name = "lblAmountBoxes";
+            this.lblAmountBoxes.Size = new System.Drawing.Size(35, 13);
+            this.lblAmountBoxes.TabIndex = 23;
+            this.lblAmountBoxes.Text = "label8";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(902, 78);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(71, 13);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "Antall bokser:";
+            // 
+            // lblAmountSteems
+            // 
+            this.lblAmountSteems.AutoSize = true;
+            this.lblAmountSteems.Location = new System.Drawing.Point(969, 102);
+            this.lblAmountSteems.Name = "lblAmountSteems";
+            this.lblAmountSteems.Size = new System.Drawing.Size(35, 13);
+            this.lblAmountSteems.TabIndex = 25;
+            this.lblAmountSteems.Text = "label8";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(902, 102);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 13);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Antall steems:";
+            // 
+            // lblAmountBuckets
+            // 
+            this.lblAmountBuckets.AutoSize = true;
+            this.lblAmountBuckets.Location = new System.Drawing.Point(968, 123);
+            this.lblAmountBuckets.Name = "lblAmountBuckets";
+            this.lblAmountBuckets.Size = new System.Drawing.Size(35, 13);
+            this.lblAmountBuckets.TabIndex = 27;
+            this.lblAmountBuckets.Text = "label8";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(894, 123);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 13);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "Antall buckets:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -508,19 +710,22 @@
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewO1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewO1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource bindingSource1;
@@ -550,9 +755,25 @@
         private System.Windows.Forms.Button btnFDelete;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridViewO1;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.BindingSource bindingSourceOrders;
+        private System.Windows.Forms.ComboBox cbOrders;
+        private System.Windows.Forms.Button btnRemoveFF;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button btnRemoveFL;
+        private System.Windows.Forms.DataGridView dataGridViewO1;
+        private System.Windows.Forms.Label lblArrival;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblDeparture;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblDatecode;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblAmountBoxes;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblAmountSteems;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblAmountBuckets;
+        private System.Windows.Forms.Label label11;
     }
 }
 
