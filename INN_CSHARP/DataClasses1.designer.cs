@@ -45,6 +45,9 @@ namespace INN_CSHARP
     partial void Insertsleeve(sleeve instance);
     partial void Updatesleeve(sleeve instance);
     partial void Deletesleeve(sleeve instance);
+    partial void Insertorders(orders instance);
+    partial void Updateorders(orders instance);
+    partial void Deleteorders(orders instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -116,6 +119,14 @@ namespace INN_CSHARP
 				return this.GetTable<sleeve>();
 			}
 		}
+		
+		public System.Data.Linq.Table<orders> orders
+		{
+			get
+			{
+				return this.GetTable<orders>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.flowers")]
@@ -151,6 +162,8 @@ namespace INN_CSHARP
 		private byte _stems_pr_bunch;
 		
 		private int _pak_rate;
+		
+		private EntitySet<orders> _orders;
 		
 		private EntityRef<farm> _farm;
 		
@@ -196,6 +209,7 @@ namespace INN_CSHARP
 		
 		public flower()
 		{
+			this._orders = new EntitySet<orders>(new Action<orders>(this.attach_orders), new Action<orders>(this.detach_orders));
 			this._farm = default(EntityRef<farm>);
 			this._colour1 = default(EntityRef<colour>);
 			this._length = default(EntityRef<lengths>);
@@ -499,6 +513,19 @@ namespace INN_CSHARP
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="flower_order", Storage="_orders", ThisKey="fl_id", OtherKey="fl_id")]
+		public EntitySet<orders> orders
+		{
+			get
+			{
+				return this._orders;
+			}
+			set
+			{
+				this._orders.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="farm_flower", Storage="_farm", ThisKey="farm_id", OtherKey="farm_id", IsForeignKey=true)]
 		public farm farm
 		{
@@ -567,7 +594,7 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="length_flower", Storage="_length", ThisKey="length_id", OtherKey="length_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lengths_flower", Storage="_length", ThisKey="length_id", OtherKey="length_id", IsForeignKey=true)]
 		public lengths lengths
 		{
 			get
@@ -653,6 +680,18 @@ namespace INN_CSHARP
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_orders(orders entity)
+		{
+			this.SendPropertyChanging();
+			entity.flower = this;
+		}
+		
+		private void detach_orders(orders entity)
+		{
+			this.SendPropertyChanging();
+			entity.flower = null;
 		}
 	}
 	
@@ -976,7 +1015,7 @@ namespace INN_CSHARP
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="length_flower", Storage="_flowers", ThisKey="length_id", OtherKey="length_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="lengths_flower", Storage="_flowers", ThisKey="length_id", OtherKey="length_id")]
 		public EntitySet<flower> flowers
 		{
 			get
@@ -1157,6 +1196,301 @@ namespace INN_CSHARP
 		{
 			this.SendPropertyChanging();
 			entity.sleeve = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.orders")]
+	public partial class orders : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _order_id;
+		
+		private int _order_nummer;
+		
+		private System.DateTime _departure;
+		
+		private System.DateTime _arrival;
+		
+		private string _datecode;
+		
+		private int _fl_id;
+		
+		private int _boxes;
+		
+		private System.DateTime _date_created;
+		
+		private System.DateTime _date_modified;
+		
+		private EntityRef<flower> _flower;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onorder_idChanging(int value);
+    partial void Onorder_idChanged();
+    partial void Onorder_nummerChanging(int value);
+    partial void Onorder_nummerChanged();
+    partial void OndepartureChanging(System.DateTime value);
+    partial void OndepartureChanged();
+    partial void OnarrivalChanging(System.DateTime value);
+    partial void OnarrivalChanged();
+    partial void OndatecodeChanging(string value);
+    partial void OndatecodeChanged();
+    partial void Onfl_idChanging(int value);
+    partial void Onfl_idChanged();
+    partial void OnboxesChanging(int value);
+    partial void OnboxesChanged();
+    partial void Ondate_createdChanging(System.DateTime value);
+    partial void Ondate_createdChanged();
+    partial void Ondate_modifiedChanging(System.DateTime value);
+    partial void Ondate_modifiedChanged();
+    #endregion
+		
+		public orders()
+		{
+			this._flower = default(EntityRef<flower>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_order_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int order_id
+		{
+			get
+			{
+				return this._order_id;
+			}
+			set
+			{
+				if ((this._order_id != value))
+				{
+					this.Onorder_idChanging(value);
+					this.SendPropertyChanging();
+					this._order_id = value;
+					this.SendPropertyChanged("order_id");
+					this.Onorder_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_order_nummer", DbType="Int NOT NULL")]
+		public int order_nummer
+		{
+			get
+			{
+				return this._order_nummer;
+			}
+			set
+			{
+				if ((this._order_nummer != value))
+				{
+					this.Onorder_nummerChanging(value);
+					this.SendPropertyChanging();
+					this._order_nummer = value;
+					this.SendPropertyChanged("order_nummer");
+					this.Onorder_nummerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_departure", DbType="Date NOT NULL")]
+		public System.DateTime departure
+		{
+			get
+			{
+				return this._departure;
+			}
+			set
+			{
+				if ((this._departure != value))
+				{
+					this.OndepartureChanging(value);
+					this.SendPropertyChanging();
+					this._departure = value;
+					this.SendPropertyChanged("departure");
+					this.OndepartureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_arrival", DbType="Date NOT NULL")]
+		public System.DateTime arrival
+		{
+			get
+			{
+				return this._arrival;
+			}
+			set
+			{
+				if ((this._arrival != value))
+				{
+					this.OnarrivalChanging(value);
+					this.SendPropertyChanging();
+					this._arrival = value;
+					this.SendPropertyChanged("arrival");
+					this.OnarrivalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_datecode", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string datecode
+		{
+			get
+			{
+				return this._datecode;
+			}
+			set
+			{
+				if ((this._datecode != value))
+				{
+					this.OndatecodeChanging(value);
+					this.SendPropertyChanging();
+					this._datecode = value;
+					this.SendPropertyChanged("datecode");
+					this.OndatecodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fl_id", DbType="Int NOT NULL")]
+		public int fl_id
+		{
+			get
+			{
+				return this._fl_id;
+			}
+			set
+			{
+				if ((this._fl_id != value))
+				{
+					if (this._flower.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onfl_idChanging(value);
+					this.SendPropertyChanging();
+					this._fl_id = value;
+					this.SendPropertyChanged("fl_id");
+					this.Onfl_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_boxes", DbType="Int NOT NULL")]
+		public int boxes
+		{
+			get
+			{
+				return this._boxes;
+			}
+			set
+			{
+				if ((this._boxes != value))
+				{
+					this.OnboxesChanging(value);
+					this.SendPropertyChanging();
+					this._boxes = value;
+					this.SendPropertyChanged("boxes");
+					this.OnboxesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date_created", DbType="DateTime NOT NULL")]
+		public System.DateTime date_created
+		{
+			get
+			{
+				return this._date_created;
+			}
+			set
+			{
+				if ((this._date_created != value))
+				{
+					this.Ondate_createdChanging(value);
+					this.SendPropertyChanging();
+					this._date_created = value;
+					this.SendPropertyChanged("date_created");
+					this.Ondate_createdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date_modified", DbType="DateTime NOT NULL")]
+		public System.DateTime date_modified
+		{
+			get
+			{
+				return this._date_modified;
+			}
+			set
+			{
+				if ((this._date_modified != value))
+				{
+					this.Ondate_modifiedChanging(value);
+					this.SendPropertyChanging();
+					this._date_modified = value;
+					this.SendPropertyChanged("date_modified");
+					this.Ondate_modifiedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="flower_order", Storage="_flower", ThisKey="fl_id", OtherKey="fl_id", IsForeignKey=true)]
+		public flower flower
+		{
+			get
+			{
+				return this._flower.Entity;
+			}
+			set
+			{
+				flower previousValue = this._flower.Entity;
+				if (((previousValue != value) 
+							|| (this._flower.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._flower.Entity = null;
+						previousValue.orders.Remove(this);
+					}
+					this._flower.Entity = value;
+					if ((value != null))
+					{
+						value.orders.Add(this);
+						this._fl_id = value.fl_id;
+					}
+					else
+					{
+						this._fl_id = default(int);
+					}
+					this.SendPropertyChanged("flower");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

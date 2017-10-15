@@ -102,6 +102,7 @@
     <None Include="Properties\DataSources\farm.datasource" />
     <None Include="Properties\DataSources\flower.datasource" />
     <None Include="Properties\DataSources\lengths.datasource" />
+    <None Include="Properties\DataSources\orders.datasource" />
     <None Include="Properties\DataSources\sleeve.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

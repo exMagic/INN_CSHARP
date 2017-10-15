@@ -16,9 +16,10 @@
       <Column Name="bunch_pr_bucket" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="stems_pr_bunch" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="pak_rate" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="flower_order" Member="orders" ThisKey="fl_id" OtherKey="fl_id" Type="orders" />
       <Association Name="farm_flower" Member="farm" ThisKey="farm_id" OtherKey="farm_id" Type="farm" IsForeignKey="true" />
       <Association Name="colour_flower" Member="colour1" ThisKey="colour" OtherKey="colour_id" Type="colour" IsForeignKey="true" />
-      <Association Name="length_flower" Member="lengths" Storage="_length" ThisKey="length_id" OtherKey="length_id" Type="lengths" IsForeignKey="true" />
+      <Association Name="lengths_flower" Member="lengths" Storage="_length" ThisKey="length_id" OtherKey="length_id" Type="lengths" IsForeignKey="true" />
       <Association Name="sleeve_flower" Member="sleeve" ThisKey="sleeve_id" OtherKey="sleeve_id" Type="sleeve" IsForeignKey="true" />
     </Type>
   </Table>
@@ -41,7 +42,7 @@
     <Type Name="lengths">
       <Column Name="length_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="length" Member="length1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="length_flower" Member="flowers" ThisKey="length_id" OtherKey="length_id" Type="flower" />
+      <Association Name="lengths_flower" Member="flowers" ThisKey="length_id" OtherKey="length_id" Type="flower" />
     </Type>
   </Table>
   <Table Name="dbo.sleeves" Member="sleeves">
@@ -50,6 +51,20 @@
       <Column Name="sleeve" Member="sleeve1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="slevve_plu" Type="System.String" DbType="Char(6)" CanBeNull="true" />
       <Association Name="sleeve_flower" Member="flowers" ThisKey="sleeve_id" OtherKey="sleeve_id" Type="flower" />
+    </Type>
+  </Table>
+  <Table Name="dbo.orders" Member="orders">
+    <Type Name="orders">
+      <Column Name="order_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="order_nummer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="departure" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="arrival" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="datecode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="fl_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="boxes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date_created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="date_modified" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="flower_order" Member="flower" ThisKey="fl_id" OtherKey="fl_id" Type="flower" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
