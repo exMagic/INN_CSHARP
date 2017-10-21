@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddOr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOr.Designer.cs">
+      <DependentUpon>AddOr.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddFl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +62,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="EditOr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditOr.Designer.cs">
+      <DependentUpon>EditOr.cs</DependentUpon>
     </Compile>
     <Compile Include="EditFl.cs">
       <SubType>Form</SubType>
@@ -71,8 +83,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddOr.resx">
+      <DependentUpon>AddOr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddFl.resx">
       <DependentUpon>AddFl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditOr.resx">
+      <DependentUpon>EditOr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditFl.resx">
       <DependentUpon>EditFl.cs</DependentUpon>
