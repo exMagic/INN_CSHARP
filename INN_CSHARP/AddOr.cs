@@ -46,8 +46,15 @@ namespace INN_CSHARP
                 MessageBox.Show(ex.Message);
             }
         }
-        string mix;
-        string ft;
+        string CBselect;
+        string All = "All";
+        public string whFarm;
+        public string whLen;
+        public string whColour;
+        public string whSleeve;
+
+        public string whMix = "and flowers.mix=0";
+        public string whFt = "and flowers.fairtrade=0";
         string selectedFarmId;
         string selectedLength;
         string selectedColour ="1";
@@ -72,6 +79,8 @@ namespace INN_CSHARP
               ,flowers.pak_rate as 'pak rate'
           FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves]
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id ";
+
+        string selectFarms = @"SELECT * FROM [MG_inkjop].[dbo].[farms]";
         string selectLengths = @"SELECT * FROM [MG_inkjop].[dbo].[lengths]";
         string selectColour = @"SELECT * FROM [MG_inkjop].[dbo].[colours]";
         string selectSleeve = @"SELECT * FROM [MG_inkjop].[dbo].[sleeves]";
@@ -84,10 +93,17 @@ namespace INN_CSHARP
             conn.Open();
             SqlCommand cmd = new SqlCommand(Sql, conn);
             SqlDataReader DR = cmd.ExecuteReader();
+            cb.Items.Add(All);
             while (DR.Read()) cb.Items.Add(DR[0]);
             cb.SelectedIndex = 0;
             conn.Close();
         }
+
+        public string order_numer;
+        public string datecode;
+        public string departure;
+        public string arrival;
+
         public static class Prompt
         {
             public static string ShowDialog(string text, string caption)
@@ -115,13 +131,14 @@ namespace INN_CSHARP
         private void AddOr_Load(object sender, EventArgs e)
         {
             //string promptValue = Prompt.ShowDialog("Test", "123");
+            CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             dataGridViewOA.DataSource = bindingSource1;
-            GetData(select, bindingSource1);
+            GetData(CBselect, bindingSource1);
             dataGridViewOA.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             //fill up dataGridView by Farms
-            dataGridView1.DataSource = bindingSource1;
-            GetData(select, bindingSource1);
+            dataGridView1.DataSource = bindingSource5;
+            GetData(selectFarms, bindingSource5);
             //fill up dataGridView by Lengths
             dataGridView2.DataSource = bindingSource2;
             GetData(selectLengths, bindingSource2);
@@ -162,53 +179,155 @@ namespace INN_CSHARP
 
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
         {
-            findValueCb(dataGridView1, 1, cbFarm);
-            selectedFarmId = valueFromCb;
+            if (cbFarm.SelectedIndex == 0)
+            {
+                whFarm = " ";
+                btnRemoveAOF.Visible = false;
+            }
+            else
+            {
+                int selectedFarmId;
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Cells[1].Value.ToString() == cbFarm.SelectedItem.ToString())
+                    {
+                        selectedFarmId = Convert.ToInt32(row.Cells[0].Value);
+                        whFarm = "and farms.farm_id=" + selectedFarmId.ToString();
+                        break;
+                    }
+                }
+                btnRemoveAOF.Visible = true;
+            }
+            CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            GetData(CBselect, bindingSource1);
         }
         private void cbLengths_SelectedIndexChanged(object sender, EventArgs e)
         {
-            findValueCb(dataGridView2, 1, cbLengths);
-            selectedLength = valueFromCb;
+            if (cbLengths.SelectedIndex == 0)
+            {
+                whLen = " ";
+                btnRemoveAOL.Visible = false;
+
+            }
+            else
+            {
+                int selectedLengthId;
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Cells[1].Value.ToString() == cbLengths.SelectedItem.ToString())
+                    {
+                        selectedLengthId = Convert.ToInt32(row.Cells[0].Value);
+                        whLen = "and lengths.length_id=" + selectedLengthId.ToString();
+                        break;
+                    }
+                }
+                btnRemoveAOL.Visible = true;
+            }
+            CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            GetData(CBselect, bindingSource1);
         }
         private void cbColour_SelectedIndexChanged(object sender, EventArgs e)
         {
-            findValueCb(dataGridView3, 1, cbColour);
-            selectedColour = valueFromCb;
+            if (cbColour.SelectedIndex == 0)
+            {
+                whColour = " ";
+                btnRemoveAOC.Visible = false;
+
+            }
+            else
+            {
+                int selectedColourId;
+                foreach (DataGridViewRow row in dataGridView3.Rows)
+                {
+                    if (row.Cells[1].Value.ToString() == cbColour.SelectedItem.ToString())
+                    {
+                        selectedColourId = Convert.ToInt32(row.Cells[0].Value);
+                        whColour = "and colours.colour_id=" + selectedColourId.ToString();
+                        break;
+                    }
+                }
+                btnRemoveAOC.Visible = true;
+            }
+            CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            GetData(CBselect, bindingSource1);
         }
         private void cbSleeve_SelectedIndexChanged(object sender, EventArgs e)
         {
-            findValueCb(dataGridView4, 1, cbSleeve);
-            selectedSleeve = valueFromCb;
+            if (cbSleeve.SelectedIndex == 0)
+            {
+                whSleeve = " ";
+                btnRemoveAOS.Visible = false;
+
+            }
+            else
+            {
+                int selectedSleeveId;
+                foreach (DataGridViewRow row in dataGridView4.Rows)
+                {
+                    if (row.Cells[1].Value.ToString() == cbSleeve.SelectedItem.ToString())
+                    {
+                        selectedSleeveId = Convert.ToInt32(row.Cells[0].Value);
+                        whSleeve = "and sleeves.sleeve_id=" + selectedSleeveId.ToString();
+                        break;
+                    }
+                }
+                btnRemoveAOS.Visible = true;
+            }
+            CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            GetData(CBselect, bindingSource1);
         }
 
-        private void txtEPlu_KeyPress(object sender, KeyPressEventArgs e)// allow only digit
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-        private void txtEBunchPBucket_KeyPress(object sender, KeyPressEventArgs e)// allow only digit
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-        private void txtEStems_KeyPress(object sender, KeyPressEventArgs e)// allow only digit
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-        private void txtEPak_KeyPress(object sender, KeyPressEventArgs e)// allow only digit
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-
-        private void txtEFob_KeyPress(object sender, KeyPressEventArgs e)// allow only decimal
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) e.Handled = true;
-            // only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
-        }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
             groupBox2.Visible = false;
             groupBox1.Visible = true;
+            order_numer = txtOrderNumber.Text;
+            datecode = txtDatecode.Text;
+            departure = dateTimePickerDeparture.Text;
+            arrival = dateTimePickerArrival.Text;
+
+            lblOrderNumber.Text = order_numer;
+            lblDatecode.Text = datecode;
+            lblDeparture.Text = departure;
+            lblArrival.Text = arrival;
+        }
+
+        private void btnRemoveAOF_Click(object sender, EventArgs e)
+        {
+            cbFarm.SelectedIndex = 0;
+        }
+
+        private void btnRemoveAOL_Click(object sender, EventArgs e)
+        {
+            cbLengths.SelectedIndex = 0;
+        }
+
+        private void btnRemoveAOC_Click(object sender, EventArgs e)
+        {
+            cbColour.SelectedIndex = 0;
+        }
+
+        private void btnRemoveAOS_Click(object sender, EventArgs e)
+        {
+            cbSleeve.SelectedIndex = 0;
+        }
+        //TODO: some method to display mix and ft both value togheter
+        private void cheMix_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cheMix.Checked) whMix = "and flowers.mix=1";
+            else whMix = "and flowers.mix=0";
+            CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            GetData(CBselect, bindingSource1);
+        }
+
+        private void cheFt_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cheFt.Checked) whFt = "and flowers.fairtrade=1";
+            else whFt = "and flowers.fairtrade=0";
+            CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            GetData(CBselect, bindingSource1);
         }
     }
 }
