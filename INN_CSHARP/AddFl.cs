@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 
 namespace INN_CSHARP
 {
-    public partial class Ny : Form
+    public partial class AddFl : Form
     {
         // PC
         //
@@ -26,7 +26,7 @@ namespace INN_CSHARP
         System.Data.DataTable table;
 
        
-        public Ny()
+        public AddFl()
         {
             InitializeComponent();
         }

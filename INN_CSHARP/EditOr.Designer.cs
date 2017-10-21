@@ -39,24 +39,10 @@
             this.cheFt = new System.Windows.Forms.CheckBox();
             this.cheMix = new System.Windows.Forms.CheckBox();
             this.cbFarm = new System.Windows.Forms.ComboBox();
-            this.txtEPak = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtEStems = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtEBunchPBucket = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtEFob = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.txtESticker = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.txtEPlu = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.txtEVariety = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource4 = new System.Windows.Forms.BindingSource(this.components);
@@ -92,10 +78,10 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 5);
+            this.dataGridView1.Location = new System.Drawing.Point(25, 388);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(464, 23);
+            this.dataGridView1.Size = new System.Drawing.Size(464, 202);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.Visible = false;
             // 
@@ -105,7 +91,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(375, 338);
+            this.button1.Location = new System.Drawing.Point(442, 123);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 31;
@@ -165,70 +151,6 @@
             this.cbFarm.Size = new System.Drawing.Size(100, 21);
             this.cbFarm.TabIndex = 70;
             // 
-            // txtEPak
-            // 
-            this.txtEPak.Location = new System.Drawing.Point(65, 341);
-            this.txtEPak.Name = "txtEPak";
-            this.txtEPak.Size = new System.Drawing.Size(66, 20);
-            this.txtEPak.TabIndex = 79;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(65, 325);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 13);
-            this.label9.TabIndex = 82;
-            this.label9.Text = "pak_rate";
-            // 
-            // txtEStems
-            // 
-            this.txtEStems.Location = new System.Drawing.Point(65, 301);
-            this.txtEStems.Name = "txtEStems";
-            this.txtEStems.Size = new System.Drawing.Size(66, 20);
-            this.txtEStems.TabIndex = 78;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(65, 285);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(85, 13);
-            this.label16.TabIndex = 81;
-            this.label16.Text = "stems_pr_bunch";
-            // 
-            // txtEBunchPBucket
-            // 
-            this.txtEBunchPBucket.Location = new System.Drawing.Point(65, 261);
-            this.txtEBunchPBucket.Name = "txtEBunchPBucket";
-            this.txtEBunchPBucket.Size = new System.Drawing.Size(66, 20);
-            this.txtEBunchPBucket.TabIndex = 77;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(65, 245);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(91, 13);
-            this.label17.TabIndex = 80;
-            this.label17.Text = "bunch_pr_bucket";
-            // 
-            // txtEFob
-            // 
-            this.txtEFob.Location = new System.Drawing.Point(65, 221);
-            this.txtEFob.Name = "txtEFob";
-            this.txtEFob.Size = new System.Drawing.Size(66, 20);
-            this.txtEFob.TabIndex = 72;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(65, 205);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(25, 13);
-            this.label18.TabIndex = 75;
-            this.label18.Text = "fob:";
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -247,22 +169,6 @@
             this.label20.TabIndex = 68;
             this.label20.Text = "Length (cm):";
             // 
-            // txtESticker
-            // 
-            this.txtESticker.Location = new System.Drawing.Point(65, 99);
-            this.txtESticker.Name = "txtESticker";
-            this.txtESticker.Size = new System.Drawing.Size(278, 20);
-            this.txtESticker.TabIndex = 66;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(65, 83);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(60, 13);
-            this.label21.TabIndex = 65;
-            this.label21.Text = "Sticker text";
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -272,22 +178,6 @@
             this.label22.TabIndex = 62;
             this.label22.Text = "Farm:";
             // 
-            // txtEPlu
-            // 
-            this.txtEPlu.Location = new System.Drawing.Point(350, 59);
-            this.txtEPlu.Name = "txtEPlu";
-            this.txtEPlu.Size = new System.Drawing.Size(100, 20);
-            this.txtEPlu.TabIndex = 64;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(347, 43);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(31, 13);
-            this.label23.TabIndex = 61;
-            this.label23.Text = "PLU:";
-            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -296,22 +186,6 @@
             this.label24.Size = new System.Drawing.Size(40, 13);
             this.label24.TabIndex = 60;
             this.label24.Text = "Colour:";
-            // 
-            // txtEVariety
-            // 
-            this.txtEVariety.Location = new System.Drawing.Point(65, 59);
-            this.txtEVariety.Name = "txtEVariety";
-            this.txtEVariety.Size = new System.Drawing.Size(278, 20);
-            this.txtEVariety.TabIndex = 63;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(65, 43);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(42, 13);
-            this.label25.TabIndex = 59;
-            this.label25.Text = "Variety:";
             // 
             // bindingSource2
             // 
@@ -392,24 +266,10 @@
             this.Controls.Add(this.cheFt);
             this.Controls.Add(this.cheMix);
             this.Controls.Add(this.cbFarm);
-            this.Controls.Add(this.txtEPak);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtEStems);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.txtEBunchPBucket);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.txtEFob);
-            this.Controls.Add(this.label18);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.txtESticker);
-            this.Controls.Add(this.label21);
             this.Controls.Add(this.label22);
-            this.Controls.Add(this.txtEPlu);
-            this.Controls.Add(this.label23);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.txtEVariety);
-            this.Controls.Add(this.label25);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
@@ -442,24 +302,10 @@
         private System.Windows.Forms.CheckBox cheFt;
         private System.Windows.Forms.CheckBox cheMix;
         private System.Windows.Forms.ComboBox cbFarm;
-        private System.Windows.Forms.TextBox txtEPak;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtEStems;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtEBunchPBucket;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtEFob;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtESticker;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox txtEPlu;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox txtEVariety;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.BindingSource bindingSource2;
         private System.Windows.Forms.BindingSource bindingSource3;
         private System.Windows.Forms.BindingSource bindingSource4;

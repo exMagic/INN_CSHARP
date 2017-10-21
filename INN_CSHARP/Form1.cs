@@ -278,7 +278,7 @@ namespace INN_CSHARP
         // ADD ///////////////////////////////////////////////////////////////
         private void btnFAdd_Click(object sender, EventArgs e)
         {
-            Ny frm = new Ny();
+            AddFl frm = new AddFl();
             frm.FormClosing += new FormClosingEventHandler(this.Add_FormClosing);
             frm.Show();
         }
@@ -365,6 +365,17 @@ namespace INN_CSHARP
             lblAmountBoxes.Text = sumB.ToString();
             lblAmountSteems.Text = sumS.ToString();
             lblAmountBuckets.Text = sumBu.ToString();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AddOr frm = new AddOr();
+            frm.FormClosing += new FormClosingEventHandler(this.AddOr_FormClosing);
+            frm.Show();
+        }
+        private void AddOr_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //TODO:update parent grid
         }
     }
 }

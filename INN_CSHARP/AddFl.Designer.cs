@@ -1,6 +1,6 @@
 ﻿namespace INN_CSHARP
 {
-    partial class Ny
+    partial class AddFl
     {
         /// <summary>
         /// Required designer variable.
