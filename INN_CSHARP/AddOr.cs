@@ -14,6 +14,30 @@ namespace INN_CSHARP
 {
     public partial class AddOr : Form
     {
+        public static class Prompt
+        {
+            public static string ShowDialog(string text, string caption)
+            {
+                Form prompt = new Form()
+                {
+                    Width = 500,
+                    Height = 150,
+                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    Text = caption,
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+                Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
+                TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
+                Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+                confirmation.Click += (sender, e) => { prompt.Close(); };
+                prompt.Controls.Add(textBox);
+                prompt.Controls.Add(confirmation);
+                prompt.Controls.Add(textLabel);
+                prompt.AcceptButton = confirmation;
+
+                return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
+            }
+        }
         // PC
         //
         string connString = @"Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
@@ -60,9 +84,87 @@ namespace INN_CSHARP
         string selectedColour ="1";
         string selectedSleeve="1";
 
+        string date_created;
+        string insertFltoOrder;
+        string selectOrder;
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //TODO: check if fl_id is not exist in that order
+            
+            createSQLSelelct();
+            createSQLInsert();
+
+            GetData(insertFltoOrder, bindingSourceOrders);
+            dataGridViewAON.DataSource = bindingSourceOrders;
+            GetData(selectOrder, bindingSourceOrders);
+            dataGridViewAON.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
+        void createSQLInsert()
+        {
+            string boxes = Prompt.ShowDialog("Test", "123");
+
+            string fl_id = dataGridViewOA[0, dataGridViewOA.CurrentRow.Index].Value.ToString();
+            string date_modified = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace('.', ':');
+            string departure = dateTimePickerDeparture.Value.Date.ToString("yyyy-MM-dd");
+            string arrival = dateTimePickerArrival.Value.Date.ToString("yyyy-MM-dd");
+            MessageBox.Show(date_modified + " " + date_created);
+            insertFltoOrder = @"INSERT INTO [dbo].[orders]
+           ([order_number]
+           ,[departure]
+           ,[arrival]
+           ,[datecode]
+           ,[fl_id]
+           ,[boxes]
+           ,[date_created]
+           ,[date_modified])
+     VALUES     ('" + lblOrderNumber.Text + "'" +
+                ",'" + departure + "'" +
+                ",'" + arrival + "'" +
+                ",'" + lblDatecode.Text + "'" +
+                ",'" + fl_id + "'" +
+                ",'" + boxes + "'" +
+                ",'" + "2016-04-22 11:55:11" + "'" +
+                ",'" + "2016-04-22 11:55:11" + "')"
+                ;
+        }
+
+        void createSQLSelelct()
+        {
+            string orderNumber = txtOrderNumber.Text.ToString();
+            selectOrder = @"SELECT
+            orders.order_id
+            ,orders.departure
+            ,orders.arrival
+            ,orders.datecode
+            ,flowers.variety as 'Variety'
+            ,farms.farm_name as 'Farm'
+            ,flowers.plu as 'PLU'
+            ,lengths.length as 'Lenght'
+            ,flowers.pak_rate as 'pak rate'
+            ,orders.boxes
+            
+          FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
+          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY farm_name, length";
+            //    string selectOrder = @"
+            //SELECT
+            //    orders.order_id
+            //    ,orders.departure
+            //    ,orders.arrival
+            //    ,orders.datecode
+            //    ,flowers.variety as 'Variety'
+            //    ,farms.farm_name as 'Farm'
+            //    ,flowers.plu as 'PLU'
+            //    ,lengths.length as 'Lenght'
+            //    ,flowers.pak_rate as 'pak rate'
+            //    ,orders.boxes
+            //    ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
+            //    , ((SELECT orders.boxes) * (SELECT flowers.pak_rate) / (SELECT flowers.stems_pr_bunch) / (SELECT flowers.bunch_pr_bucket))as buckets
+            //  FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
+            //  WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY farm_name, length"
+            //  ;
+        }
+        
+        
 
         string select =@"
         SELECT 
@@ -104,30 +206,7 @@ namespace INN_CSHARP
         public string departure;
         public string arrival;
 
-        public static class Prompt
-        {
-            public static string ShowDialog(string text, string caption)
-            {
-                Form prompt = new Form()
-                {
-                    Width = 500,
-                    Height = 150,
-                    FormBorderStyle = FormBorderStyle.FixedDialog,
-                    Text = caption,
-                    StartPosition = FormStartPosition.CenterScreen
-                };
-                Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
-                TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
-                Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
-                confirmation.Click += (sender, e) => { prompt.Close(); };
-                prompt.Controls.Add(textBox);
-                prompt.Controls.Add(confirmation);
-                prompt.Controls.Add(textLabel);
-                prompt.AcceptButton = confirmation;
-
-                return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
-            }
-        }
+        
         private void AddOr_Load(object sender, EventArgs e)
         {
             //string promptValue = Prompt.ShowDialog("Test", "123");
@@ -159,7 +238,7 @@ namespace INN_CSHARP
             fillUpCb(cbColour);
             Sql = "SELECT sleeves.sleeve FROM[MG_inkjop].[dbo].[sleeves]";
             fillUpCb(cbSleeve);
-            dataGridViewOA.Columns[0].Visible = false;
+            dataGridViewOA.Columns[0].Visible = true;
 
 
 
@@ -281,17 +360,29 @@ namespace INN_CSHARP
 
         private void button1_Click(object sender, EventArgs e)
         {
-            groupBox2.Visible = false;
-            groupBox1.Visible = true;
-            order_numer = txtOrderNumber.Text;
-            datecode = txtDatecode.Text;
-            departure = dateTimePickerDeparture.Text;
-            arrival = dateTimePickerArrival.Text;
+            //TODO: check if that order number exist then return error;
+            if (string.IsNullOrWhiteSpace(txtOrderNumber.Text)) MessageBox.Show("Legg in Ordre number");
+            else
+            {
+                if (string.IsNullOrWhiteSpace(txtDatecode.Text)) MessageBox.Show("Legg in Datecode");
+                else
+                {
+                    date_created = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace('.',':');
+                    //MessageBox.Show(date_created);
+                    panel1.Visible = false;
+                    panel2.Visible = true;
+                    panel3.Visible = true;
+                    order_numer = txtOrderNumber.Text;
+                    datecode = txtDatecode.Text;
+                    departure = dateTimePickerDeparture.Text;
+                    arrival = dateTimePickerArrival.Text;
 
-            lblOrderNumber.Text = order_numer;
-            lblDatecode.Text = datecode;
-            lblDeparture.Text = departure;
-            lblArrival.Text = arrival;
+                    lblOrderNumber.Text = order_numer;
+                    lblDatecode.Text = datecode;
+                    lblDeparture.Text = departure;
+                    lblArrival.Text = arrival;
+                }
+            }
         }
 
         private void btnRemoveAOF_Click(object sender, EventArgs e)
@@ -328,6 +419,16 @@ namespace INN_CSHARP
             else whFt = "and flowers.fairtrade=0";
             CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             GetData(CBselect, bindingSource1);
+        }
+
+        private void txtOrderNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void txtDatecode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }
