@@ -300,8 +300,7 @@ namespace INN_CSHARP
             }
             GetData(selectionStatement4, bindingSource1);
         }
-
-        private void tabPage6_Enter(object sender, EventArgs e)
+        void updateCbOrders()
         {
             cbOrders.Items.Clear();
             string Sql = "select order_number from [MG_inkjop].[dbo].[orders] group by order_number";
@@ -314,6 +313,10 @@ namespace INN_CSHARP
                 cbOrders.Items.Add(DR[0]);
             }
             conn.Close();
+        }
+        private void tabPage6_Enter(object sender, EventArgs e)
+        {
+            updateCbOrders();
         }
 
         private void cbOrders_SelectedIndexChanged(object sender, EventArgs e)
@@ -375,7 +378,7 @@ namespace INN_CSHARP
         }
         private void AddOr_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //TODO:update parent grid
+            updateCbOrders();
         }
     }
 }
