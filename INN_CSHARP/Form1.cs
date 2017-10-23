@@ -12,93 +12,31 @@ using System.Data.SqlClient;
 
 namespace INN_CSHARP
 {
+    
     public partial class Form1 : Form
     {
-        // PC
-        //
-        string connString = @"Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        //
-        /*/WINMAC
-        string connString = @"Data Source=MACBOOKW10\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        //*/
+
         SqlDataAdapter dataAdapter;
         System.Data.DataTable table;
-
+        public string connString;
         public string whFarm;
         public string whLen;
         public string selectionStatement4;
-        string loadOrdersStatement;
-        string loadLengthsStatement = @"SELECT * FROM lengths";
-        void loadOrders(int orderNumber)
-        {
-            /*
-             * order_id 0
-             * departure 1
-             * arrival 2
-             * datecode 3
-             * variety 4
-             * farm_name 5
-             * plu 6
-             * length 7
-             * pak_rate 8
-             * boxes 9
-             * steems 10
-             * buckets 11
-            */
-            loadOrdersStatement = @"
-        SELECT
-            orders.order_id
-            ,orders.departure
-            ,orders.arrival
-            ,orders.datecode
-            ,flowers.variety as 'Variety'
-            ,farms.farm_name as 'Farm'
-            ,flowers.plu as 'PLU'
-            ,lengths.length as 'Lenght'
-            ,flowers.pak_rate as 'pak rate'
-            ,orders.boxes
-            ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
-            , ((SELECT orders.boxes) * (SELECT flowers.pak_rate) / (SELECT flowers.stems_pr_bunch) / (SELECT flowers.bunch_pr_bucket))as buckets
-          FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
-          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY farm_name, length";
-        }
+
+        
         
 
-        string selectionStatement22 = @"
-        SELECT 
-        farms.farm_id, farms.farm_name  
-        FROM [MG_inkjop].[dbo].[farms]
-        ";
-        string selectionStatement3 = @"
-        SELECT 
-                flowers.fl_id
-              ,flowers.variety as 'Variety'
-              ,flowers.sticker_text as 'Sticker text'
-              ,colours.colour as 'Colour'
-              ,flowers.plu as 'PLU'
-              ,farms.farm_name as 'Farm'
-              ,lengths.length as 'Lenght'
-	          ,flowers.mix as 'MIX'
-              ,sleeves.sleeve as 'Sleeve'
-              ,flowers.fob as 'FOB'
-              ,flowers.fairtrade as 'Fairtrade'
-              ,flowers.bunch_pr_bucket as 'Bunch pr bucket'
-              ,flowers.stems_pr_bunch as 'Stems pr bunch'
-              ,flowers.pak_rate as 'pak rate'
-          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves]
-          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id ";
+        
 
-        public void resBtn()
-        {
-            Color _leftBG = System.Drawing.ColorTranslator.FromHtml("#3b3a3f");
-            button1.BackColor = _leftBG;
-            button2.BackColor = _leftBG;
-            button3.BackColor = _leftBG;
-            button4.BackColor = _leftBG;
-        }
+
+
+
         public Form1()
         {
             InitializeComponent();
+            mySql mySql2 = new mySql();
+            connString = mySql2.connString;
+
         }
         private void GetData(string selectCommand, BindingSource bin)
         {
@@ -116,17 +54,19 @@ namespace INN_CSHARP
                 MessageBox.Show(ex.Message);
             }
         }
+ 
         private void Form1_Load(object sender, EventArgs e)
         {
+            var mySql = new mySql();
             resBtn();
             Color _leftBG = System.Drawing.ColorTranslator.FromHtml("#3b3a3f");
             pictureBox1.BackColor = _leftBG;
             Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
             button1.BackColor = _selected;
-            dataGridView3.DataSource = bindingSource3;
-            GetData(loadLengthsStatement, bindingSource3);
-            dataGridView2.DataSource = bindingSource2;
-            GetData(selectionStatement22, bindingSource2);
+            dataGridViewFL.DataSource = bindingSource3;
+            GetData(mySql.loadLengthsStatement, bindingSource3);
+            dataGridViewFF.DataSource = bindingSourceFarms;
+            GetData(mySql.loadFarmsStatement, bindingSourceFarms);
             dataGridView1.DataSource = bindingSource1;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Columns[0].Visible = false;
@@ -163,98 +103,64 @@ namespace INN_CSHARP
             label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
         }
         ///////////////////////  MENU  //////////////////////////////////////////////////////////////////////
+        public void resBtn()
+        {
+            Color _leftBG = System.Drawing.ColorTranslator.FromHtml("#3b3a3f");
+            button1.BackColor = _leftBG;
+            button2.BackColor = _leftBG;
+            button3.BackColor = _leftBG;
+            button4.BackColor = _leftBG;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             resBtn();
-            Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
-            button1.BackColor = _selected;
-            tabControl1.SelectedIndex = 0;
+            var menu = new Design();
+            menu.colorBtn(button1, tabControl1, 0);
         }
         private void button2_Click(object sender, EventArgs e)
         {
             resBtn();
-            Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
-            button2.BackColor = _selected;
-            tabControl1.SelectedIndex = 1;
+            var menu = new Design();
+            menu.colorBtn(button2, tabControl1, 1);
         }
         private void button3_Click(object sender, EventArgs e)
         {
             resBtn();
-            Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
-            button3.BackColor = _selected;
-            tabControl1.SelectedIndex = 2;
-
+            var menu = new Design();
+            menu.colorBtn(button3, tabControl1, 2);
         }
         private void button4_Click(object sender, EventArgs e)
         {
             resBtn();
-            Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
-            button4.BackColor = _selected;
-            tabControl1.SelectedIndex = 3;
+            var menu = new Design();
+            menu.colorBtn(button4, tabControl1, 3);
         }
         /////////////////////// END MENU  //////////////////////////////////////////////////////////////////////
+
+        // Flowers - FARM FILTER ///////////
+        private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)// FARM FILTER ///////////
+        {
+            var CB = new CB();
+            whFarm = CB.cbChange(cbFarm, whFarm, btnRemoveFF, dataGridViewFF);
+            var mySql = new mySql();
+            selectionStatement4 = mySql.FlowersMainStatement + whFarm + whLen;
+            GetData(selectionStatement4, bindingSource1);
+            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
+        }
+        private void btnRemoveFF_Click(object sender, EventArgs e) { cbFarm.SelectedIndex = 0; }
+        // Flowers - LENGTH FILTER ///////////
+        private void cbLength_SelectedIndexChanged(object sender, EventArgs e) // LENGTH FILTER ///////////
+        {
+            var CB = new CB();
+            whLen = CB.cbChange(cbLength, whLen, btnRemoveFL, dataGridViewFL);
+            var mySql = new mySql();
+            selectionStatement4 = mySql.FlowersMainStatement + whFarm + whLen;
+            GetData(selectionStatement4, bindingSource1);
+            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
+        }
+        private void btnRemoveFL_Click(object sender, EventArgs e) { cbLength.SelectedIndex = 0; }
         
-        // FARM FILTER ///////////////////////////////////////////////////////////////
-        private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbFarm.SelectedIndex == 0)
-            {
-                whFarm = " ";
-                btnRemoveFF.Visible = false;
-            }
-            else
-            {
-                int selectedFarmId;
-                foreach (DataGridViewRow row in dataGridView2.Rows)
-                {
-                    if (row.Cells[1].Value.ToString() == cbFarm.SelectedItem.ToString())
-                    {
-                        selectedFarmId = Convert.ToInt32(row.Cells[0].Value);
-                        whFarm = "and farms.farm_id=" + selectedFarmId.ToString();
-                        break;
-                    }
-                }
-                btnRemoveFF.Visible = true;
-            }
-            selectionStatement4 = selectionStatement3 + whFarm + whLen;
-            GetData(selectionStatement4, bindingSource1);
-            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
-        }
-        private void btnRemoveFF_Click(object sender, EventArgs e)
-        {
-            cbFarm.SelectedIndex = 0;
-        }
-        // LENGTH FILTER ///////////////////////////////////////////////////////////////
-        private void cbLength_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbLength.SelectedIndex == 0)
-            {
-                whLen = " ";
-                btnRemoveFL.Visible = false;
-            }
-            else
-            {
-                int selectedLengthId;
-                foreach (DataGridViewRow row in dataGridView3.Rows)
-                {
-                    if (row.Cells[1].Value.ToString() == cbLength.SelectedItem.ToString())
-                    {
-                        selectedLengthId = Convert.ToInt32(row.Cells[0].Value);
-                        whLen = "and lengths.length_id=" + selectedLengthId.ToString();
-                        break;
-                    }
-                }
-                btnRemoveFL.Visible = true;
-            }
-            selectionStatement4 = selectionStatement3 + whFarm + whLen;
-            GetData(selectionStatement4, bindingSource1);
-            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
-        }
-        private void btnRemoveFL_Click(object sender, EventArgs e)
-        {
-            cbLength.SelectedIndex = 0;
-        }
-        // EDIT ///////////////////////////////////////////////////////////////
+        // EDIT Flower///////////////////////////////////////////////////////////////
         public static int idToEdit;
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -275,7 +181,7 @@ namespace INN_CSHARP
             GetData(selectionStatement4, bindingSource1);
             label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
         }
-        // ADD ///////////////////////////////////////////////////////////////
+        // ADD Flower///////////////////////////////////////////////////////////////
         private void btnFAdd_Click(object sender, EventArgs e)
         {
             AddFl frm = new AddFl();
@@ -287,19 +193,21 @@ namespace INN_CSHARP
             GetData(selectionStatement4, bindingSource1);
             label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
         }
-        // DELETE ///////////////////////////////////////////////////////////////
+        // DELETE Flower///////////////////////////////////////////////////////////////
         private void btnFDelete_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete "+ dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString() + " flower from database? This Action can not be undone", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dialogResult == DialogResult.Yes)
             {
-                //MessageBox.Show(dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString());
                 var idToDelete = dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString();
                 string delete = @"DELETE FROM [dbo].[flowers] WHERE fl_id=" + idToDelete;
                 GetData(delete, bindingSource1);
             }
             GetData(selectionStatement4, bindingSource1);
         }
+        /// <summary>
+        /// -------------------------------------------------- ORDERS---------------------------------
+        /// </summary>
         void updateCbOrders()
         {
             cbOrders.Items.Clear();
@@ -319,11 +227,13 @@ namespace INN_CSHARP
             updateCbOrders();
         }
 
+
         private void cbOrders_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadOrders(Convert.ToInt32(cbOrders.SelectedItem));
+            var mySql = new mySql();
+            mySql.loadOrders(Convert.ToInt32(cbOrders.SelectedItem));
             dataGridViewO1.DataSource = bindingSourceOrders;
-            GetData(loadOrdersStatement, bindingSourceOrders);
+            GetData(mySql.loadOrdersStatement, bindingSourceOrders);
             dataGridViewO1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             /*
              * order_id 0
@@ -356,21 +266,21 @@ namespace INN_CSHARP
             lblArrival.Text = dataGridViewO1.Rows[0].Cells[2].Value.ToString();
             lblDatecode.Text = dataGridViewO1.Rows[0].Cells[3].Value.ToString();
 
-            int sumB = 0;
-            int sumS = 0;
-            int sumBu = 0;
+            int sumBoxes = 0;
+            int sumSteems = 0;
+            int sumBucket = 0;
             for (int i = 0; i < dataGridViewO1.Rows.Count; ++i)
             {
-                sumB += Convert.ToInt32(dataGridViewO1.Rows[i].Cells[9].Value);
-                sumS += Convert.ToInt32(dataGridViewO1.Rows[i].Cells[10].Value);
-                sumBu += Convert.ToInt32(dataGridViewO1.Rows[i].Cells[11].Value);
+                sumBoxes += Convert.ToInt32(dataGridViewO1.Rows[i].Cells[9].Value);
+                sumSteems += Convert.ToInt32(dataGridViewO1.Rows[i].Cells[10].Value);
+                sumBucket += Convert.ToInt32(dataGridViewO1.Rows[i].Cells[11].Value);
             }
-            lblAmountBoxes.Text = sumB.ToString();
-            lblAmountSteems.Text = sumS.ToString();
-            lblAmountBuckets.Text = sumBu.ToString();
+            lblAmountBoxes.Text = sumBoxes.ToString();
+            lblAmountSteems.Text = sumSteems.ToString();
+            lblAmountBuckets.Text = sumBucket.ToString();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void Button6_Click(object sender, EventArgs e)
         {
             AddOr frm = new AddOr();
             frm.FormClosing += new FormClosingEventHandler(this.AddOr_FormClosing);
@@ -380,5 +290,7 @@ namespace INN_CSHARP
         {
             updateCbOrders();
         }
+
+
     }
 }
