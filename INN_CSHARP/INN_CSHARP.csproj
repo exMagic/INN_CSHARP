@@ -58,7 +58,6 @@
     <Compile Include="AddFl.Designer.cs">
       <DependentUpon>AddFl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="Classes.cs" />
     <Compile Include="DataClasses1.designer.cs">
       <AutoGen>True</AutoGen>

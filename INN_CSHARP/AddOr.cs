@@ -14,62 +14,12 @@ namespace INN_CSHARP
 {
     public partial class AddOr : Form
     {
-        public static class Prompt
-        {
-            public static string ShowDialog(string text, string caption)
-            {
-                Form prompt = new Form()
-                {
-                    Width = 500,
-                    Height = 150,
-                    FormBorderStyle = FormBorderStyle.FixedDialog,
-                    Text = caption,
-                    StartPosition = FormStartPosition.CenterScreen
-                };
-                Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
-                TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
-                Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
-                confirmation.Click += (sender, e) => { prompt.Close(); };
-                prompt.Controls.Add(textBox);
-                prompt.Controls.Add(confirmation);
-                prompt.Controls.Add(textLabel);
-                prompt.AcceptButton = confirmation;
-
-                return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
-            }
-        }
-        // PC
-        //
-        string connString = @"Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        
-        //
-        /*WINMAC
-        string connString = @"Data Source=MACBOOKW10\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        //*/
-        SqlDataAdapter dataAdapter;
-        System.Data.DataTable table;
-
-       
+ 
         public AddOr()
         {
             InitializeComponent();
         }
-        private void GetData(string selectCommand, BindingSource bin)
-        {
-            try
-            {
-                dataAdapter = new SqlDataAdapter(selectCommand, connString);
-                table = new System.Data.DataTable();
-                table.Locale = System.Globalization.CultureInfo.InvariantCulture;
-                dataAdapter.Fill(table);
-
-                bin.DataSource = table;
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+       
         string CBselect;
         string All = "All";
         public string whFarm;
@@ -90,24 +40,31 @@ namespace INN_CSHARP
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //TODO: check if fl_id is not exist in that order
-            
+            var mySql = new mySql();
             createSQLSelelct();
             createSQLInsert();
 
-            GetData(insertFltoOrder, bindingSourceOrders);
+            mySql.GetData(insertFltoOrder, bindingSourceOrders);
             dataGridViewAON.DataSource = bindingSourceOrders;
-            GetData(selectOrder, bindingSourceOrders);
+            mySql.GetData(selectOrder, bindingSourceOrders);
             dataGridViewAON.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            int i = 0;
+            while (i < 4)
+            {
+                dataGridViewAON.Columns[i].Visible = false;
+                i++;
+            }
+
+            
         }
         void createSQLInsert()
         {
-            string boxes = Prompt.ShowDialog("Test", "123");
+            string boxes = Prompt.ShowDialog("Hvor mange esker?", "Antall boxes");//TODO: validation - only digit
 
             string fl_id = dataGridViewOA[0, dataGridViewOA.CurrentRow.Index].Value.ToString();
             string date_modified = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace('.', ':');
             string departure = dateTimePickerDeparture.Value.Date.ToString("yyyy-MM-dd");
             string arrival = dateTimePickerArrival.Value.Date.ToString("yyyy-MM-dd");
-            MessageBox.Show(date_modified + " " + date_created);
             insertFltoOrder = @"INSERT INTO [dbo].[orders]
            ([order_number]
            ,[departure]
@@ -191,7 +148,8 @@ namespace INN_CSHARP
         private void fillUpCb(ComboBox cb)
         {
             //fill up combo box by Farms
-            SqlConnection conn = new SqlConnection(connString);
+            var mySql = new mySql();
+            SqlConnection conn = new SqlConnection(mySql.connString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(Sql, conn);
             SqlDataReader DR = cmd.ExecuteReader();
@@ -209,24 +167,25 @@ namespace INN_CSHARP
         
         private void AddOr_Load(object sender, EventArgs e)
         {
+            var mySql = new mySql();
             //string promptValue = Prompt.ShowDialog("Test", "123");
             CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             dataGridViewOA.DataSource = bindingSource1;
-            GetData(CBselect, bindingSource1);
+            mySql.GetData(CBselect, bindingSource1);
             dataGridViewOA.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             //fill up dataGridView by Farms
             dataGridView1.DataSource = bindingSource5;
-            GetData(selectFarms, bindingSource5);
+            mySql.GetData(selectFarms, bindingSource5);
             //fill up dataGridView by Lengths
             dataGridView2.DataSource = bindingSource2;
-            GetData(selectLengths, bindingSource2);
+            mySql.GetData(selectLengths, bindingSource2);
             ////fill up dataGridView by Colours
             dataGridView3.DataSource = bindingSource3;
-            GetData(selectColour, bindingSource3);
+            mySql.GetData(selectColour, bindingSource3);
             ////fill up dataGridView by Sleeves
             dataGridView4.DataSource = bindingSource4;
-            GetData(selectSleeve, bindingSource4);
+            mySql.GetData(selectSleeve, bindingSource4);
 
 
             //fill up combo boxes
@@ -258,6 +217,7 @@ namespace INN_CSHARP
 
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var mySql = new mySql();
             if (cbFarm.SelectedIndex == 0)
             {
                 whFarm = " ";
@@ -278,10 +238,11 @@ namespace INN_CSHARP
                 btnRemoveAOF.Visible = true;
             }
             CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
-            GetData(CBselect, bindingSource1);
+            mySql.GetData(CBselect, bindingSource1);
         }
         private void cbLengths_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var mySql = new mySql();
             if (cbLengths.SelectedIndex == 0)
             {
                 whLen = " ";
@@ -303,10 +264,12 @@ namespace INN_CSHARP
                 btnRemoveAOL.Visible = true;
             }
             CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
-            GetData(CBselect, bindingSource1);
+            mySql.GetData(CBselect, bindingSource1);
         }
         private void cbColour_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var mySql = new mySql();
+
             if (cbColour.SelectedIndex == 0)
             {
                 whColour = " ";
@@ -328,10 +291,12 @@ namespace INN_CSHARP
                 btnRemoveAOC.Visible = true;
             }
             CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
-            GetData(CBselect, bindingSource1);
+            mySql.GetData(CBselect, bindingSource1);
         }
         private void cbSleeve_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var mySql = new mySql();
+
             if (cbSleeve.SelectedIndex == 0)
             {
                 whSleeve = " ";
@@ -353,14 +318,14 @@ namespace INN_CSHARP
                 btnRemoveAOS.Visible = true;
             }
             CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
-            GetData(CBselect, bindingSource1);
+            mySql.GetData(CBselect, bindingSource1);
         }
 
        
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //TODO: check if that order number exist then return error;
+            //TODO: check if that order number exist if yes then return error;
             if (string.IsNullOrWhiteSpace(txtOrderNumber.Text)) MessageBox.Show("Legg in Ordre number");
             else
             {
@@ -407,18 +372,20 @@ namespace INN_CSHARP
         //TODO: some method to display mix and ft both value togheter
         private void cheMix_CheckedChanged(object sender, EventArgs e)
         {
+            var mySql = new mySql();
             if (cheMix.Checked) whMix = "and flowers.mix=1";
             else whMix = "and flowers.mix=0";
             CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
-            GetData(CBselect, bindingSource1);
+            mySql.GetData(CBselect, bindingSource1);
         }
 
         private void cheFt_CheckedChanged(object sender, EventArgs e)
         {
+            var mySql = new mySql();
             if (cheFt.Checked) whFt = "and flowers.fairtrade=1";
             else whFt = "and flowers.fairtrade=0";
             CBselect = select + whFarm + whLen + whColour + whSleeve + whMix + whFt;
-            GetData(CBselect, bindingSource1);
+            mySql.GetData(CBselect, bindingSource1);
         }
 
         private void txtOrderNumber_KeyPress(object sender, KeyPressEventArgs e)

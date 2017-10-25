@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOr));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -103,7 +103,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(278, 39);
             this.btnAdd.TabIndex = 54;
-            this.btnAdd.Text = "Add Flower to Order >>";
+            this.btnAdd.Text = "Legg til blomst for å bestille >>";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -261,23 +261,23 @@
             this.dataGridViewOA.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewOA.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dataGridViewOA.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewOA.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewOA.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewOA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewOA.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewOA.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewOA.GridColor = System.Drawing.Color.DarkGray;
             this.dataGridViewOA.Location = new System.Drawing.Point(34, 194);
             this.dataGridViewOA.Name = "dataGridViewOA";
@@ -356,24 +356,24 @@
             // 
             // dateTimePickerArrival
             // 
-            this.dateTimePickerArrival.Location = new System.Drawing.Point(109, 101);
+            this.dateTimePickerArrival.Location = new System.Drawing.Point(109, 107);
             this.dateTimePickerArrival.Name = "dateTimePickerArrival";
             this.dateTimePickerArrival.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerArrival.TabIndex = 8;
+            this.dateTimePickerArrival.TabIndex = 5;
             // 
             // dateTimePickerDeparture
             // 
-            this.dateTimePickerDeparture.Location = new System.Drawing.Point(109, 75);
+            this.dateTimePickerDeparture.Location = new System.Drawing.Point(109, 80);
             this.dateTimePickerDeparture.Name = "dateTimePickerDeparture";
             this.dateTimePickerDeparture.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerDeparture.TabIndex = 7;
+            this.dateTimePickerDeparture.TabIndex = 4;
             // 
             // btnLagOrdre
             // 
-            this.btnLagOrdre.Location = new System.Drawing.Point(109, 143);
+            this.btnLagOrdre.Location = new System.Drawing.Point(109, 149);
             this.btnLagOrdre.Name = "btnLagOrdre";
             this.btnLagOrdre.Size = new System.Drawing.Size(124, 45);
-            this.btnLagOrdre.TabIndex = 6;
+            this.btnLagOrdre.TabIndex = 12;
             this.btnLagOrdre.Text = "Lag ordre";
             this.btnLagOrdre.UseVisualStyleBackColor = true;
             this.btnLagOrdre.Click += new System.EventHandler(this.button1_Click);
@@ -381,7 +381,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(64, 101);
+            this.label6.Location = new System.Drawing.Point(68, 113);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 13);
             this.label6.TabIndex = 5;
@@ -390,7 +390,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 81);
+            this.label4.Location = new System.Drawing.Point(50, 86);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 4;
@@ -398,16 +398,17 @@
             // 
             // txtDatecode
             // 
+            this.txtDatecode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtDatecode.Location = new System.Drawing.Point(109, 49);
             this.txtDatecode.Name = "txtDatecode";
-            this.txtDatecode.Size = new System.Drawing.Size(100, 20);
+            this.txtDatecode.Size = new System.Drawing.Size(100, 26);
             this.txtDatecode.TabIndex = 3;
             this.txtDatecode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDatecode_KeyPress);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 52);
+            this.label2.Location = new System.Drawing.Point(50, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 2;
@@ -415,16 +416,17 @@
             // 
             // txtOrderNumber
             // 
+            this.txtOrderNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOrderNumber.Location = new System.Drawing.Point(109, 21);
             this.txtOrderNumber.Name = "txtOrderNumber";
-            this.txtOrderNumber.Size = new System.Drawing.Size(100, 20);
+            this.txtOrderNumber.Size = new System.Drawing.Size(100, 26);
             this.txtOrderNumber.TabIndex = 1;
             this.txtOrderNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOrderNumber_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 24);
+            this.label1.Location = new System.Drawing.Point(31, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 0;
@@ -437,7 +439,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(373, 89);
+            this.label7.Location = new System.Drawing.Point(75, 100);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(39, 13);
             this.label7.TabIndex = 77;
@@ -446,7 +448,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(355, 64);
+            this.label9.Location = new System.Drawing.Point(57, 75);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(57, 13);
             this.label9.TabIndex = 76;
@@ -455,7 +457,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(354, 39);
+            this.label11.Location = new System.Drawing.Point(56, 50);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(57, 13);
             this.label11.TabIndex = 75;
@@ -464,7 +466,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(336, 14);
+            this.label12.Location = new System.Drawing.Point(38, 25);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(76, 13);
             this.label12.TabIndex = 74;
@@ -473,7 +475,7 @@
             // lblArrival
             // 
             this.lblArrival.AutoSize = true;
-            this.lblArrival.Location = new System.Drawing.Point(418, 89);
+            this.lblArrival.Location = new System.Drawing.Point(120, 100);
             this.lblArrival.Name = "lblArrival";
             this.lblArrival.Size = new System.Drawing.Size(10, 13);
             this.lblArrival.TabIndex = 81;
@@ -482,7 +484,7 @@
             // lblDeparture
             // 
             this.lblDeparture.AutoSize = true;
-            this.lblDeparture.Location = new System.Drawing.Point(418, 64);
+            this.lblDeparture.Location = new System.Drawing.Point(120, 75);
             this.lblDeparture.Name = "lblDeparture";
             this.lblDeparture.Size = new System.Drawing.Size(10, 13);
             this.lblDeparture.TabIndex = 80;
@@ -491,7 +493,7 @@
             // lblDatecode
             // 
             this.lblDatecode.AutoSize = true;
-            this.lblDatecode.Location = new System.Drawing.Point(418, 39);
+            this.lblDatecode.Location = new System.Drawing.Point(120, 50);
             this.lblDatecode.Name = "lblDatecode";
             this.lblDatecode.Size = new System.Drawing.Size(10, 13);
             this.lblDatecode.TabIndex = 79;
@@ -500,7 +502,7 @@
             // lblOrderNumber
             // 
             this.lblOrderNumber.AutoSize = true;
-            this.lblOrderNumber.Location = new System.Drawing.Point(418, 14);
+            this.lblOrderNumber.Location = new System.Drawing.Point(120, 25);
             this.lblOrderNumber.Name = "lblOrderNumber";
             this.lblOrderNumber.Size = new System.Drawing.Size(10, 13);
             this.lblOrderNumber.TabIndex = 78;
@@ -515,14 +517,14 @@
             this.dataGridViewAON.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dataGridViewAON.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewAON.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewAON.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewAON.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewAON.GridColor = System.Drawing.Color.DarkGray;
             this.dataGridViewAON.Location = new System.Drawing.Point(25, 194);
             this.dataGridViewAON.Name = "dataGridViewAON";
@@ -542,9 +544,9 @@
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.txtDatecode);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(592, 224);
+            this.panel1.Location = new System.Drawing.Point(450, 224);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(316, 224);
+            this.panel1.Size = new System.Drawing.Size(327, 224);
             this.panel1.TabIndex = 9;
             // 
             // panel2
@@ -578,7 +580,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.MistyRose;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panel3.Controls.Add(this.dataGridViewAON);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.label11);
@@ -603,9 +605,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 728);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddOr";

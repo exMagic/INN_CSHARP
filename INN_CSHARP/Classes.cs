@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 
 namespace INN_CSHARP
 {
+
     public class mySql
     {
         SqlDataAdapter dataAdapter;
@@ -136,6 +137,35 @@ namespace INN_CSHARP
             }
             return sqlStatement;
 
+        }
+    }
+    public static class Prompt
+    {
+        public static string ShowDialog(string text, string caption)
+        {
+            Form prompt = new Form()
+            {
+                Width = 250,
+                Height = 300,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = caption,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            Label textLabel = new Label() { Left = 25, Top = 40, Text = text };
+            textLabel.AutoSize = true;
+            textLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            TextBox textBox = new TextBox() { Left = 20, Top = 100, Width = 200 };
+            textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            textBox.TextAlign = HorizontalAlignment.Center;
+
+            Button confirmation = new Button() { Text = "Legg til", Left = 60, Width = 120, Height = 80, Top = 150, DialogResult = DialogResult.OK };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            prompt.AcceptButton = confirmation;
+
+            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
         }
     }
 
