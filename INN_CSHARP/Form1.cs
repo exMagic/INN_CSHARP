@@ -23,14 +23,6 @@ namespace INN_CSHARP
         public string whLen;
         public string selectionStatement4;
 
-        
-        
-
-        
-
-
-
-
         public Form1()
         {
             InitializeComponent();

@@ -5,16 +5,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+
 
 namespace INN_CSHARP
 {
     public class mySql
     {
+        SqlDataAdapter dataAdapter;
+        System.Data.DataTable table;
         //PC
         public string connString = @"Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         /*/WINMAC
         public string connString = @"Data Source=MACBOOKW10\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //*/
+        public void GetData(string selectCommand, BindingSource bin)
+        {
+            try
+            {
+                dataAdapter = new SqlDataAdapter(selectCommand, connString);
+                table = new System.Data.DataTable();
+                table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                dataAdapter.Fill(table);
+
+                bin.DataSource = table;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
         public string FlowersMainStatement = @"
         SELECT 
                flowers.fl_id
@@ -69,7 +92,13 @@ namespace INN_CSHARP
           FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY farm_name, length";
         }
-        
+        //
+        public string select = @"SELECT * FROM [MG_inkjop].[dbo].[farms]";
+        public string selectLengths = @"SELECT * FROM [MG_inkjop].[dbo].[lengths]";
+        public string selectColour = @"SELECT * FROM [MG_inkjop].[dbo].[colours]";
+        public string selectSleeve = @"SELECT * FROM [MG_inkjop].[dbo].[sleeves]";
+
+
 
     }
     public class Design

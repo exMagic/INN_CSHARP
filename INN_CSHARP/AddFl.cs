@@ -14,40 +14,15 @@ namespace INN_CSHARP
 {
     public partial class AddFl : Form
     {
-        // PC
-        //
-        string connString = @"Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        
-        //
-        /*WINMAC
-        string connString = @"Data Source=MACBOOKW10\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        //*/
-        SqlDataAdapter dataAdapter;
-        System.Data.DataTable table;
 
-       
         public AddFl()
         {
             InitializeComponent();
-        }
-        private void GetData(string selectCommand, BindingSource bin)
-        {
-            try
-            {
-                dataAdapter = new SqlDataAdapter(selectCommand, connString);
-                table = new System.Data.DataTable();
-                table.Locale = System.Globalization.CultureInfo.InvariantCulture;
-                dataAdapter.Fill(table);
 
-                bin.DataSource = table;
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
+
         string mix;
-        string ft;
+        public string ft;
         string selectedFarmId;
         string selectedLength;
         string selectedColour ="1";
@@ -55,10 +30,12 @@ namespace INN_CSHARP
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //TODO: message about succesful edded flower and scrool to added row
+            var mySql = new mySql();
             if (cheMix.Checked) mix = "1";
             if (cheFt.Checked) ft = "1";
 
-            string add = @" INSERT INTO[MG_inkjop].[dbo].[flowers]
+            string addFl = @" INSERT INTO[MG_inkjop].[dbo].[flowers]
 
            ([variety]
            ,[colour_id]
@@ -88,20 +65,19 @@ namespace INN_CSHARP
                 ",'" + txtEStems.Text + "'" +
                 ",'" + txtEPak.Text + "')";
 
-            GetData(add, bindingSource1);
+            mySql.GetData(addFl, bindingSource1);
             this.Close();
         }
 
-        string select = @"SELECT * FROM [MG_inkjop].[dbo].[farms]";
-        string selectLengths = @"SELECT * FROM [MG_inkjop].[dbo].[lengths]";
-        string selectColour = @"SELECT * FROM [MG_inkjop].[dbo].[colours]";
-        string selectSleeve = @"SELECT * FROM [MG_inkjop].[dbo].[sleeves]";
+
+
         string Sql;
 
         private void fillUpCb(ComboBox cb)
         {
             //fill up combo box by Farms
-            SqlConnection conn = new SqlConnection(connString);
+            var mySql = new mySql();
+            SqlConnection conn = new SqlConnection(mySql.connString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(Sql, conn);
             SqlDataReader DR = cmd.ExecuteReader();
@@ -111,18 +87,19 @@ namespace INN_CSHARP
         }
         private void AddFl_Load(object sender, EventArgs e)
         {
+            var mySql = new mySql();
             //fill up dataGridView by Farms
             dataGridView1.DataSource = bindingSource1;
-            GetData(select, bindingSource1);
+            mySql.GetData(mySql.select, bindingSource1);
             //fill up dataGridView by Lengths
             dataGridView2.DataSource = bindingSource2;
-            GetData(selectLengths, bindingSource2);
+            mySql.GetData(mySql.selectLengths, bindingSource2);
             ////fill up dataGridView by Colours
             dataGridView3.DataSource = bindingSource3;
-            GetData(selectColour, bindingSource3);
+            mySql.GetData(mySql.selectColour, bindingSource3);
             ////fill up dataGridView by Sleeves
             dataGridView4.DataSource = bindingSource4;
-            GetData(selectSleeve, bindingSource4);
+            mySql.GetData(mySql.selectSleeve, bindingSource4);
 
 
             //fill up combo boxes
