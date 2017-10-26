@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-
+//TODO: add sleeveWith check box in EditForm
 
 namespace INN_CSHARP
 {
@@ -16,9 +16,7 @@ namespace INN_CSHARP
     public partial class Form1 : Form
     {
 
-        SqlDataAdapter dataAdapter;
-        System.Data.DataTable table;
-        public string connString;
+
         public string whFarm;
         public string whLen;
         public string selectionStatement4;
@@ -26,26 +24,9 @@ namespace INN_CSHARP
         public Form1()
         {
             InitializeComponent();
-            mySql mySql2 = new mySql();
-            connString = mySql2.connString;
-
+            var mySql = new mySql();
         }
-        private void GetData(string selectCommand, BindingSource bin)
-        {
-            try
-            {
-                dataAdapter = new SqlDataAdapter(selectCommand, connString);
-                table = new System.Data.DataTable();
-                table.Locale = System.Globalization.CultureInfo.InvariantCulture;
-                dataAdapter.Fill(table);
 
-                bin.DataSource = table;
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
  
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -56,19 +37,19 @@ namespace INN_CSHARP
             Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
             button1.BackColor = _selected;
             dataGridViewFL.DataSource = bindingSource3;
-            GetData(mySql.loadLengthsStatement, bindingSource3);
+            mySql.GetData(mySql.loadLengthsStatement, bindingSource3);
             dataGridViewFF.DataSource = bindingSourceFarms;
-            GetData(mySql.loadFarmsStatement, bindingSourceFarms);
-            dataGridView1.DataSource = bindingSource1;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Columns[0].Visible = false;
+            mySql.GetData(mySql.loadFarmsStatement, bindingSourceFarms);
+            dataGridViewFlMain.DataSource = bindingSource1;
+            dataGridViewFlMain.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewFlMain.Columns[0].Visible = false;
             //GetData(selectionStatement, bindingSource1);
             tabControl1.Appearance = TabAppearance.Buttons;
             tabControl1.ItemSize = new Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
             //////////////// fil up comboBox
             string Sql = "SELECT farms.farm_name FROM[MG_inkjop].[dbo].[farms]";
-            SqlConnection conn = new SqlConnection(connString);
+            SqlConnection conn = new SqlConnection(mySql.connString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(Sql, conn);
             SqlDataReader DR = cmd.ExecuteReader();
@@ -92,7 +73,7 @@ namespace INN_CSHARP
             }
             cbLength.SelectedIndex = 0;
             conn.Close();
-            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
+            label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
         }
         ///////////////////////  MENU  //////////////////////////////////////////////////////////////////////
         public void resBtn()
@@ -136,19 +117,20 @@ namespace INN_CSHARP
             whFarm = CB.cbChange(cbFarm, whFarm, btnRemoveFF, dataGridViewFF);
             var mySql = new mySql();
             selectionStatement4 = mySql.FlowersMainStatement + whFarm + whLen;
-            GetData(selectionStatement4, bindingSource1);
-            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
+            mySql.GetData(selectionStatement4, bindingSource1);
+            label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
         }
         private void btnRemoveFF_Click(object sender, EventArgs e) { cbFarm.SelectedIndex = 0; }
         // Flowers - LENGTH FILTER ///////////
         private void cbLength_SelectedIndexChanged(object sender, EventArgs e) // LENGTH FILTER ///////////
         {
+            
             var CB = new CB();
             whLen = CB.cbChange(cbLength, whLen, btnRemoveFL, dataGridViewFL);
             var mySql = new mySql();
             selectionStatement4 = mySql.FlowersMainStatement + whFarm + whLen;
-            GetData(selectionStatement4, bindingSource1);
-            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
+            mySql.GetData(selectionStatement4, bindingSource1);
+            label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
         }
         private void btnRemoveFL_Click(object sender, EventArgs e) { cbLength.SelectedIndex = 0; }
         
@@ -156,22 +138,23 @@ namespace INN_CSHARP
         public static int idToEdit;
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            idToEdit = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+            idToEdit = Convert.ToInt32(dataGridViewFlMain.Rows[e.RowIndex].Cells[0].Value.ToString());
             EditFl frm = new EditFl();
             frm.FormClosing += new FormClosingEventHandler(this.Edit_FormClosing);
             frm.Show();
         }
         private void btnFEdit_Click(object sender, EventArgs e)
         {
-            idToEdit = Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString());
+            idToEdit = Convert.ToInt32(dataGridViewFlMain[0, dataGridViewFlMain.CurrentRow.Index].Value.ToString());
             EditFl frm = new EditFl();
             frm.FormClosing += new FormClosingEventHandler(this.Edit_FormClosing);
             frm.Show();
         }
         private void Edit_FormClosing(object sender, FormClosingEventArgs e)
         {
-            GetData(selectionStatement4, bindingSource1);
-            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
+            var mySql = new mySql();
+            mySql.GetData(selectionStatement4, bindingSource1);
+            label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
         }
         // ADD Flower///////////////////////////////////////////////////////////////
         private void btnFAdd_Click(object sender, EventArgs e)
@@ -182,29 +165,32 @@ namespace INN_CSHARP
         }
         private void Add_FormClosing(object sender, FormClosingEventArgs e)
         {
-            GetData(selectionStatement4, bindingSource1);
-            label2.Text = dataGridView1.RowCount.ToString();//count amount of rows
+            var mySql = new mySql();
+            mySql.GetData(selectionStatement4, bindingSource1);
+            label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
         }
         // DELETE Flower///////////////////////////////////////////////////////////////
         private void btnFDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete "+ dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString() + " flower from database? This Action can not be undone", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            var mySql = new mySql();
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete "+ dataGridViewFlMain[0, dataGridViewFlMain.CurrentRow.Index].Value.ToString() + " flower from database? This Action can not be undone", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dialogResult == DialogResult.Yes)
             {
-                var idToDelete = dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString();
+                var idToDelete = dataGridViewFlMain[0, dataGridViewFlMain.CurrentRow.Index].Value.ToString();
                 string delete = @"DELETE FROM [dbo].[flowers] WHERE fl_id=" + idToDelete;
-                GetData(delete, bindingSource1);
+                mySql.GetData(delete, bindingSource1);
             }
-            GetData(selectionStatement4, bindingSource1);
+            mySql.GetData(selectionStatement4, bindingSource1);
         }
         /// <summary>
         /// -------------------------------------------------- ORDERS---------------------------------
         /// </summary>
         void updateCbOrders()
         {
+            var mySql = new mySql();
             cbOrders.Items.Clear();
             string Sql = "select order_number from [MG_inkjop].[dbo].[orders] group by order_number";
-            SqlConnection conn = new SqlConnection(connString);
+            SqlConnection conn = new SqlConnection(mySql.connString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(Sql, conn);
             SqlDataReader DR = cmd.ExecuteReader();
@@ -225,7 +211,7 @@ namespace INN_CSHARP
             var mySql = new mySql();
             mySql.loadOrders(Convert.ToInt32(cbOrders.SelectedItem));
             dataGridViewO1.DataSource = bindingSourceOrders;
-            GetData(mySql.loadOrdersStatement, bindingSourceOrders);
+            mySql.GetData(mySql.loadOrdersStatement, bindingSourceOrders);
             dataGridViewO1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             /*
              * order_id 0

@@ -50,6 +50,7 @@ namespace INN_CSHARP
               ,lengths.length as 'Lenght'
 	          ,flowers.mix as 'MIX'
               ,sleeves.sleeve as 'Sleeve'
+              ,flowers.sleeve_with as 'With sleeves'
               ,flowers.fob as 'FOB'
               ,flowers.fairtrade as 'Fairtrade'
               ,flowers.bunch_pr_bucket as 'Bunch pr bucket'
@@ -60,6 +61,7 @@ namespace INN_CSHARP
         public string loadFarmsStatement = @"SELECT farms.farm_id, farms.farm_name FROM [MG_inkjop].[dbo].[farms]";
         public string loadLengthsStatement = @"SELECT * FROM lengths";
         public string loadOrdersStatement;
+
         public void loadOrders(int orderNumber)
         {
             /*

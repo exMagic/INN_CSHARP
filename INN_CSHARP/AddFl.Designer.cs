@@ -62,6 +62,7 @@
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource4 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.cheSleeveWith = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -343,11 +344,22 @@
             // 
             this.bindingSource1.DataSource = typeof(INN_CSHARP.flower);
             // 
-            // Ny
+            // cheSleeveWith
+            // 
+            this.cheSleeveWith.AutoSize = true;
+            this.cheSleeveWith.Location = new System.Drawing.Point(353, 164);
+            this.cheSleeveWith.Name = "cheSleeveWith";
+            this.cheSleeveWith.Size = new System.Drawing.Size(102, 17);
+            this.cheSleeveWith.TabIndex = 71;
+            this.cheSleeveWith.Text = "kommer i sleeve";
+            this.cheSleeveWith.UseVisualStyleBackColor = true;
+            // 
+            // AddFl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 392);
+            this.Controls.Add(this.cheSleeveWith);
             this.Controls.Add(this.cbColour);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.dataGridView3);
@@ -379,7 +391,7 @@
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Ny";
+            this.Name = "AddFl";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = " ";
@@ -432,5 +444,6 @@
         private System.Windows.Forms.ComboBox cbColour;
         private System.Windows.Forms.BindingSource bindingSource3;
         private System.Windows.Forms.BindingSource bindingSource4;
+        private System.Windows.Forms.CheckBox cheSleeveWith;
     }
 }

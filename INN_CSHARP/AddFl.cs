@@ -23,6 +23,7 @@ namespace INN_CSHARP
 
         string mix;
         public string ft;
+        string sleeveWith;
         string selectedFarmId;
         string selectedLength;
         string selectedColour ="1";
@@ -34,6 +35,7 @@ namespace INN_CSHARP
             var mySql = new mySql();
             if (cheMix.Checked) mix = "1";
             if (cheFt.Checked) ft = "1";
+            if (cheSleeveWith.Checked) sleeveWith = "1";
 
             string addFl = @" INSERT INTO[MG_inkjop].[dbo].[flowers]
 
@@ -45,6 +47,7 @@ namespace INN_CSHARP
            ,[sticker_text]
            ,[length_id]
            ,[sleeve_id]
+           ,[sleeve_with]
            ,[fob]
            ,[fairtrade]
            ,[bunch_pr_bucket]
@@ -59,6 +62,7 @@ namespace INN_CSHARP
                 ",'" + txtESticker.Text + "'" +
                 ",'" + selectedLength + "'" +
                 ",'" + selectedSleeve + "'" +
+                ",'" + sleeveWith + "'" +
                 ",'" + txtEFob.Text + "'" +
                 ",'" + ft + "'" +
                 ",'" + txtEBunchPBucket.Text + "'" +
@@ -69,7 +73,7 @@ namespace INN_CSHARP
             this.Close();
         }
 
-
+        //",'" + sleeveWith + "')";
 
         string Sql;
 

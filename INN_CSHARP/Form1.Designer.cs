@@ -38,7 +38,7 @@
             this.dataGridViewFL = new System.Windows.Forms.DataGridView();
             this.cbFarm = new System.Windows.Forms.ComboBox();
             this.dataGridViewFF = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewFlMain = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -86,7 +86,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFF)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFlMain)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -165,15 +165,15 @@
             this.dataGridViewFF.TabIndex = 1;
             this.dataGridViewFF.Visible = false;
             // 
-            // dataGridView1
+            // dataGridViewFlMain
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFlMain.AllowUserToAddRows = false;
+            this.dataGridViewFlMain.AllowUserToDeleteRows = false;
+            this.dataGridViewFlMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewFlMain.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridViewFlMain.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dataGridViewFlMain.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewFlMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -181,15 +181,15 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.GrayText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.GridColor = System.Drawing.Color.DarkGray;
-            this.dataGridView1.Location = new System.Drawing.Point(411, 163);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(818, 473);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dataGridViewFlMain.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewFlMain.GridColor = System.Drawing.Color.DarkGray;
+            this.dataGridViewFlMain.Location = new System.Drawing.Point(411, 163);
+            this.dataGridViewFlMain.Name = "dataGridViewFlMain";
+            this.dataGridViewFlMain.ReadOnly = true;
+            this.dataGridViewFlMain.RowHeadersVisible = false;
+            this.dataGridViewFlMain.Size = new System.Drawing.Size(818, 473);
+            this.dataGridViewFlMain.TabIndex = 0;
+            this.dataGridViewFlMain.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // button1
             // 
@@ -304,7 +304,7 @@
             this.tabPage5.Controls.Add(this.button5);
             this.tabPage5.Controls.Add(this.label4);
             this.tabPage5.Controls.Add(this.btnFEdit);
-            this.tabPage5.Controls.Add(this.dataGridView1);
+            this.tabPage5.Controls.Add(this.dataGridViewFlMain);
             this.tabPage5.Controls.Add(this.btnFDelete);
             this.tabPage5.Controls.Add(this.dataGridViewFF);
             this.tabPage5.Controls.Add(this.cbFarm);
@@ -794,7 +794,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFF)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFlMain)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
@@ -819,7 +819,7 @@
 
 
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewFlMain;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
