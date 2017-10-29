@@ -503,7 +503,7 @@
             this.btnAddOr.TabIndex = 28;
             this.btnAddOr.Text = "Ny";
             this.btnAddOr.UseVisualStyleBackColor = false;
-            this.btnAddOr.Click += new System.EventHandler(this.Button6_Click);
+            this.btnAddOr.Click += new System.EventHandler(this.btnAddOr_Click);
             // 
             // button7
             // 

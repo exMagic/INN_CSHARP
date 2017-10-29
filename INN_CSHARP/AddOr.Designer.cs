@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOr));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -40,8 +40,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cbFarm = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cheMix = new System.Windows.Forms.CheckBox();
-            this.cheFt = new System.Windows.Forms.CheckBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.cbLengths = new System.Windows.Forms.ComboBox();
             this.cbSleeve = new System.Windows.Forms.ComboBox();
@@ -78,12 +76,20 @@
             this.dataGridViewAON = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panelMix = new System.Windows.Forms.Panel();
+            this.radioButtonMix3 = new System.Windows.Forms.RadioButton();
+            this.radioButtonMix2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonMix1 = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
             this.tabControlAddOrder = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.radioButtonFt3 = new System.Windows.Forms.RadioButton();
+            this.radioButtonFt2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonFt1 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -97,11 +103,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAON)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panelMix.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).BeginInit();
             this.tabControlAddOrder.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -162,38 +171,16 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(34, 116);
+            this.dataGridView1.Location = new System.Drawing.Point(352, 555);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(16, 27);
             this.dataGridView1.TabIndex = 62;
             this.dataGridView1.Visible = false;
             // 
-            // cheMix
-            // 
-            this.cheMix.AutoSize = true;
-            this.cheMix.Location = new System.Drawing.Point(164, 126);
-            this.cheMix.Name = "cheMix";
-            this.cheMix.Size = new System.Drawing.Size(42, 17);
-            this.cheMix.TabIndex = 49;
-            this.cheMix.Text = "Mix";
-            this.cheMix.UseVisualStyleBackColor = true;
-            this.cheMix.CheckedChanged += new System.EventHandler(this.cheMix_CheckedChanged);
-            // 
-            // cheFt
-            // 
-            this.cheFt.AutoSize = true;
-            this.cheFt.Location = new System.Drawing.Point(245, 126);
-            this.cheFt.Name = "cheFt";
-            this.cheFt.Size = new System.Drawing.Size(67, 17);
-            this.cheFt.TabIndex = 50;
-            this.cheFt.Text = "Fairtrade";
-            this.cheFt.UseVisualStyleBackColor = true;
-            this.cheFt.CheckedChanged += new System.EventHandler(this.cheFt_CheckedChanged);
-            // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(56, 116);
+            this.dataGridView2.Location = new System.Drawing.Point(374, 555);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(17, 27);
             this.dataGridView2.TabIndex = 66;
@@ -220,7 +207,7 @@
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(84, 116);
+            this.dataGridView3.Location = new System.Drawing.Point(402, 555);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(23, 23);
             this.dataGridView3.TabIndex = 69;
@@ -229,7 +216,7 @@
             // dataGridView4
             // 
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(113, 116);
+            this.dataGridView4.Location = new System.Drawing.Point(431, 555);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.Size = new System.Drawing.Size(23, 10);
             this.dataGridView4.TabIndex = 70;
@@ -268,23 +255,23 @@
             this.dataGridViewOA.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewOA.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dataGridViewOA.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewOA.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewOA.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewOA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewOA.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewOA.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridViewOA.GridColor = System.Drawing.Color.DarkGray;
             this.dataGridViewOA.Location = new System.Drawing.Point(34, 194);
             this.dataGridViewOA.Name = "dataGridViewOA";
@@ -383,7 +370,7 @@
             this.btnSaveOrder.TabIndex = 12;
             this.btnSaveOrder.Text = "Lag ordre";
             this.btnSaveOrder.UseVisualStyleBackColor = true;
-            this.btnSaveOrder.Click += new System.EventHandler(this.button1_Click);
+            this.btnSaveOrder.Click += new System.EventHandler(this.btnSaveOrder_Click);
             // 
             // label6
             // 
@@ -524,14 +511,14 @@
             this.dataGridViewAON.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dataGridViewAON.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewAON.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewAON.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewAON.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewAON.GridColor = System.Drawing.Color.DarkGray;
             this.dataGridViewAON.Location = new System.Drawing.Point(25, 194);
             this.dataGridViewAON.Name = "dataGridViewAON";
@@ -559,12 +546,12 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.panelMix);
             this.panel2.Controls.Add(this.btnRemoveAOS);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.btnRemoveAOL);
-            this.panel2.Controls.Add(this.cheFt);
             this.panel2.Controls.Add(this.dataGridView3);
-            this.panel2.Controls.Add(this.cheMix);
             this.panel2.Controls.Add(this.dataGridView2);
             this.panel2.Controls.Add(this.cbLengths);
             this.panel2.Controls.Add(this.btnRemoveAOC);
@@ -584,10 +571,55 @@
             this.panel2.Size = new System.Drawing.Size(553, 648);
             this.panel2.TabIndex = 9;
             // 
+            // panelMix
+            // 
+            this.panelMix.Controls.Add(this.radioButtonMix3);
+            this.panelMix.Controls.Add(this.radioButtonMix2);
+            this.panelMix.Controls.Add(this.radioButtonMix1);
+            this.panelMix.Location = new System.Drawing.Point(7, 109);
+            this.panelMix.Name = "panelMix";
+            this.panelMix.Size = new System.Drawing.Size(121, 78);
+            this.panelMix.TabIndex = 78;
+            // 
+            // radioButtonMix3
+            // 
+            this.radioButtonMix3.AutoSize = true;
+            this.radioButtonMix3.Location = new System.Drawing.Point(14, 54);
+            this.radioButtonMix3.Name = "radioButtonMix3";
+            this.radioButtonMix3.Size = new System.Drawing.Size(63, 17);
+            this.radioButtonMix3.TabIndex = 79;
+            this.radioButtonMix3.TabStop = true;
+            this.radioButtonMix3.Text = "ikke mix";
+            this.radioButtonMix3.UseVisualStyleBackColor = true;
+            this.radioButtonMix3.CheckedChanged += new System.EventHandler(this.radioButtonMix3_CheckedChanged);
+            // 
+            // radioButtonMix2
+            // 
+            this.radioButtonMix2.AutoSize = true;
+            this.radioButtonMix2.Location = new System.Drawing.Point(14, 31);
+            this.radioButtonMix2.Name = "radioButtonMix2";
+            this.radioButtonMix2.Size = new System.Drawing.Size(40, 17);
+            this.radioButtonMix2.TabIndex = 78;
+            this.radioButtonMix2.TabStop = true;
+            this.radioButtonMix2.Text = "mix";
+            this.radioButtonMix2.UseVisualStyleBackColor = true;
+            this.radioButtonMix2.CheckedChanged += new System.EventHandler(this.radioButtonMix2_CheckedChanged);
+            // 
+            // radioButtonMix1
+            // 
+            this.radioButtonMix1.AutoSize = true;
+            this.radioButtonMix1.Location = new System.Drawing.Point(14, 8);
+            this.radioButtonMix1.Name = "radioButtonMix1";
+            this.radioButtonMix1.Size = new System.Drawing.Size(41, 17);
+            this.radioButtonMix1.TabIndex = 77;
+            this.radioButtonMix1.TabStop = true;
+            this.radioButtonMix1.Text = "alle";
+            this.radioButtonMix1.UseVisualStyleBackColor = true;
+            this.radioButtonMix1.CheckedChanged += new System.EventHandler(this.radioButtonMix1_CheckedChanged);
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.dataGridViewAON);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.label11);
@@ -601,14 +633,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(516, 648);
             this.panel3.TabIndex = 82;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(146, 143);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 82;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // bindingSourceOrders
             // 
@@ -626,6 +650,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dataGridViewOrders);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -634,6 +659,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewOrders
+            // 
+            this.dataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOrders.Location = new System.Drawing.Point(98, 63);
+            this.dataGridViewOrders.Name = "dataGridViewOrders";
+            this.dataGridViewOrders.Size = new System.Drawing.Size(36, 40);
+            this.dataGridViewOrders.TabIndex = 10;
+            this.dataGridViewOrders.Visible = false;
             // 
             // tabPage2
             // 
@@ -647,6 +681,52 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.radioButtonFt3);
+            this.panel4.Controls.Add(this.radioButtonFt2);
+            this.panel4.Controls.Add(this.radioButtonFt1);
+            this.panel4.Location = new System.Drawing.Point(134, 109);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(121, 78);
+            this.panel4.TabIndex = 80;
+            // 
+            // radioButtonFt3
+            // 
+            this.radioButtonFt3.AutoSize = true;
+            this.radioButtonFt3.Location = new System.Drawing.Point(14, 54);
+            this.radioButtonFt3.Name = "radioButtonFt3";
+            this.radioButtonFt3.Size = new System.Drawing.Size(61, 17);
+            this.radioButtonFt3.TabIndex = 79;
+            this.radioButtonFt3.TabStop = true;
+            this.radioButtonFt3.Text = "ikke FT";
+            this.radioButtonFt3.UseVisualStyleBackColor = true;
+            this.radioButtonFt3.CheckedChanged += new System.EventHandler(this.radioButtonFt3_CheckedChanged);
+            // 
+            // radioButtonFt2
+            // 
+            this.radioButtonFt2.AutoSize = true;
+            this.radioButtonFt2.Location = new System.Drawing.Point(14, 31);
+            this.radioButtonFt2.Name = "radioButtonFt2";
+            this.radioButtonFt2.Size = new System.Drawing.Size(38, 17);
+            this.radioButtonFt2.TabIndex = 78;
+            this.radioButtonFt2.TabStop = true;
+            this.radioButtonFt2.Text = "FT";
+            this.radioButtonFt2.UseVisualStyleBackColor = true;
+            this.radioButtonFt2.CheckedChanged += new System.EventHandler(this.radioButtonFt2_CheckedChanged);
+            // 
+            // radioButtonFt1
+            // 
+            this.radioButtonFt1.AutoSize = true;
+            this.radioButtonFt1.Location = new System.Drawing.Point(14, 8);
+            this.radioButtonFt1.Name = "radioButtonFt1";
+            this.radioButtonFt1.Size = new System.Drawing.Size(41, 17);
+            this.radioButtonFt1.TabIndex = 77;
+            this.radioButtonFt1.TabStop = true;
+            this.radioButtonFt1.Text = "alle";
+            this.radioButtonFt1.UseVisualStyleBackColor = true;
+            this.radioButtonFt1.CheckedChanged += new System.EventHandler(this.radioButtonFt1_CheckedChanged);
+            // 
             // AddOr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -658,7 +738,7 @@
             this.Name = "AddOr";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = " ";
+            this.Text = " Nye Ordre";
             this.Load += new System.EventHandler(this.AddOr_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -675,12 +755,17 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panelMix.ResumeLayout(false);
+            this.panelMix.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).EndInit();
             this.tabControlAddOrder.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -695,8 +780,6 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ComboBox cbFarm;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.CheckBox cheMix;
-        private System.Windows.Forms.CheckBox cheFt;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource bindingSource2;
         private System.Windows.Forms.ComboBox cbLengths;
@@ -737,6 +820,14 @@
         private System.Windows.Forms.TabControl tabControlAddOrder;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView dataGridViewOrders;
+        private System.Windows.Forms.RadioButton radioButtonMix1;
+        private System.Windows.Forms.Panel panelMix;
+        private System.Windows.Forms.RadioButton radioButtonMix3;
+        private System.Windows.Forms.RadioButton radioButtonMix2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.RadioButton radioButtonFt3;
+        private System.Windows.Forms.RadioButton radioButtonFt2;
+        private System.Windows.Forms.RadioButton radioButtonFt1;
     }
 }

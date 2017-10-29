@@ -181,9 +181,7 @@ namespace INN_CSHARP
             }
             mySql.GetData(selectionStatement4, bindingSource1);
         }
-        /// <summary>
         /// -------------------------------------------------- ORDERS---------------------------------
-        /// </summary>
         void updateCbOrders()
         {
             var mySql = new mySql();
@@ -257,7 +255,7 @@ namespace INN_CSHARP
             lblAmountBuckets.Text = sumBucket.ToString();
         }
 
-        private void Button6_Click(object sender, EventArgs e)
+        private void btnAddOr_Click(object sender, EventArgs e)
         {
             AddOr frm = new AddOr();
             frm.FormClosing += new FormClosingEventHandler(this.AddOr_FormClosing);

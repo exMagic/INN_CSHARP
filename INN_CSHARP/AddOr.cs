@@ -14,7 +14,6 @@ namespace INN_CSHARP
 {
     public partial class AddOr : Form
     {
-        //TODO: 0 refactoring
         //TODO: 3 search bar by plu ect
         //TODO: 4 labeles like antall buckets fob steems boxes
         public AddOr()
@@ -45,7 +44,7 @@ namespace INN_CSHARP
             int i = 0;
             while (i < 5)
             {
-                dataGridViewAON.Columns[i].Visible = false;
+                dataGridViewAON.Columns[i].Visible = false;//TODO Erro when 543 order number
                 i++;
             }
         }
@@ -127,9 +126,16 @@ namespace INN_CSHARP
             mySql.fillUpCb(cbSleeve, "SELECT sleeves.sleeve FROM[MG_inkjop].[dbo].[sleeves]");
             dataGridViewOA.Columns[0].Visible = true;
 
+            dataGridViewOrders.DataSource = bindingSourceOrders;
+            mySql.GetData("select order_number from [MG_inkjop].[dbo].[orders] group by order_number", bindingSourceOrders);
+            dataGridViewOrders.AllowUserToAddRows = false;//prevent from create empt row on the end
+
             tabControlAddOrder.Appearance = TabAppearance.Buttons;
             tabControlAddOrder.ItemSize = new Size(0, 1);
             tabControlAddOrder.SizeMode = TabSizeMode.Fixed;
+
+            radioButtonMix1.Checked = true;
+            radioButtonFt1.Checked = true;
         }
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -159,27 +165,37 @@ namespace INN_CSHARP
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSaveOrder_Click(object sender, EventArgs e)
         {
-            //TODO: 1 check if that order number exist if yes then return error;
-            if (string.IsNullOrWhiteSpace(txtOrderNumber.Text)) MessageBox.Show("Legg in Ordre number");
+            if (string.IsNullOrWhiteSpace(txtOrderNumber.Text)) MessageBox.Show("Legg in Ordrenummer", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
             {
-                if (string.IsNullOrWhiteSpace(txtDatecode.Text)) MessageBox.Show("Legg in Datecode");
+                if (string.IsNullOrWhiteSpace(txtDatecode.Text)) MessageBox.Show("Legg in Datecode", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
                 {
-                    date_created = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace('.',':');
-
-                    tabControlAddOrder.SelectedIndex = 1;
-                    order_numer = txtOrderNumber.Text;
-                    datecode = txtDatecode.Text;
-                    departure = dateTimePickerDeparture.Text;
-                    arrival = dateTimePickerArrival.Text;
-
-                    lblOrderNumber.Text = order_numer;
-                    lblDatecode.Text = datecode;
-                    lblDeparture.Text = departure;
-                    lblArrival.Text = arrival;
+                    bool newOrder = true;
+                    foreach (DataGridViewRow row in dataGridViewOrders.Rows)
+                    {
+                        if (row.Cells[0].Value.ToString() == txtOrderNumber.Text)
+                        {
+                            newOrder = false;
+                            break;
+                        }
+                    }
+                    if (newOrder)
+                    {
+                        date_created = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace('.', ':');
+                        tabControlAddOrder.SelectedIndex = 1;
+                        order_numer = txtOrderNumber.Text;
+                        datecode = txtDatecode.Text;
+                        departure = dateTimePickerDeparture.Text;
+                        arrival = dateTimePickerArrival.Text;
+                        lblOrderNumber.Text = order_numer;
+                        lblDatecode.Text = datecode;
+                        lblDeparture.Text = departure;
+                        lblArrival.Text = arrival;
+                    }
+                    else MessageBox.Show("Dette ordrenummer finnes allerede", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -199,23 +215,7 @@ namespace INN_CSHARP
         {
             cbSleeve.SelectedIndex = 0;
         }
-        //TODO: 2 some method to display mix and ft both value togheter
-        private void cheMix_CheckedChanged(object sender, EventArgs e)
-        {
-            var mySql = new mySql();
-            if (cheMix.Checked) whMix = "and flowers.mix=1";
-            else whMix = "and flowers.mix=0";
-            CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
-            mySql.GetData(CBselect, bindingSource1);
-        }
-        private void cheFt_CheckedChanged(object sender, EventArgs e)
-        {
-            var mySql = new mySql();
-            if (cheFt.Checked) whFt = "and flowers.fairtrade=1";
-            else whFt = "and flowers.fairtrade=0";
-            CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
-            mySql.GetData(CBselect, bindingSource1);
-        }
+
         private void txtOrderNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
@@ -227,6 +227,54 @@ namespace INN_CSHARP
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void radioButtonMix1_CheckedChanged(object sender, EventArgs e)//------------------MIX
+        {
+            var mySql = new mySql();
+            if (radioButtonMix1.Checked) whMix = "";
+            CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            mySql.GetData(CBselect, bindingSource1);
+        }
+
+        private void radioButtonMix2_CheckedChanged(object sender, EventArgs e)
+        {
+            var mySql = new mySql();
+            if (radioButtonMix2.Checked) whMix = "and flowers.mix=1";
+            CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            mySql.GetData(CBselect, bindingSource1);
+        }
+
+        private void radioButtonMix3_CheckedChanged(object sender, EventArgs e)
+        {
+            var mySql = new mySql();
+            if (radioButtonMix3.Checked) whMix = "and flowers.mix=0";
+            CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            mySql.GetData(CBselect, bindingSource1);
+        }
+
+        private void radioButtonFt1_CheckedChanged(object sender, EventArgs e)//------------------FT
+        {
+            var mySql = new mySql();
+            if (radioButtonFt1.Checked) whFt = "";
+            CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            mySql.GetData(CBselect, bindingSource1);
+        }
+
+        private void radioButtonFt2_CheckedChanged(object sender, EventArgs e)
+        {
+            var mySql = new mySql();
+            if (radioButtonFt2.Checked) whFt = "and flowers.fairtrade=1";
+            CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            mySql.GetData(CBselect, bindingSource1);
+        }
+
+        private void radioButtonFt3_CheckedChanged(object sender, EventArgs e)
+        {
+            var mySql = new mySql();
+            if (radioButtonFt3.Checked) whFt = "and flowers.fairtrade=0";
+            CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
+            mySql.GetData(CBselect, bindingSource1);
         }
     }
 }
