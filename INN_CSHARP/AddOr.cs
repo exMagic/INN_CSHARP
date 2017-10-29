@@ -17,24 +17,17 @@ namespace INN_CSHARP
         //TODO: 0 refactoring
         //TODO: 3 search bar by plu ect
         //TODO: 4 labeles like antall buckets fob steems boxes
-
-
         public AddOr()
         {
             InitializeComponent();
         }
-       
         string CBselect;
-        
         public string whFarm;
         public string whLen;
         public string whColour;
         public string whSleeve;
-
         public string whMix = "and flowers.mix=0";
         public string whFt = "and flowers.fairtrade=0";
-
-
         string date_created;
         string insertFltoOrder;
         string selectOrder;
@@ -58,8 +51,7 @@ namespace INN_CSHARP
         }
         void createSQLInsert()
         {
-            string boxes = Prompt.ShowDialog("Hvor mange esker?", "Antall boxes").ToString();//TODO: validation - only digit
-
+            string boxes = Prompt.ShowDialog("Hvor mange esker?", "Antall boxes").ToString();
             string fl_id = dataGridViewOA[0, dataGridViewOA.CurrentRow.Index].Value.ToString();
             string date_modified = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace('.', ':');
             string departure = dateTimePickerDeparture.Value.Date.ToString("yyyy-MM-dd");
@@ -83,7 +75,6 @@ namespace INN_CSHARP
                 ",'" + "2016-04-22 11:55:11" + "')"
                 ;
         }
-
         void createSQLSelelct()
         {
             string orderNumber = txtOrderNumber.Text.ToString();
@@ -110,8 +101,6 @@ namespace INN_CSHARP
         public string datecode;
         public string departure;
         public string arrival;
-
-        
         private void AddOr_Load(object sender, EventArgs e)
         {
             var mySql = new mySql();
@@ -119,7 +108,6 @@ namespace INN_CSHARP
             dataGridViewOA.DataSource = bindingSource1;
             mySql.GetData(CBselect, bindingSource1);
             dataGridViewOA.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
             //fill up dataGridView by Farms
             dataGridView1.DataSource = bindingSource5;
             mySql.GetData(mySql.selectFarms, bindingSource5);
@@ -132,8 +120,6 @@ namespace INN_CSHARP
             ////fill up dataGridView by Sleeves
             dataGridView4.DataSource = bindingSource4;
             mySql.GetData(mySql.selectSleeve, bindingSource4);
-
-
             //fill up combo boxes
             mySql.fillUpCb(cbFarm, "SELECT farms.farm_name FROM[MG_inkjop].[dbo].[farms]");
             mySql.fillUpCb(cbLengths, "SELECT lengths.length FROM[MG_inkjop].[dbo].[lengths]");
@@ -144,11 +130,7 @@ namespace INN_CSHARP
             tabControlAddOrder.Appearance = TabAppearance.Buttons;
             tabControlAddOrder.ItemSize = new Size(0, 1);
             tabControlAddOrder.SizeMode = TabSizeMode.Fixed;
-
-
         }
-
-
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
@@ -177,9 +159,6 @@ namespace INN_CSHARP
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
         }
-
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             //TODO: 1 check if that order number exist if yes then return error;
@@ -204,22 +183,18 @@ namespace INN_CSHARP
                 }
             }
         }
-
         private void btnRemoveAOF_Click(object sender, EventArgs e)
         {
             cbFarm.SelectedIndex = 0;
         }
-
         private void btnRemoveAOL_Click(object sender, EventArgs e)
         {
             cbLengths.SelectedIndex = 0;
         }
-
         private void btnRemoveAOC_Click(object sender, EventArgs e)
         {
             cbColour.SelectedIndex = 0;
         }
-
         private void btnRemoveAOS_Click(object sender, EventArgs e)
         {
             cbSleeve.SelectedIndex = 0;
@@ -233,7 +208,6 @@ namespace INN_CSHARP
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
         }
-
         private void cheFt_CheckedChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
@@ -242,17 +216,14 @@ namespace INN_CSHARP
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
         }
-
         private void txtOrderNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
-
         private void txtDatecode_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
