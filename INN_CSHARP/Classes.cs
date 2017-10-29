@@ -138,9 +138,10 @@ namespace INN_CSHARP
             cb.SelectedIndex = 0;
             conn.Close();
         }
-
-        public string findCbValue(ComboBox cb, string wh, Button bt, DataGridView dgv, string sqlCondition)
+        
+        public string findCbValue(ComboBox cb, string wh, Button bt, DataGridView dgv, string sqlCondition, TextBox t)
         {
+            t.Text = "";
             if (cb.SelectedIndex == 0)
             {
                 wh = " ";

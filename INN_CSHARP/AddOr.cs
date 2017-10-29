@@ -140,28 +140,28 @@ namespace INN_CSHARP
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
-            whFarm = mySql.findCbValue(cbFarm, whFarm, btnRemoveAOF, dataGridView1, "and farms.farm_id=");
+            whFarm = mySql.findCbValue(cbFarm, whFarm, btnRemoveAOF, dataGridView1, "and farms.farm_id=", txtSearch);
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
         }
         private void cbLengths_SelectedIndexChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
-            whFarm = mySql.findCbValue(cbLengths, whLen, btnRemoveAOL, dataGridView2, "and lengths.length_id=");
+            whFarm = mySql.findCbValue(cbLengths, whLen, btnRemoveAOL, dataGridView2, "and lengths.length_id=", txtSearch);
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
         }
         private void cbColour_SelectedIndexChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
-            whFarm = mySql.findCbValue(cbColour, whColour, btnRemoveAOC, dataGridView3, "and colours.colour_id=");
+            whFarm = mySql.findCbValue(cbColour, whColour, btnRemoveAOC, dataGridView3, "and colours.colour_id=", txtSearch);
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
         }
         private void cbSleeve_SelectedIndexChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
-            whFarm = mySql.findCbValue(cbSleeve, whSleeve, btnRemoveAOS, dataGridView4, "and sleeves.sleeve_id=");
+            whFarm = mySql.findCbValue(cbSleeve, whSleeve, btnRemoveAOS, dataGridView4, "and sleeves.sleeve_id=", txtSearch);
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
         }
@@ -276,5 +276,47 @@ namespace INN_CSHARP
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
         }
+
+        private void btnSearchFl_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSearch.Text)) { }
+            else{
+                var mySql = new mySql();
+                string search = "and flowers.plu=" + txtSearch.Text;
+                CBselect = mySql.selectFlAddOr + search;
+                mySql.GetData(CBselect, bindingSource1);
+            }
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+        private void keypressed(Object o, KeyPressEventArgs e)
+        {
+            // The keypressed method uses the KeyChar property to check 
+            // whether the ENTER key is pressed. 
+
+            // If the ENTER key is pressed, the Handled property is set to true, 
+            // to indicate the event is handled.
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                e.Handled = true;
+                if (string.IsNullOrWhiteSpace(txtSearch.Text)) { }
+                else
+                {
+                    var mySql = new mySql();
+                    string search = "and flowers.plu=" + txtSearch.Text;
+                    CBselect = mySql.selectFlAddOr + search;
+                    mySql.GetData(CBselect, bindingSource1);
+                }
+            }
+        }
+
+
+
+
+        
+
     }
 }
