@@ -14,17 +14,6 @@ namespace INN_CSHARP
 {
     public partial class EditFl : Form
     {
-        // PC
-        //
-        string connString = @"Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        
-        //
-        /*/WINMAC
-        string connString = @"Data Source=MACBOOKW10\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        //*/
-        SqlDataAdapter dataAdapter;
-        System.Data.DataTable table;
-
         string selectionStatement3 = @"
         SELECT *
           FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves]
@@ -46,32 +35,16 @@ namespace INN_CSHARP
         string newFt;
         string fob;
 
-
-
         public EditFl()
         {
             InitializeComponent();
         }
-        private void GetData(string selectCommand, BindingSource bin)
-        {
-            try
-            {
-                dataAdapter = new SqlDataAdapter(selectCommand, connString);
-                table = new System.Data.DataTable();
-                table.Locale = System.Globalization.CultureInfo.InvariantCulture;
-                dataAdapter.Fill(table);
 
-                bin.DataSource = table;
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
         private void fillUpCb(ComboBox cb)
         {
             //fill up combo box by Farms
-            SqlConnection conn = new SqlConnection(connString);
+            var mySql = new mySql();
+            SqlConnection conn = new SqlConnection(mySql.connString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(Sql, conn);
             SqlDataReader DR = cmd.ExecuteReader();
@@ -135,14 +108,15 @@ namespace INN_CSHARP
         }
         private void EditFl_Load(object sender, EventArgs e)
         {
+            var mySql = new mySql();
             dataGridView2.DataSource = bindingSource2;//fill up lengths table
-            GetData(selectLengths, bindingSource2);
+            mySql.GetData(selectLengths, bindingSource2);
             dataGridView3.DataSource = bindingSource3;//fill up colours table
-            GetData(selectColours, bindingSource3);
+            mySql.GetData(selectColours, bindingSource3);
             dataGridView4.DataSource = bindingSource5;//fill up farms table
-            GetData(selectFarms, bindingSource5);
+            mySql.GetData(selectFarms, bindingSource5);
             dataGridView5.DataSource = bindingSource4;//fill up sleeves table
-            GetData(selectSleeves, bindingSource4);
+            mySql.GetData(selectSleeves, bindingSource4);
 
             //fill up combo boxes
             Sql = "SELECT farms.farm_name FROM[MG_inkjop].[dbo].[farms]";
@@ -157,7 +131,7 @@ namespace INN_CSHARP
             int idToEdit2 = Form1.idToEdit;
             label2.Text = idToEdit2.ToString();
             dataGridView1.DataSource = bindingSource1;
-            GetData(selectionStatement3, bindingSource1);
+            mySql.GetData(selectionStatement3, bindingSource1);
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 //MessageBox.Show(row.Cells[0].Value.ToString());
@@ -186,11 +160,12 @@ namespace INN_CSHARP
             else cheMix.Checked = false;
             if (dataGridView1[10, rowIndex].Value.ToString() == "True") cheFt.Checked = true; // check and set "fairtrade" checkbox
             else cheFt.Checked = false;
+
         }
         private void button1_Click(object sender, EventArgs e)//save button
         {
             findComboValues();
-            
+            var mySql = new mySql();
             string save2 = @" UPDATE[MG_inkjop].[dbo].[flowers]
                 SET flowers.variety = '" + txtEVariety.Text + "'" +
                 ", flowers.colour_id = '" + newColourId + "'" +
@@ -208,7 +183,7 @@ namespace INN_CSHARP
 
                 "WHERE fl_id = " + label2.Text;
 
-            GetData(save2, bindingSource1);
+            mySql.GetData(save2, bindingSource1);
             this.Close();
         }
 

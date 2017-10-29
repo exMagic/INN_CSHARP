@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOr));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             this.btnRemoveAOF = new System.Windows.Forms.Button();
             this.dateTimePickerArrival = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerDeparture = new System.Windows.Forms.DateTimePicker();
-            this.btnLagOrdre = new System.Windows.Forms.Button();
+            this.btnSaveOrder = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtDatecode = new System.Windows.Forms.TextBox();
@@ -79,7 +79,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
+            this.tabControlAddOrder = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -95,6 +99,9 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).BeginInit();
+            this.tabControlAddOrder.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -261,23 +268,23 @@
             this.dataGridViewOA.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewOA.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dataGridViewOA.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewOA.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewOA.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewOA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewOA.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewOA.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewOA.GridColor = System.Drawing.Color.DarkGray;
             this.dataGridViewOA.Location = new System.Drawing.Point(34, 194);
             this.dataGridViewOA.Name = "dataGridViewOA";
@@ -368,15 +375,15 @@
             this.dateTimePickerDeparture.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerDeparture.TabIndex = 4;
             // 
-            // btnLagOrdre
+            // btnSaveOrder
             // 
-            this.btnLagOrdre.Location = new System.Drawing.Point(109, 149);
-            this.btnLagOrdre.Name = "btnLagOrdre";
-            this.btnLagOrdre.Size = new System.Drawing.Size(124, 45);
-            this.btnLagOrdre.TabIndex = 12;
-            this.btnLagOrdre.Text = "Lag ordre";
-            this.btnLagOrdre.UseVisualStyleBackColor = true;
-            this.btnLagOrdre.Click += new System.EventHandler(this.button1_Click);
+            this.btnSaveOrder.Location = new System.Drawing.Point(109, 149);
+            this.btnSaveOrder.Name = "btnSaveOrder";
+            this.btnSaveOrder.Size = new System.Drawing.Size(124, 45);
+            this.btnSaveOrder.TabIndex = 12;
+            this.btnSaveOrder.Text = "Lag ordre";
+            this.btnSaveOrder.UseVisualStyleBackColor = true;
+            this.btnSaveOrder.Click += new System.EventHandler(this.button1_Click);
             // 
             // label6
             // 
@@ -517,14 +524,14 @@
             this.dataGridViewAON.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dataGridViewAON.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewAON.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewAON.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewAON.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewAON.GridColor = System.Drawing.Color.DarkGray;
             this.dataGridViewAON.Location = new System.Drawing.Point(25, 194);
             this.dataGridViewAON.Name = "dataGridViewAON";
@@ -539,12 +546,12 @@
             this.panel1.Controls.Add(this.txtOrderNumber);
             this.panel1.Controls.Add(this.dateTimePickerDeparture);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.btnLagOrdre);
+            this.panel1.Controls.Add(this.btnSaveOrder);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.txtDatecode);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(450, 224);
+            this.panel1.Location = new System.Drawing.Point(423, 227);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(327, 224);
             this.panel1.TabIndex = 9;
@@ -572,15 +579,15 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.cbColour);
-            this.panel2.Location = new System.Drawing.Point(12, 48);
+            this.panel2.Location = new System.Drawing.Point(18, 16);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(553, 648);
             this.panel2.TabIndex = 9;
-            this.panel2.Visible = false;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.dataGridViewAON);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.label11);
@@ -590,24 +597,62 @@
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.lblDatecode);
             this.panel3.Controls.Add(this.lblOrderNumber);
-            this.panel3.Location = new System.Drawing.Point(645, 48);
+            this.panel3.Location = new System.Drawing.Point(637, 16);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(516, 648);
             this.panel3.TabIndex = 82;
-            this.panel3.Visible = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(146, 143);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 82;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // bindingSourceOrders
             // 
             this.bindingSourceOrders.DataSource = typeof(INN_CSHARP.orders);
+            // 
+            // tabControlAddOrder
+            // 
+            this.tabControlAddOrder.Controls.Add(this.tabPage1);
+            this.tabControlAddOrder.Controls.Add(this.tabPage2);
+            this.tabControlAddOrder.Location = new System.Drawing.Point(3, 3);
+            this.tabControlAddOrder.Name = "tabControlAddOrder";
+            this.tabControlAddOrder.SelectedIndex = 0;
+            this.tabControlAddOrder.Size = new System.Drawing.Size(1179, 723);
+            this.tabControlAddOrder.TabIndex = 83;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1171, 697);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.panel2);
+            this.tabPage2.Controls.Add(this.panel3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1171, 697);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // AddOr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 728);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.tabControlAddOrder);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddOr";
@@ -633,6 +678,9 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).EndInit();
+            this.tabControlAddOrder.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -661,7 +709,7 @@
         private System.Windows.Forms.DataGridView dataGridViewOA;
         private System.Windows.Forms.DateTimePicker dateTimePickerArrival;
         private System.Windows.Forms.DateTimePicker dateTimePickerDeparture;
-        private System.Windows.Forms.Button btnLagOrdre;
+        private System.Windows.Forms.Button btnSaveOrder;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtDatecode;
@@ -686,5 +734,9 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.BindingSource bindingSourceOrders;
+        private System.Windows.Forms.TabControl tabControlAddOrder;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -65,6 +65,7 @@
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.bindingSource5 = new System.Windows.Forms.BindingSource(this.components);
+            this.cheSleeveWith = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
@@ -377,11 +378,22 @@
             // 
             this.bindingSource5.DataSource = typeof(INN_CSHARP.farm);
             // 
+            // cheSleeveWith
+            // 
+            this.cheSleeveWith.AutoSize = true;
+            this.cheSleeveWith.Location = new System.Drawing.Point(349, 184);
+            this.cheSleeveWith.Name = "cheSleeveWith";
+            this.cheSleeveWith.Size = new System.Drawing.Size(102, 17);
+            this.cheSleeveWith.TabIndex = 87;
+            this.cheSleeveWith.Text = "kommer i sleeve";
+            this.cheSleeveWith.UseVisualStyleBackColor = true;
+            // 
             // EditFl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(515, 409);
+            this.Controls.Add(this.cheSleeveWith);
             this.Controls.Add(this.dataGridView5);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.dataGridView3);
@@ -468,5 +480,6 @@
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.BindingSource bindingSource5;
+        private System.Windows.Forms.CheckBox cheSleeveWith;
     }
 }

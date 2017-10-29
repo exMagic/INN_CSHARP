@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-//TODO: add sleeveWith check box in EditForm
 
 namespace INN_CSHARP
 {
@@ -24,7 +23,6 @@ namespace INN_CSHARP
         public Form1()
         {
             InitializeComponent();
-            var mySql = new mySql();
         }
 
  
@@ -40,10 +38,11 @@ namespace INN_CSHARP
             mySql.GetData(mySql.loadLengthsStatement, bindingSource3);
             dataGridViewFF.DataSource = bindingSourceFarms;
             mySql.GetData(mySql.loadFarmsStatement, bindingSourceFarms);
+
             dataGridViewFlMain.DataSource = bindingSource1;
+            mySql.GetData(mySql.FlowersMainStatement, bindingSource1);
             dataGridViewFlMain.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewFlMain.Columns[0].Visible = false;
-            //GetData(selectionStatement, bindingSource1);
             tabControl1.Appearance = TabAppearance.Buttons;
             tabControl1.ItemSize = new Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
@@ -53,8 +52,8 @@ namespace INN_CSHARP
             conn.Open();
             SqlCommand cmd = new SqlCommand(Sql, conn);
             SqlDataReader DR = cmd.ExecuteReader();
-            string All = "All";
-            cbFarm.Items.Add(All);
+
+            cbFarm.Items.Add("All");
             while (DR.Read())
             {
                 cbFarm.Items.Add(DR[0]);
@@ -66,7 +65,7 @@ namespace INN_CSHARP
             conn.Open();
             SqlCommand cmd2 = new SqlCommand(Sql2, conn);
             SqlDataReader DR2 = cmd2.ExecuteReader();
-            cbLength.Items.Add(All);
+            cbLength.Items.Add("All");
             while (DR2.Read())
             {
                 cbLength.Items.Add(DR2[0]);

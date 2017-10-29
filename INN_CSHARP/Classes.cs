@@ -39,18 +39,21 @@ namespace INN_CSHARP
 
 
 
-        public string FlowersMainStatement = @"
+        public string FlowersMainStatement = @";
         SELECT 
                flowers.fl_id
               ,flowers.variety as 'Variety'
               ,flowers.sticker_text as 'Sticker text'
               ,colours.colour as 'Colour'
               ,flowers.plu as 'PLU'
+
               ,farms.farm_name as 'Farm'
               ,lengths.length as 'Lenght'
-	          ,flowers.mix as 'MIX'
+
+           ,flowers.mix as 'MIX'
+
               ,sleeves.sleeve as 'Sleeve'
-              ,flowers.sleeve_with as 'With sleeves'
+                ,flowers.sleeve_with as 'With sleeves'
               ,flowers.fob as 'FOB'
               ,flowers.fairtrade as 'Fairtrade'
               ,flowers.bunch_pr_bucket as 'Bunch pr bucket'
@@ -101,8 +104,64 @@ namespace INN_CSHARP
         public string selectColour = @"SELECT * FROM [MG_inkjop].[dbo].[colours]";
         public string selectSleeve = @"SELECT * FROM [MG_inkjop].[dbo].[sleeves]";
 
+        //AddOr
+        public string selectFlAddOr = @"
+        SELECT 
+                flowers.fl_id
+              ,flowers.variety as 'Variety'
+              
+              ,colours.colour as 'Colour'
+              ,flowers.plu as 'PLU'
+              ,farms.farm_name as 'Farm'
+              ,lengths.length as 'Lenght'
+	          ,flowers.mix as 'MIX'
+              ,flowers.fairtrade as 'Fairtrade'
+              ,flowers.stems_pr_bunch as 'Stems pr bunch'
+              ,flowers.pak_rate as 'pak rate'
+          FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves]
+          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id ";
+        public string selectFarms = @"SELECT * FROM [MG_inkjop].[dbo].[farms]";
 
+        //string All = "All";
+        //string Sql;
 
+        public void fillUpCb(ComboBox cb, string sql)
+        {
+            //fill up combo box by Farms
+            //var mySql = new mySql();
+            SqlConnection conn = new SqlConnection(connString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            SqlDataReader DR = cmd.ExecuteReader();
+            cb.Items.Add("All");
+            while (DR.Read()) cb.Items.Add(DR[0]);
+            cb.SelectedIndex = 0;
+            conn.Close();
+        }
+
+        public string findCbValue(ComboBox cb, string wh, Button bt, DataGridView dgv, string sqlCondition)
+        {
+            if (cb.SelectedIndex == 0)
+            {
+                wh = " ";
+                bt.Visible = false;
+            }
+            else
+            {
+                int selectedId;
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    if (row.Cells[1].Value.ToString() == cb.SelectedItem.ToString())
+                    {
+                        selectedId = Convert.ToInt32(row.Cells[0].Value);
+                        wh = sqlCondition + selectedId.ToString();
+                        break;
+                    }
+                }
+                bt.Visible = true;
+            }
+            return wh;
+        }
     }
     public class Design
     {
@@ -157,16 +216,19 @@ namespace INN_CSHARP
             textLabel.AutoSize = true;
             textLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             TextBox textBox = new TextBox() { Left = 20, Top = 100, Width = 200 };
+            textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(textBox_KeyPress);
+            void textBox_KeyPress(object sender, KeyPressEventArgs e)
+            {
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            }
             textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             textBox.TextAlign = HorizontalAlignment.Center;
-
             Button confirmation = new Button() { Text = "Legg til", Left = 60, Width = 120, Height = 80, Top = 150, DialogResult = DialogResult.OK };
             confirmation.Click += (sender, e) => { prompt.Close(); };
             prompt.Controls.Add(textBox);
             prompt.Controls.Add(confirmation);
             prompt.Controls.Add(textLabel);
             prompt.AcceptButton = confirmation;
-
             return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
         }
     }
