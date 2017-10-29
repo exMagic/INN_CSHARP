@@ -215,7 +215,6 @@ namespace INN_CSHARP
         {
             cbSleeve.SelectedIndex = 0;
         }
-
         private void txtOrderNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
@@ -228,37 +227,37 @@ namespace INN_CSHARP
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
-
         private void radioButtonMix1_CheckedChanged(object sender, EventArgs e)//------------------MIX
         {
             var mySql = new mySql();
             if (radioButtonMix1.Checked) whMix = "";
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
+            txtSearch.Text = "";
         }
-
         private void radioButtonMix2_CheckedChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
             if (radioButtonMix2.Checked) whMix = "and flowers.mix=1";
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
+            txtSearch.Text = "";
         }
-
         private void radioButtonMix3_CheckedChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
             if (radioButtonMix3.Checked) whMix = "and flowers.mix=0";
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
+            txtSearch.Text = "";
         }
-
         private void radioButtonFt1_CheckedChanged(object sender, EventArgs e)//------------------FT
         {
             var mySql = new mySql();
             if (radioButtonFt1.Checked) whFt = "";
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
+            txtSearch.Text = "";
         }
 
         private void radioButtonFt2_CheckedChanged(object sender, EventArgs e)
@@ -267,6 +266,7 @@ namespace INN_CSHARP
             if (radioButtonFt2.Checked) whFt = "and flowers.fairtrade=1";
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
+            txtSearch.Text = "";
         }
 
         private void radioButtonFt3_CheckedChanged(object sender, EventArgs e)
@@ -275,6 +275,7 @@ namespace INN_CSHARP
             if (radioButtonFt3.Checked) whFt = "and flowers.fairtrade=0";
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
+            txtSearch.Text = "";
         }
 
         private void btnSearchFl_Click(object sender, EventArgs e)
@@ -287,18 +288,12 @@ namespace INN_CSHARP
                 mySql.GetData(CBselect, bindingSource1);
             }
         }
-
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
-        private void keypressed(Object o, KeyPressEventArgs e)
+        private void keypressed(Object o, KeyPressEventArgs e)//ENTER key
         {
-            // The keypressed method uses the KeyChar property to check 
-            // whether the ENTER key is pressed. 
-
-            // If the ENTER key is pressed, the Handled property is set to true, 
-            // to indicate the event is handled.
             if (e.KeyChar == (char)Keys.Return)
             {
                 e.Handled = true;
