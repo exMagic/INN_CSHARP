@@ -167,6 +167,16 @@ namespace INN_CSHARP
         {
             l.Text = dg.RowCount.ToString();
         }
+        public string sumColumn(DataGridView dg, int col)
+        {
+            int sum = 0;
+                        for (int i = 0; i < dg.Rows.Count; ++i)
+            {
+                sum += Convert.ToInt32(dg.Rows[i].Cells[col].Value);
+            }
+            string sumString = sum.ToString();
+            return sumString;
+        }
     }
     public class Design
     {

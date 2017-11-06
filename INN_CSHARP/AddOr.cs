@@ -46,6 +46,10 @@ namespace INN_CSHARP
                 dataGridViewAON.Columns[i].Visible = false;//TODO Erro when 543 order number
                 i++;
             }
+            lblAddOrAntallBoxes.Text = mySql.sumColumn(dataGridViewAON, 10);
+            lblAddOrAntallSteems.Text = mySql.sumColumn(dataGridViewAON, 11);
+            lblAddOrAntallPrice.Text = mySql.sumColumn(dataGridViewAON, 12);
+            lblAddOrAntallBuckets.Text = mySql.sumColumn(dataGridViewAON, 13);
         }
         void createSQLInsert()
         {
@@ -89,6 +93,7 @@ namespace INN_CSHARP
             ,flowers.pak_rate as 'pak rate'
             ,orders.boxes
             ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
+            ,(SELECT flowers.fob) * ((SELECT orders.boxes) * (SELECT flowers.pak_rate)) as price
             , ((SELECT orders.boxes) * (SELECT flowers.pak_rate) / (SELECT flowers.stems_pr_bunch) / (SELECT flowers.bunch_pr_bucket))as buckets
             
           FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
