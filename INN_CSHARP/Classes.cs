@@ -163,12 +163,16 @@ namespace INN_CSHARP
             }
             return wh;
         }
+        public void updateAntall(Label l, DataGridView dg)
+        {
+            l.Text = dg.RowCount.ToString();
+        }
     }
     public class Design
     {
         public void colorBtn(Button b, TabControl t, int index)
         {
-            Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
+            Color _selected = System.Drawing.ColorTranslator.FromHtml("#2a292e");
             b.BackColor = _selected;
             t.SelectedIndex = index;
         }

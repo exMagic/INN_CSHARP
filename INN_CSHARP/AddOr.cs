@@ -14,7 +14,6 @@ namespace INN_CSHARP
 {
     public partial class AddOr : Form
     {
-        //TODO: 3 search bar by plu ect
         //TODO: 4 labeles like antall buckets fob steems boxes
         public AddOr()
         {
@@ -136,34 +135,40 @@ namespace INN_CSHARP
 
             radioButtonMix1.Checked = true;
             radioButtonFt1.Checked = true;
+            mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
             whFarm = mySql.findCbValue(cbFarm, whFarm, btnRemoveAOF, dataGridView1, "and farms.farm_id=", txtSearch);
+
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
+            mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
         private void cbLengths_SelectedIndexChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
-            whFarm = mySql.findCbValue(cbLengths, whLen, btnRemoveAOL, dataGridView2, "and lengths.length_id=", txtSearch);
+            whLen = mySql.findCbValue(cbLengths, whLen, btnRemoveAOL, dataGridView2, "and lengths.length_id=", txtSearch);
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
+            mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
         private void cbColour_SelectedIndexChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
-            whFarm = mySql.findCbValue(cbColour, whColour, btnRemoveAOC, dataGridView3, "and colours.colour_id=", txtSearch);
+            whColour = mySql.findCbValue(cbColour, whColour, btnRemoveAOC, dataGridView3, "and colours.colour_id=", txtSearch);
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
+            mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
         private void cbSleeve_SelectedIndexChanged(object sender, EventArgs e)
         {
             var mySql = new mySql();
-            whFarm = mySql.findCbValue(cbSleeve, whSleeve, btnRemoveAOS, dataGridView4, "and sleeves.sleeve_id=", txtSearch);
+            whSleeve = mySql.findCbValue(cbSleeve, whSleeve, btnRemoveAOS, dataGridView4, "and sleeves.sleeve_id=", txtSearch);
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
+            mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
         private void btnSaveOrder_Click(object sender, EventArgs e)
         {
@@ -234,6 +239,7 @@ namespace INN_CSHARP
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
             txtSearch.Text = "";
+            mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
         private void radioButtonMix2_CheckedChanged(object sender, EventArgs e)
         {
@@ -242,6 +248,7 @@ namespace INN_CSHARP
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
             txtSearch.Text = "";
+            mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
         private void radioButtonMix3_CheckedChanged(object sender, EventArgs e)
         {
@@ -250,6 +257,7 @@ namespace INN_CSHARP
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
             txtSearch.Text = "";
+            mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
         private void radioButtonFt1_CheckedChanged(object sender, EventArgs e)//------------------FT
         {
@@ -258,6 +266,7 @@ namespace INN_CSHARP
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
             txtSearch.Text = "";
+            mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
 
         private void radioButtonFt2_CheckedChanged(object sender, EventArgs e)
@@ -267,6 +276,7 @@ namespace INN_CSHARP
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
             txtSearch.Text = "";
+            mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
 
         private void radioButtonFt3_CheckedChanged(object sender, EventArgs e)
@@ -276,6 +286,7 @@ namespace INN_CSHARP
             CBselect = mySql.selectFlAddOr + whFarm + whLen + whColour + whSleeve + whMix + whFt;
             mySql.GetData(CBselect, bindingSource1);
             txtSearch.Text = "";
+            mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
 
         private void btnSearchFl_Click(object sender, EventArgs e)
@@ -286,6 +297,7 @@ namespace INN_CSHARP
                 string search = "and flowers.plu=" + txtSearch.Text;
                 CBselect = mySql.selectFlAddOr + search;
                 mySql.GetData(CBselect, bindingSource1);
+                mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
             }
         }
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -304,6 +316,7 @@ namespace INN_CSHARP
                     string search = "and flowers.plu=" + txtSearch.Text;
                     CBselect = mySql.selectFlAddOr + search;
                     mySql.GetData(CBselect, bindingSource1);
+                    mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
                 }
             }
         }

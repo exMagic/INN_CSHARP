@@ -58,11 +58,11 @@
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.cbColour = new System.Windows.Forms.ComboBox();
+            this.cheSleeveWith = new System.Windows.Forms.CheckBox();
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource4 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.cheSleeveWith = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -78,7 +78,7 @@
             this.btnAdd.Location = new System.Drawing.Point(288, 293);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(160, 48);
-            this.btnAdd.TabIndex = 54;
+            this.btnAdd.TabIndex = 55;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -88,7 +88,7 @@
             this.txtEPak.Location = new System.Drawing.Point(63, 321);
             this.txtEPak.Name = "txtEPak";
             this.txtEPak.Size = new System.Drawing.Size(66, 20);
-            this.txtEPak.TabIndex = 53;
+            this.txtEPak.TabIndex = 54;
             this.txtEPak.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEPak_KeyPress);
             // 
             // label14
@@ -105,7 +105,7 @@
             this.txtEStems.Location = new System.Drawing.Point(63, 281);
             this.txtEStems.Name = "txtEStems";
             this.txtEStems.Size = new System.Drawing.Size(66, 20);
-            this.txtEStems.TabIndex = 52;
+            this.txtEStems.TabIndex = 53;
             this.txtEStems.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEStems_KeyPress);
             // 
             // label15
@@ -122,7 +122,7 @@
             this.txtEBunchPBucket.Location = new System.Drawing.Point(63, 241);
             this.txtEBunchPBucket.Name = "txtEBunchPBucket";
             this.txtEBunchPBucket.Size = new System.Drawing.Size(66, 20);
-            this.txtEBunchPBucket.TabIndex = 51;
+            this.txtEBunchPBucket.TabIndex = 52;
             this.txtEBunchPBucket.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEBunchPBucket_KeyPress);
             // 
             // label13
@@ -139,7 +139,7 @@
             this.txtEFob.Location = new System.Drawing.Point(63, 201);
             this.txtEFob.Name = "txtEFob";
             this.txtEFob.Size = new System.Drawing.Size(66, 20);
-            this.txtEFob.TabIndex = 48;
+            this.txtEFob.TabIndex = 49;
             this.txtEFob.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEFob_KeyPress);
             // 
             // label11
@@ -260,7 +260,7 @@
             this.cheMix.Location = new System.Drawing.Point(193, 204);
             this.cheMix.Name = "cheMix";
             this.cheMix.Size = new System.Drawing.Size(42, 17);
-            this.cheMix.TabIndex = 49;
+            this.cheMix.TabIndex = 50;
             this.cheMix.Text = "Mix";
             this.cheMix.UseVisualStyleBackColor = true;
             // 
@@ -270,7 +270,7 @@
             this.cheFt.Location = new System.Drawing.Point(274, 204);
             this.cheFt.Name = "cheFt";
             this.cheFt.Size = new System.Drawing.Size(67, 17);
-            this.cheFt.TabIndex = 50;
+            this.cheFt.TabIndex = 51;
             this.cheFt.Text = "Fairtrade";
             this.cheFt.UseVisualStyleBackColor = true;
             // 
@@ -328,6 +328,16 @@
             this.cbColour.TabIndex = 45;
             this.cbColour.SelectedIndexChanged += new System.EventHandler(this.cbColour_SelectedIndexChanged);
             // 
+            // cheSleeveWith
+            // 
+            this.cheSleeveWith.AutoSize = true;
+            this.cheSleeveWith.Location = new System.Drawing.Point(353, 164);
+            this.cheSleeveWith.Name = "cheSleeveWith";
+            this.cheSleeveWith.Size = new System.Drawing.Size(102, 17);
+            this.cheSleeveWith.TabIndex = 48;
+            this.cheSleeveWith.Text = "kommer i sleeve";
+            this.cheSleeveWith.UseVisualStyleBackColor = true;
+            // 
             // bindingSource2
             // 
             this.bindingSource2.DataSource = typeof(INN_CSHARP.lengths);
@@ -343,16 +353,6 @@
             // bindingSource1
             // 
             this.bindingSource1.DataSource = typeof(INN_CSHARP.flower);
-            // 
-            // cheSleeveWith
-            // 
-            this.cheSleeveWith.AutoSize = true;
-            this.cheSleeveWith.Location = new System.Drawing.Point(353, 164);
-            this.cheSleeveWith.Name = "cheSleeveWith";
-            this.cheSleeveWith.Size = new System.Drawing.Size(102, 17);
-            this.cheSleeveWith.TabIndex = 71;
-            this.cheSleeveWith.Text = "kommer i sleeve";
-            this.cheSleeveWith.UseVisualStyleBackColor = true;
             // 
             // AddFl
             // 

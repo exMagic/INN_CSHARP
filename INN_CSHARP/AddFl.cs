@@ -70,7 +70,10 @@ namespace INN_CSHARP
                 ",'" + txtEPak.Text + "')";
 
             mySql.GetData(addFl, bindingSource1);
+            string v = txtEVariety.Text;
             this.Close();
+            MessageBox.Show("Blomst "+ v + " har lagt til med hell", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         //",'" + sleeveWith + "')";

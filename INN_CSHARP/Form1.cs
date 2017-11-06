@@ -32,7 +32,7 @@ namespace INN_CSHARP
             resBtn();
             Color _leftBG = System.Drawing.ColorTranslator.FromHtml("#3b3a3f");
             pictureBox1.BackColor = _leftBG;
-            Color _selected = System.Drawing.ColorTranslator.FromHtml("#353439");
+            Color _selected = System.Drawing.ColorTranslator.FromHtml("#2a292e");
             button1.BackColor = _selected;
             dataGridViewFL.DataSource = bindingSource3;
             mySql.GetData(mySql.loadLengthsStatement, bindingSource3);
@@ -137,10 +137,13 @@ namespace INN_CSHARP
         public static int idToEdit;
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            idToEdit = Convert.ToInt32(dataGridViewFlMain.Rows[e.RowIndex].Cells[0].Value.ToString());
-            EditFl frm = new EditFl();
-            frm.FormClosing += new FormClosingEventHandler(this.Edit_FormClosing);
-            frm.Show();
+            if (e.RowIndex >= 0)
+            {
+                idToEdit = Convert.ToInt32(dataGridViewFlMain.Rows[e.RowIndex].Cells[0].Value.ToString());
+                EditFl frm = new EditFl();
+                frm.FormClosing += new FormClosingEventHandler(this.Edit_FormClosing);
+                frm.Show();
+            }
         }
         private void btnFEdit_Click(object sender, EventArgs e)
         {
@@ -167,6 +170,7 @@ namespace INN_CSHARP
             var mySql = new mySql();
             mySql.GetData(selectionStatement4, bindingSource1);
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
+            dataGridViewFlMain.CurrentCell = dataGridViewFlMain.Rows[dataGridViewFlMain.RowCount-1].Cells[8];
         }
         // DELETE Flower///////////////////////////////////////////////////////////////
         private void btnFDelete_Click(object sender, EventArgs e)
