@@ -69,8 +69,8 @@ namespace INN_CSHARP
                 ",'" + lblDatecode.Text + "'" +
                 ",'" + fl_id + "'" +
                 ",'" + boxes + "'" +
-                ",'" + "2016-04-22 11:55:11" + "'" +
-                ",'" + "2016-04-22 11:55:11" + "')"
+                ",'" + date_created + "'" +
+                ",'" + date_modified + "')"
                 ;
         }
         void createSQLSelelct()
@@ -293,6 +293,14 @@ namespace INN_CSHARP
         {
             if (string.IsNullOrWhiteSpace(txtSearch.Text)) { }
             else{
+                string tmp = txtSearch.Text;
+                cbLengths.SelectedIndex = 0;
+                cbColour.SelectedIndex = 0;
+                cbFarm.SelectedIndex = 0;
+                cbSleeve.SelectedIndex = 0;
+                radioButtonMix1.Checked = true;
+                radioButtonFt1.Checked = true;
+                txtSearch.Text = tmp;
                 var mySql = new mySql();
                 string search = "and flowers.plu=" + txtSearch.Text;
                 CBselect = mySql.selectFlAddOr + search;
@@ -312,6 +320,14 @@ namespace INN_CSHARP
                 if (string.IsNullOrWhiteSpace(txtSearch.Text)) { }
                 else
                 {
+                    string tmp = txtSearch.Text;
+                    cbLengths.SelectedIndex = 0;
+                    cbColour.SelectedIndex = 0;
+                    cbFarm.SelectedIndex = 0;
+                    cbSleeve.SelectedIndex = 0;
+                    radioButtonMix1.Checked = true;
+                    radioButtonFt1.Checked = true;
+                    txtSearch.Text = tmp;
                     var mySql = new mySql();
                     string search = "and flowers.plu=" + txtSearch.Text;
                     CBselect = mySql.selectFlAddOr + search;

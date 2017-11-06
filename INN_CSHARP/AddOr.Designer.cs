@@ -95,6 +95,14 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lblAddOrAntalFl = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lblAddOrAntallBoxes = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lblAddOrAntallSteems = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.lblAddOrAntallFob = new System.Windows.Forms.Label();
+            this.lblAddOrAntallBuckets = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -512,7 +520,7 @@
             // 
             this.dataGridViewAON.AllowUserToAddRows = false;
             this.dataGridViewAON.AllowUserToDeleteRows = false;
-            this.dataGridViewAON.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewAON.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewAON.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewAON.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dataGridViewAON.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -704,6 +712,14 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.label14);
+            this.panel3.Controls.Add(this.label16);
+            this.panel3.Controls.Add(this.lblAddOrAntallBoxes);
+            this.panel3.Controls.Add(this.label18);
+            this.panel3.Controls.Add(this.lblAddOrAntallSteems);
+            this.panel3.Controls.Add(this.label20);
+            this.panel3.Controls.Add(this.lblAddOrAntallFob);
+            this.panel3.Controls.Add(this.lblAddOrAntallBuckets);
             this.panel3.Controls.Add(this.dataGridViewAON);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.label11);
@@ -782,6 +798,78 @@
             this.label15.Size = new System.Drawing.Size(36, 13);
             this.label15.TabIndex = 84;
             this.label15.Text = "Antall:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(259, 25);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(77, 13);
+            this.label14.TabIndex = 82;
+            this.label14.Text = "Antall buckets:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(276, 50);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(60, 13);
+            this.label16.TabIndex = 83;
+            this.label16.Text = "Antall FOB:";
+            // 
+            // lblAddOrAntallBoxes
+            // 
+            this.lblAddOrAntallBoxes.AutoSize = true;
+            this.lblAddOrAntallBoxes.Location = new System.Drawing.Point(342, 100);
+            this.lblAddOrAntallBoxes.Name = "lblAddOrAntallBoxes";
+            this.lblAddOrAntallBoxes.Size = new System.Drawing.Size(10, 13);
+            this.lblAddOrAntallBoxes.TabIndex = 89;
+            this.lblAddOrAntallBoxes.Text = "-";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(264, 75);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(72, 13);
+            this.label18.TabIndex = 84;
+            this.label18.Text = "Antall steems:";
+            // 
+            // lblAddOrAntallSteems
+            // 
+            this.lblAddOrAntallSteems.AutoSize = true;
+            this.lblAddOrAntallSteems.Location = new System.Drawing.Point(342, 75);
+            this.lblAddOrAntallSteems.Name = "lblAddOrAntallSteems";
+            this.lblAddOrAntallSteems.Size = new System.Drawing.Size(10, 13);
+            this.lblAddOrAntallSteems.TabIndex = 88;
+            this.lblAddOrAntallSteems.Text = "-";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(268, 100);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(68, 13);
+            this.label20.TabIndex = 85;
+            this.label20.Text = "Antall Boxes:";
+            // 
+            // lblAddOrAntallFob
+            // 
+            this.lblAddOrAntallFob.AutoSize = true;
+            this.lblAddOrAntallFob.Location = new System.Drawing.Point(342, 50);
+            this.lblAddOrAntallFob.Name = "lblAddOrAntallFob";
+            this.lblAddOrAntallFob.Size = new System.Drawing.Size(10, 13);
+            this.lblAddOrAntallFob.TabIndex = 87;
+            this.lblAddOrAntallFob.Text = "-";
+            // 
+            // lblAddOrAntallBuckets
+            // 
+            this.lblAddOrAntallBuckets.AutoSize = true;
+            this.lblAddOrAntallBuckets.Location = new System.Drawing.Point(342, 25);
+            this.lblAddOrAntallBuckets.Name = "lblAddOrAntallBuckets";
+            this.lblAddOrAntallBuckets.Size = new System.Drawing.Size(10, 13);
+            this.lblAddOrAntallBuckets.TabIndex = 86;
+            this.lblAddOrAntallBuckets.Text = "-";
             // 
             // AddOr
             // 
@@ -890,5 +978,13 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label lblAddOrAntalFl;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblAddOrAntallBoxes;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblAddOrAntallSteems;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblAddOrAntallFob;
+        private System.Windows.Forms.Label lblAddOrAntallBuckets;
     }
 }
