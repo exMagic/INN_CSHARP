@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Data.OleDb;
 
 namespace INN_CSHARP
 {
-    
+
     public partial class Form1 : Form
     {
 
@@ -20,12 +21,14 @@ namespace INN_CSHARP
         public string whLen;
         public string selectionStatement4;
 
+
         public Form1()
         {
             InitializeComponent();
+
         }
 
- 
+
         private void Form1_Load(object sender, EventArgs e)
         {
             var mySql = new mySql();
@@ -123,7 +126,7 @@ namespace INN_CSHARP
         // Flowers - LENGTH FILTER ///////////
         private void cbLength_SelectedIndexChanged(object sender, EventArgs e) // LENGTH FILTER ///////////
         {
-            
+
             var CB = new CB();
             whLen = CB.cbChange(cbLength, whLen, btnRemoveFL, dataGridViewFL);
             var mySql = new mySql();
@@ -132,7 +135,7 @@ namespace INN_CSHARP
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
         }
         private void btnRemoveFL_Click(object sender, EventArgs e) { cbLength.SelectedIndex = 0; }
-        
+
         // EDIT Flower///////////////////////////////////////////////////////////////
         public static int idToEdit;
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -170,13 +173,13 @@ namespace INN_CSHARP
             var mySql = new mySql();
             mySql.GetData(selectionStatement4, bindingSource1);
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
-            dataGridViewFlMain.CurrentCell = dataGridViewFlMain.Rows[dataGridViewFlMain.RowCount-1].Cells[8];
+            dataGridViewFlMain.CurrentCell = dataGridViewFlMain.Rows[dataGridViewFlMain.RowCount - 1].Cells[8];
         }
         // DELETE Flower///////////////////////////////////////////////////////////////
         private void btnFDelete_Click(object sender, EventArgs e)
         {
             var mySql = new mySql();
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete "+ dataGridViewFlMain[0, dataGridViewFlMain.CurrentRow.Index].Value.ToString() + " flower from database? This Action can not be undone", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete " + dataGridViewFlMain[0, dataGridViewFlMain.CurrentRow.Index].Value.ToString() + " flower from database? This Action can not be undone", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dialogResult == DialogResult.Yes)
             {
                 var idToDelete = dataGridViewFlMain[0, dataGridViewFlMain.CurrentRow.Index].Value.ToString();
@@ -269,7 +272,87 @@ namespace INN_CSHARP
         {
             updateCbOrders();
         }
+        string st = @"
+        SELECT
+            orders.order_id
+            ,orders.departure
+            ,orders.arrival
+            ,orders.datecode
+            ,flowers.variety as 'Variety'
+            ,farms.farm_name as 'Farm'
+            ,flowers.plu as 'PLU'
+            ,lengths.length as 'Lenght'
+            ,flowers.pak_rate as 'pak rate'
+            ,orders.boxes
+            ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
+            , ((SELECT orders.boxes) * (SELECT flowers.pak_rate) / (SELECT flowers.stems_pr_bunch) / (SELECT flowers.bunch_pr_bucket))as buckets
+
+          FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
+          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = 64  ORDER BY farm_name, length";
 
 
+        
+
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var mySql = new mySql();
+            dataGridViewTest.DataSource = bindingSourceOrders;
+            mySql.GetData(st, bindingSourceOrders);
+            for (int c = 0; c < dataGridViewTest.Columns.Count; ++c)
+            {
+                dataGridViewTest2.Columns.Add(dataGridViewTest.Columns[c].HeaderText, dataGridViewTest.Columns[c].HeaderText);
+                dataGridViewTest3.Columns.Add(dataGridViewTest.Columns[c].HeaderText, dataGridViewTest.Columns[c].HeaderText);
+            }
+            dataGridViewTest2.Columns.Add("i", "i");
+            dataGridViewTest3.Columns.Add("i", "i");
+
+
+            int mixIndex = 0;
+            int nonMixIndex = 0;
+            for (int i = 0; i < dataGridViewTest.Rows.Count; ++i)//each row
+            {
+                void rewrite(bool t)//copy cells from table1 table to table2 if duplicate or to table3 if not
+                {
+                    if (t)
+                    {
+                        MessageBox.Show("jest dupikat");
+                        dataGridViewTest2.Rows.Add();
+                        for (int j = 0; j < dataGridViewTest.Columns.Count; ++j)//each cell in row
+                        {
+                            dataGridViewTest2.Rows[mixIndex].Cells[j].Value = dataGridViewTest.Rows[i].Cells[j].Value;
+                        }
+                        dataGridViewTest2.Rows[mixIndex].Cells[12].Value = "ninio";
+                        mixIndex++;
+                    }
+                    else
+                    {
+                        MessageBox.Show("nie ma dupikat");
+                        dataGridViewTest3.Rows.Add();
+                        for (int j = 0; j < dataGridViewTest.Columns.Count; ++j)//each cell in row
+                        {
+                            dataGridViewTest3.Rows[nonMixIndex].Cells[j].Value = dataGridViewTest.Rows[i].Cells[j].Value;
+                        }
+                        dataGridViewTest3.Rows[nonMixIndex].Cells[12].Value = "ikke ninio";
+                        nonMixIndex++;
+                    }
+
+                }
+                if (i < 1)
+                {
+                    rewrite(dataGridViewTest.Rows[i].Cells[6].Value.ToString() == dataGridViewTest.Rows[i + 1].Cells[6].Value.ToString());
+                }
+                else if (i == dataGridViewTest.Rows.Count - 1)
+                {
+                   rewrite(dataGridViewTest.Rows[i].Cells[6].Value.ToString() == dataGridViewTest.Rows[i - 1].Cells[6].Value.ToString());
+                }
+                else
+                {
+                    rewrite(dataGridViewTest.Rows[i].Cells[6].Value.ToString() == dataGridViewTest.Rows[i - 1].Cells[6].Value.ToString() || dataGridViewTest.Rows[i].Cells[6].Value.ToString() == dataGridViewTest.Rows[i + 1].Cells[6].Value.ToString());
+                }
+
+            }
+
+        }
     }
 }
