@@ -65,6 +65,7 @@ namespace INN_CSHARP
         public string loadFarmsStatement = @"SELECT farms.farm_id, farms.farm_name FROM [MG_inkjop].[dbo].[farms]";
         public string loadLengthsStatement = @"SELECT * FROM lengths";
         public string loadOrdersStatement;
+        public string loadButikkStatement;
 
         public void loadOrders(int orderNumber)
         {
@@ -99,6 +100,28 @@ namespace INN_CSHARP
           FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY farm_name, length";
         }
+
+        public void loadButikk(int orderNumber)
+        {
+            loadButikkStatement = @"
+        SELECT
+            orders.order_id
+            ,orders.departure
+            ,orders.arrival
+            ,orders.datecode
+            ,flowers.variety as 'Variety'
+            ,farms.farm_name as 'Farm'
+            ,flowers.plu as 'PLU'
+            ,lengths.length as 'Lenght'
+            ,flowers.pak_rate as 'pak rate'
+            ,orders.boxes
+            ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
+            , ((SELECT orders.boxes) * (SELECT flowers.pak_rate) / (SELECT flowers.stems_pr_bunch) / (SELECT flowers.bunch_pr_bucket))as buckets
+
+          FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
+          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY plu, length";
+        }
+
         //
         public string select = @"SELECT * FROM [MG_inkjop].[dbo].[farms]";
         public string selectLengths = @"SELECT * FROM [MG_inkjop].[dbo].[lengths]";

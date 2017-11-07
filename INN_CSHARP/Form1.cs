@@ -291,86 +291,56 @@ namespace INN_CSHARP
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = 72  ORDER BY plu, length";
 
 
-        
+
 
 
         private void button6_Click(object sender, EventArgs e)
         {
-            var mySql = new mySql();
-            dataGridViewTest.DataSource = bindingSourceOrders;
-            mySql.GetData(st, bindingSourceOrders);
-            for (int c = 0; c < dataGridViewTest.Columns.Count; ++c)
-            {
-                dataGridViewTest2.Columns.Add(dataGridViewTest.Columns[c].HeaderText, dataGridViewTest.Columns[c].HeaderText);
-            }
-            dataGridViewTest2.Columns.Add("i", "i");
-
-
-            int Nindex = 0;
-            int nonMixIndex = 0;
-            for (int i = 0; i < dataGridViewTest.Rows.Count; i++)//each row
-            {
-                //void rewrite(bool t)//copy cells from table1 table to table2 if duplicate or to table3 if not
-                //{
-                //    if (t)
-                //    {
-                //        //MessageBox.Show("jest dupikat");
-                //        dataGridViewTest2.Rows.Add();
-                //        for (int j = 0; j < dataGridViewTest.Columns.Count; ++j)//each cell in row
-                //        {
-                //            dataGridViewTest2.Rows[mixIndex].Cells[j].Value = dataGridViewTest.Rows[i].Cells[j].Value;
-                //        }
-                //        dataGridViewTest2.Rows[mixIndex].Cells[12].Value = dataGridViewTest.Rows[i].Cells[6].Value;
-                //        mixIndex++;
-                //    }
-                //    else
-                //    {
-                //        //MessageBox.Show("nie ma dupikat");
-                //        dataGridViewTest3.Rows.Add();
-                //        for (int j = 0; j < dataGridViewTest.Columns.Count; ++j)//each cell in row
-                //        {
-                //            dataGridViewTest3.Rows[nonMixIndex].Cells[j].Value = dataGridViewTest.Rows[i].Cells[j].Value;
-                //        }
-                //        dataGridViewTest3.Rows[nonMixIndex].Cells[12].Value = "ikke ninio";
-                //        nonMixIndex++;
-                //    }
-
-                //}
-                
-                if (i < 1)
-                {
-                    dataGridViewTest2.Rows.Add();
-                    for (int j = 0; j < dataGridViewTest.Columns.Count; ++j)//each cell in row
-                    {
-                        dataGridViewTest2.Rows[Nindex].Cells[j].Value = dataGridViewTest.Rows[i].Cells[j].Value;
-                    }
-                    Nindex++;
-                    MessageBox.Show("added first " + Nindex);
-                }
-
-                else
-                {
-                    //MessageBox.Show(dataGridViewTest.Rows[i].Cells["plu"].Value.ToString() + " xx " + dataGridViewTest.Rows[i - 1].Cells["plu"].Value.ToString());
-                    if (dataGridViewTest.Rows[i].Cells["plu"].Value.ToString() == dataGridViewTest.Rows[i - 1].Cells["plu"].Value.ToString() & dataGridViewTest.Rows[i].Cells["farm"].Value.ToString() == dataGridViewTest.Rows[i - 1].Cells["farm"].Value.ToString())//if above is the same
-                    {
-                        MessageBox.Show("above is the same "+ Nindex);
-                        dataGridViewTest2.Rows[Nindex-1].Cells[10].Value = Convert.ToInt32(dataGridViewTest2.Rows[Nindex-1].Cells[10].Value) + Convert.ToInt32(dataGridViewTest.Rows[Nindex].Cells[10].Value);
-                    }
-                    else
-                    {
-                        MessageBox.Show("ikke same " + Nindex);
-                        dataGridViewTest2.Rows.Add();
-                        for (int j = 0; j < dataGridViewTest.Columns.Count; ++j)//each cell in row
-                        {
-                            dataGridViewTest2.Rows[Nindex].Cells[j].Value = dataGridViewTest.Rows[i].Cells[j].Value;
-                        }
-                        Nindex++;
-                    }
-                    
-                }
-
-            }
-
+            //var mySql = new mySql();
+            //dataGridViewTest.DataSource = bindingSourceOrders;
+            //mySql.GetData(st, bindingSourceOrders);
+            //for (int c = 0; c < dataGridViewTest.Columns.Count; ++c)
+            //{
+            //    dataGridViewTest2.Columns.Add(dataGridViewTest.Columns[c].HeaderText, dataGridViewTest.Columns[c].HeaderText);
+            //}
+            //int Nindex = 0;
+            //for (int i = 0; i < dataGridViewTest.Rows.Count; i++)//each row
+            //{
+            //    if (i < 1)
+            //    {
+            //        dataGridViewTest2.Rows.Add();
+            //        for (int j = 0; j < dataGridViewTest.Columns.Count; ++j)//each cell in row
+            //        {
+            //            dataGridViewTest2.Rows[Nindex].Cells[j].Value = dataGridViewTest.Rows[i].Cells[j].Value;
+            //        }
+            //        Nindex++;
+            //    }
+            //    else
+            //    {
+            //        //MessageBox.Show(dataGridViewTest.Rows[i].Cells["plu"].Value.ToString() + " xx " + dataGridViewTest.Rows[i - 1].Cells["plu"].Value.ToString());
+            //        if (dataGridViewTest.Rows[i].Cells["plu"].Value.ToString() == dataGridViewTest.Rows[i - 1].Cells["plu"].Value.ToString() & dataGridViewTest.Rows[i].Cells["farm"].Value.ToString() == dataGridViewTest.Rows[i - 1].Cells["farm"].Value.ToString())//if above is the same
+            //        {
+            //            MessageBox.Show("dodaje "+ Convert.ToInt32(dataGridViewTest2.Rows[Nindex - 1].Cells[10].Value) + " + " + Convert.ToInt32(dataGridViewTest.Rows[Nindex].Cells[10].Value));
+            //            dataGridViewTest2.Rows[Nindex - 1].Cells[10].Value = Convert.ToInt32(dataGridViewTest2.Rows[Nindex - 1].Cells[10].Value) + Convert.ToInt32(dataGridViewTest.Rows[Nindex].Cells[10].Value);
+            //        }
+            //        else
+            //        {
+            //            dataGridViewTest2.Rows.Add();
+            //            for (int j = 0; j < dataGridViewTest.Columns.Count; ++j)//each cell in row
+            //            {
+            //                dataGridViewTest2.Rows[Nindex].Cells[j].Value = dataGridViewTest.Rows[i].Cells[j].Value;
+            //            }
+            //            Nindex++;
+            //        }
+            //    }
+            //}
         }
+        private void btnButkikkdata_Click(object sender, EventArgs e)
+        {
+            Butikkdata frm = new Butikkdata(Convert.ToInt32(cbOrders.SelectedItem));
+            frm.Show();
+        }
+       
+
     }
 }
