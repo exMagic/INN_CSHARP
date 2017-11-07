@@ -32,6 +32,7 @@ namespace INN_CSHARP
         string newFarmId;
         string newSleeveId;
         string newMix;
+        string newSleeve_with;
         string newFt;
         string fob;
 
@@ -52,7 +53,7 @@ namespace INN_CSHARP
             cb.SelectedIndex = 0;
             conn.Close();
         }
-        private void findCbIndex(ComboBox cb, int col)
+        private void findCbIndex(ComboBox cb, string col)
         {
             int i=0;
             foreach (var item in cb.Items)
@@ -103,6 +104,8 @@ namespace INN_CSHARP
             else newFt = "0";
             if (cheMix.Checked) newMix = "1";
             else newMix = "0";
+            if (cheSleeveWith.Checked) newSleeve_with = "1";
+            else newSleeve_with = "0";
             decimal f = Convert.ToDecimal(txtEFob.Text.Replace('.',','));
             fob = f.ToString().Replace(',','.');
         }
@@ -141,25 +144,32 @@ namespace INN_CSHARP
                     break;
                 }
             }
-            findCbIndex(cbColour, 20);//check and set proper item in combobox
-            cbColour.SelectedIndex = fci;
-            findCbIndex(cbFarm, 15);//check and set proper item in combobox
-            cbFarm.SelectedIndex = fci;
-            findCbIndex(cbLengths, 18);//check and set proper item in combobox
-            cbLengths.SelectedIndex = fci;
-            findCbIndex(cbSleeve, 22);//check and set proper item in combobox
-            cbSleeve.SelectedIndex = fci;
-            txtEVariety.Text = dataGridView1[1, rowIndex].Value.ToString();
-            txtEPlu.Text = dataGridView1[3, rowIndex].Value.ToString();
-            txtESticker.Text = dataGridView1[6, rowIndex].Value.ToString();
-            txtEFob.Text = dataGridView1[9, rowIndex].Value.ToString();
-            txtEBunchPBucket.Text = dataGridView1[11, rowIndex].Value.ToString();
-            txtEStems.Text = dataGridView1[12, rowIndex].Value.ToString();
-            txtEPak.Text = dataGridView1[13, rowIndex].Value.ToString();
-            if (dataGridView1[5, rowIndex].Value.ToString() == "True") cheMix.Checked = true; // check and set "mix" checkbox
+            cbColour.Text = dataGridView1["colour", rowIndex].Value.ToString();
+            cbFarm.Text = dataGridView1["farm_name", rowIndex].Value.ToString();
+            cbLengths.Text = dataGridView1["length", rowIndex].Value.ToString();
+            cbSleeve.Text = dataGridView1["sleeve", rowIndex].Value.ToString();
+            //findCbIndex(cbColour, "colour");//check and set proper item in combobox
+            //cbColour.SelectedIndex = fci;
+            //findCbIndex(cbFarm, "farm");//check and set proper item in combobox
+            //cbFarm.SelectedIndex = fci;
+            //findCbIndex(cbLengths, "length");//check and set proper item in combobox
+            //cbLengths.SelectedIndex = fci;
+            //findCbIndex(cbSleeve, "sleeve");//check and set proper item in combobox
+            //cbSleeve.SelectedIndex = fci;
+
+            txtEVariety.Text = dataGridView1["variety", rowIndex].Value.ToString();
+            txtEPlu.Text = dataGridView1["plu", rowIndex].Value.ToString();
+            txtESticker.Text = dataGridView1["sticker_text", rowIndex].Value.ToString();
+            txtEFob.Text = dataGridView1["fob", rowIndex].Value.ToString();
+            txtEBunchPBucket.Text = dataGridView1["bunch_pr_bucket", rowIndex].Value.ToString();
+            txtEStems.Text = dataGridView1["stems_pr_bunch", rowIndex].Value.ToString();
+            txtEPak.Text = dataGridView1["pak_rate", rowIndex].Value.ToString();
+            if (dataGridView1["mix", rowIndex].Value.ToString() == "True") cheMix.Checked = true; // check and set "mix" checkbox
             else cheMix.Checked = false;
-            if (dataGridView1[10, rowIndex].Value.ToString() == "True") cheFt.Checked = true; // check and set "fairtrade" checkbox
+            if (dataGridView1["fairtrade", rowIndex].Value.ToString() == "True") cheFt.Checked = true; // check and set "fairtrade" checkbox
             else cheFt.Checked = false;
+            if (dataGridView1["sleeve_with", rowIndex].Value.ToString() == "True") cheSleeveWith.Checked = true; // check and set "fairtrade" checkbox
+            else cheSleeveWith.Checked = false;
 
         }
         private void button1_Click(object sender, EventArgs e)//save button
@@ -177,6 +187,7 @@ namespace INN_CSHARP
                 ", flowers.sleeve_id = '" + newSleeveId + "'" +
                 ", flowers.fob = '" + fob + "'" +
                 ", flowers.fairtrade = '" + newFt + "'" +
+                ", flowers.sleeve_with = '" + newSleeve_with + "'" +
                 ", flowers.bunch_pr_bucket = '" + txtEBunchPBucket.Text + "'" +
                 ", flowers.stems_pr_bunch = '" + txtEStems.Text + "'" +
                 ", flowers.pak_rate = '" + txtEPak.Text + "'" +

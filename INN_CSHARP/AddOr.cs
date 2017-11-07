@@ -40,16 +40,16 @@ namespace INN_CSHARP
             dataGridViewAON.DataSource = bindingSourceOrders;
             mySql.GetData(selectOrder, bindingSourceOrders);
             dataGridViewAON.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            int i = 0;
-            while (i < 5)
-            {
-                dataGridViewAON.Columns[i].Visible = false;//TODO Erro when 543 order number
-                i++;
-            }
-            lblAddOrAntallBoxes.Text = mySql.sumColumn(dataGridViewAON, 10);
-            lblAddOrAntallSteems.Text = mySql.sumColumn(dataGridViewAON, 11);
-            lblAddOrAntallPrice.Text = mySql.sumColumn(dataGridViewAON, 12);
-            lblAddOrAntallBuckets.Text = mySql.sumColumn(dataGridViewAON, 13);
+            //int i = 0;
+            //while (i < 5)
+            //{
+            //    dataGridViewAON.Columns[i].Visible = false;//TODO Erro when 543 order number
+            //    i++;
+            //}
+            //lblAddOrAntallBoxes.Text = mySql.sumColumn(dataGridViewAON, 10);
+            //lblAddOrAntallSteems.Text = mySql.sumColumn(dataGridViewAON, 11);
+            //lblAddOrAntallPrice.Text = mySql.sumColumn(dataGridViewAON, 12);
+            //lblAddOrAntallBuckets.Text = mySql.sumColumn(dataGridViewAON, 13);
         }
         void createSQLInsert()
         {
