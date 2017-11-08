@@ -110,11 +110,17 @@ namespace INN_CSHARP
             ,orders.arrival
             ,orders.datecode
             ,flowers.variety as 'Variety'
+            ,flowers.sticker_text as 'Sticker text'
             ,farms.farm_name as 'Farm'
             ,flowers.plu as 'PLU'
             ,lengths.length as 'Lenght'
-            ,flowers.pak_rate as 'pak rate'
-            ,orders.boxes
+            ,flowers.mix as 'MIX'
+            ,sleeves.sleeve as 'Sleeve'
+            ,flowers.sleeve_with as 'With sleeves'
+            ,flowers.fairtrade as 'Fairtrade'
+            ,flowers.bunch_pr_bucket as 'Bunch pr bucket'
+              ,flowers.stems_pr_bunch as 'Stems pr bunch'
+
             ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
             , ((SELECT orders.boxes) * (SELECT flowers.pak_rate) / (SELECT flowers.stems_pr_bunch) / (SELECT flowers.bunch_pr_bucket))as buckets
 

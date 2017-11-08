@@ -22,12 +22,6 @@ namespace INN_CSHARP
         
         private void Butikkdata_Load(object sender, EventArgs e)
         {
-
-            
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
             var mySql = new mySql();
             mySql.loadButikk(x);
             dataGridViewTest.DataSource = bindingSourceOrders;
@@ -47,15 +41,13 @@ namespace INN_CSHARP
                         dataGridViewTest2.Rows[Nindex].Cells[j].Value = dataGridViewTest.Rows[i].Cells[j].Value;
                     }
                     Nindex++;
-                    MessageBox.Show("Test");
                 }
                 else
                 {
-                    //MessageBox.Show(dataGridViewTest.Rows[i].Cells["plu"].Value.ToString() + " xx " + dataGridViewTest.Rows[i - 1].Cells["plu"].Value.ToString());
                     if (dataGridViewTest.Rows[i].Cells["plu"].Value.ToString() == dataGridViewTest.Rows[i - 1].Cells["plu"].Value.ToString() & dataGridViewTest.Rows[i].Cells["farm"].Value.ToString() == dataGridViewTest.Rows[i - 1].Cells["farm"].Value.ToString())//if above is the same
                     {
-                        MessageBox.Show("dodaje " + Convert.ToInt32(dataGridViewTest2.Rows[Nindex - 1].Cells[10].Value) + " + " + Convert.ToInt32(dataGridViewTest.Rows[i].Cells[10].Value)+ " czyli "+ (Nindex - 1) + " i  "+ i);
-                        dataGridViewTest2.Rows[Nindex - 1].Cells[10].Value = Convert.ToInt32(dataGridViewTest2.Rows[Nindex - 1].Cells[10].Value) + Convert.ToInt32(dataGridViewTest.Rows[i].Cells[10].Value);
+                        dataGridViewTest2.Rows[Nindex - 1].Cells["stems"].Value = Convert.ToInt32(dataGridViewTest2.Rows[Nindex - 1].Cells["stems"].Value) + Convert.ToInt32(dataGridViewTest.Rows[i].Cells["stems"].Value);
+                        dataGridViewTest2.Rows[Nindex - 1].Cells["buckets"].Value = Convert.ToInt32(dataGridViewTest2.Rows[Nindex - 1].Cells["stems"].Value) / Convert.ToInt32(dataGridViewTest2.Rows[Nindex - 1].Cells["Stems pr bunch"].Value) / Convert.ToInt32(dataGridViewTest2.Rows[Nindex - 1].Cells["Bunch pr bucket"].Value);
                     }
                     else
                     {
@@ -68,6 +60,16 @@ namespace INN_CSHARP
                     }
                 }
             }
+            dataGridViewTest2.Columns[0].Visible = false;
+            dataGridViewTest2.Columns[1].Visible = false;
+            dataGridViewTest2.Columns[2].Visible = false;
+            dataGridViewTest2.Columns[3].Visible = false;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
