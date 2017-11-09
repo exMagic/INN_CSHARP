@@ -46,10 +46,10 @@ namespace INN_CSHARP
             //    dataGridViewAON.Columns[i].Visible = false;//TODO Erro when 543 order number
             //    i++;
             //}
-            //lblAddOrAntallBoxes.Text = mySql.sumColumn(dataGridViewAON, 10);
-            //lblAddOrAntallSteems.Text = mySql.sumColumn(dataGridViewAON, 11);
-            //lblAddOrAntallPrice.Text = mySql.sumColumn(dataGridViewAON, 12);
-            //lblAddOrAntallBuckets.Text = mySql.sumColumn(dataGridViewAON, 13);
+            lblAddOrAntallBoxes.Text = mySql.sumColumn(dataGridViewAON, "boxes");
+            lblAddOrAntallSteems.Text = mySql.sumColumn(dataGridViewAON, "stems");
+            lblAddOrAntallPrice.Text = mySql.sumColumn(dataGridViewAON, "price");
+            lblAddOrAntallBuckets.Text = mySql.sumColumn(dataGridViewAON, "buckets");
         }
         void createSQLInsert()
         {

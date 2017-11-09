@@ -197,7 +197,7 @@ namespace INN_CSHARP
         {
             l.Text = dg.RowCount.ToString();
         }
-        public string sumColumn(DataGridView dg, int col)
+        public string sumColumn(DataGridView dg, string col)
         {
             int sum = 0;
                         for (int i = 0; i < dg.Rows.Count; ++i)
@@ -219,7 +219,7 @@ namespace INN_CSHARP
     }
     public class CB
     {
-        public string cbChange(ComboBox cb, string sqlStatement, Button b, DataGridView dg)
+        public string cbChange(ComboBox cb, string sqlStatement, Button b, DataGridView dg, string table)
         {
             var mySql = new mySql();
             if (cb.SelectedIndex == 0)
@@ -235,7 +235,7 @@ namespace INN_CSHARP
                     if (row.Cells[1].Value.ToString() == cb.SelectedItem.ToString())
                     {
                         selectedFarmId = Convert.ToInt32(row.Cells[0].Value);
-                        sqlStatement = "and farms.farm_id=" + selectedFarmId.ToString();
+                        sqlStatement = table + selectedFarmId.ToString();
                         break;
                     }
                 }

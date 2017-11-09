@@ -116,7 +116,7 @@ namespace INN_CSHARP
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)// FARM FILTER ///////////
         {
             var CB = new CB();
-            whFarm = CB.cbChange(cbFarm, whFarm, btnRemoveFF, dataGridViewFF);
+            whFarm = CB.cbChange(cbFarm, whFarm, btnRemoveFF, dataGridViewFF, "and farms.farm_id=");
             var mySql = new mySql();
             selectionStatement4 = mySql.FlowersMainStatement + whFarm + whLen;
             mySql.GetData(selectionStatement4, bindingSource1);
@@ -126,9 +126,8 @@ namespace INN_CSHARP
         // Flowers - LENGTH FILTER ///////////
         private void cbLength_SelectedIndexChanged(object sender, EventArgs e) // LENGTH FILTER ///////////
         {
-
             var CB = new CB();
-            whLen = CB.cbChange(cbLength, whLen, btnRemoveFL, dataGridViewFL);
+            whLen = CB.cbChange(cbLength, whLen, btnRemoveFL, dataGridViewFL, "and flowers.length_id=");
             var mySql = new mySql();
             selectionStatement4 = mySql.FlowersMainStatement + whFarm + whLen;
             mySql.GetData(selectionStatement4, bindingSource1);

@@ -76,6 +76,8 @@
             this.dataGridViewAON = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblAddOrAntalFl = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.btnSearchFl = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -88,13 +90,6 @@
             this.radioButtonMix2 = new System.Windows.Forms.RadioButton();
             this.radioButtonMix1 = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
-            this.tabControlAddOrder = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lblAddOrAntalFl = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.lblAddOrAntallBoxes = new System.Windows.Forms.Label();
@@ -103,6 +98,11 @@
             this.label20 = new System.Windows.Forms.Label();
             this.lblAddOrAntallPrice = new System.Windows.Forms.Label();
             this.lblAddOrAntallBuckets = new System.Windows.Forms.Label();
+            this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
+            this.tabControlAddOrder = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -590,6 +590,24 @@
             this.panel2.Size = new System.Drawing.Size(553, 648);
             this.panel2.TabIndex = 9;
             // 
+            // lblAddOrAntalFl
+            // 
+            this.lblAddOrAntalFl.AutoSize = true;
+            this.lblAddOrAntalFl.Location = new System.Drawing.Point(71, 596);
+            this.lblAddOrAntalFl.Name = "lblAddOrAntalFl";
+            this.lblAddOrAntalFl.Size = new System.Drawing.Size(25, 13);
+            this.lblAddOrAntalFl.TabIndex = 85;
+            this.lblAddOrAntalFl.Text = "999";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(34, 596);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(36, 13);
+            this.label15.TabIndex = 84;
+            this.label15.Text = "Antall:";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -734,6 +752,78 @@
             this.panel3.Size = new System.Drawing.Size(516, 648);
             this.panel3.TabIndex = 82;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(259, 25);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(77, 13);
+            this.label14.TabIndex = 82;
+            this.label14.Text = "Antall buckets:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(276, 50);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(62, 13);
+            this.label16.TabIndex = 83;
+            this.label16.Text = "Antall price:";
+            // 
+            // lblAddOrAntallBoxes
+            // 
+            this.lblAddOrAntallBoxes.AutoSize = true;
+            this.lblAddOrAntallBoxes.Location = new System.Drawing.Point(342, 100);
+            this.lblAddOrAntallBoxes.Name = "lblAddOrAntallBoxes";
+            this.lblAddOrAntallBoxes.Size = new System.Drawing.Size(10, 13);
+            this.lblAddOrAntallBoxes.TabIndex = 89;
+            this.lblAddOrAntallBoxes.Text = "-";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(264, 75);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(66, 13);
+            this.label18.TabIndex = 84;
+            this.label18.Text = "Antall stems:";
+            // 
+            // lblAddOrAntallSteems
+            // 
+            this.lblAddOrAntallSteems.AutoSize = true;
+            this.lblAddOrAntallSteems.Location = new System.Drawing.Point(342, 75);
+            this.lblAddOrAntallSteems.Name = "lblAddOrAntallSteems";
+            this.lblAddOrAntallSteems.Size = new System.Drawing.Size(10, 13);
+            this.lblAddOrAntallSteems.TabIndex = 88;
+            this.lblAddOrAntallSteems.Text = "-";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(268, 100);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(67, 13);
+            this.label20.TabIndex = 85;
+            this.label20.Text = "Antall boxes:";
+            // 
+            // lblAddOrAntallPrice
+            // 
+            this.lblAddOrAntallPrice.AutoSize = true;
+            this.lblAddOrAntallPrice.Location = new System.Drawing.Point(342, 50);
+            this.lblAddOrAntallPrice.Name = "lblAddOrAntallPrice";
+            this.lblAddOrAntallPrice.Size = new System.Drawing.Size(10, 13);
+            this.lblAddOrAntallPrice.TabIndex = 87;
+            this.lblAddOrAntallPrice.Text = "-";
+            // 
+            // lblAddOrAntallBuckets
+            // 
+            this.lblAddOrAntallBuckets.AutoSize = true;
+            this.lblAddOrAntallBuckets.Location = new System.Drawing.Point(342, 25);
+            this.lblAddOrAntallBuckets.Name = "lblAddOrAntallBuckets";
+            this.lblAddOrAntallBuckets.Size = new System.Drawing.Size(10, 13);
+            this.lblAddOrAntallBuckets.TabIndex = 86;
+            this.lblAddOrAntallBuckets.Text = "-";
+            // 
             // bindingSourceOrders
             // 
             this.bindingSourceOrders.DataSource = typeof(INN_CSHARP.orders);
@@ -780,96 +870,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // lblAddOrAntalFl
-            // 
-            this.lblAddOrAntalFl.AutoSize = true;
-            this.lblAddOrAntalFl.Location = new System.Drawing.Point(71, 596);
-            this.lblAddOrAntalFl.Name = "lblAddOrAntalFl";
-            this.lblAddOrAntalFl.Size = new System.Drawing.Size(25, 13);
-            this.lblAddOrAntalFl.TabIndex = 85;
-            this.lblAddOrAntalFl.Text = "999";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(34, 596);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(36, 13);
-            this.label15.TabIndex = 84;
-            this.label15.Text = "Antall:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(259, 25);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(77, 13);
-            this.label14.TabIndex = 82;
-            this.label14.Text = "Antall buckets:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(276, 50);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(62, 13);
-            this.label16.TabIndex = 83;
-            this.label16.Text = "Antall price:";
-            // 
-            // lblAddOrAntallBoxes
-            // 
-            this.lblAddOrAntallBoxes.AutoSize = true;
-            this.lblAddOrAntallBoxes.Location = new System.Drawing.Point(342, 100);
-            this.lblAddOrAntallBoxes.Name = "lblAddOrAntallBoxes";
-            this.lblAddOrAntallBoxes.Size = new System.Drawing.Size(10, 13);
-            this.lblAddOrAntallBoxes.TabIndex = 89;
-            this.lblAddOrAntallBoxes.Text = "-";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(264, 75);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(72, 13);
-            this.label18.TabIndex = 84;
-            this.label18.Text = "Antall steems:";
-            // 
-            // lblAddOrAntallSteems
-            // 
-            this.lblAddOrAntallSteems.AutoSize = true;
-            this.lblAddOrAntallSteems.Location = new System.Drawing.Point(342, 75);
-            this.lblAddOrAntallSteems.Name = "lblAddOrAntallSteems";
-            this.lblAddOrAntallSteems.Size = new System.Drawing.Size(10, 13);
-            this.lblAddOrAntallSteems.TabIndex = 88;
-            this.lblAddOrAntallSteems.Text = "-";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(268, 100);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(67, 13);
-            this.label20.TabIndex = 85;
-            this.label20.Text = "Antall boxes:";
-            // 
-            // lblAddOrAntallPrice
-            // 
-            this.lblAddOrAntallPrice.AutoSize = true;
-            this.lblAddOrAntallPrice.Location = new System.Drawing.Point(342, 50);
-            this.lblAddOrAntallPrice.Name = "lblAddOrAntallPrice";
-            this.lblAddOrAntallPrice.Size = new System.Drawing.Size(10, 13);
-            this.lblAddOrAntallPrice.TabIndex = 87;
-            this.lblAddOrAntallPrice.Text = "-";
-            // 
-            // lblAddOrAntallBuckets
-            // 
-            this.lblAddOrAntallBuckets.AutoSize = true;
-            this.lblAddOrAntallBuckets.Location = new System.Drawing.Point(342, 25);
-            this.lblAddOrAntallBuckets.Name = "lblAddOrAntallBuckets";
-            this.lblAddOrAntallBuckets.Size = new System.Drawing.Size(10, 13);
-            this.lblAddOrAntallBuckets.TabIndex = 86;
-            this.lblAddOrAntallBuckets.Text = "-";
             // 
             // AddOr
             // 
