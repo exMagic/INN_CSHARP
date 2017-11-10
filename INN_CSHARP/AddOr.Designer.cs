@@ -94,7 +94,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.lblAddOrAntallBoxes = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.lblAddOrAntallSteems = new System.Windows.Forms.Label();
+            this.lblAddOrAntallStems = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.lblAddOrAntallPrice = new System.Windows.Forms.Label();
             this.lblAddOrAntallBuckets = new System.Windows.Forms.Label();
@@ -293,6 +293,8 @@
             this.dataGridViewOA.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewOA.Size = new System.Drawing.Size(491, 396);
             this.dataGridViewOA.TabIndex = 71;
+            this.dataGridViewOA.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOA_CellContentDoubleClick);
+            this.dataGridViewOA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridViewOA_KeyPress);
             // 
             // btnRemoveAOS
             // 
@@ -734,7 +736,7 @@
             this.panel3.Controls.Add(this.label16);
             this.panel3.Controls.Add(this.lblAddOrAntallBoxes);
             this.panel3.Controls.Add(this.label18);
-            this.panel3.Controls.Add(this.lblAddOrAntallSteems);
+            this.panel3.Controls.Add(this.lblAddOrAntallStems);
             this.panel3.Controls.Add(this.label20);
             this.panel3.Controls.Add(this.lblAddOrAntallPrice);
             this.panel3.Controls.Add(this.lblAddOrAntallBuckets);
@@ -788,14 +790,14 @@
             this.label18.TabIndex = 84;
             this.label18.Text = "Antall stems:";
             // 
-            // lblAddOrAntallSteems
+            // lblAddOrAntallStems
             // 
-            this.lblAddOrAntallSteems.AutoSize = true;
-            this.lblAddOrAntallSteems.Location = new System.Drawing.Point(342, 75);
-            this.lblAddOrAntallSteems.Name = "lblAddOrAntallSteems";
-            this.lblAddOrAntallSteems.Size = new System.Drawing.Size(10, 13);
-            this.lblAddOrAntallSteems.TabIndex = 88;
-            this.lblAddOrAntallSteems.Text = "-";
+            this.lblAddOrAntallStems.AutoSize = true;
+            this.lblAddOrAntallStems.Location = new System.Drawing.Point(342, 75);
+            this.lblAddOrAntallStems.Name = "lblAddOrAntallStems";
+            this.lblAddOrAntallStems.Size = new System.Drawing.Size(10, 13);
+            this.lblAddOrAntallStems.TabIndex = 88;
+            this.lblAddOrAntallStems.Text = "-";
             // 
             // label20
             // 
@@ -982,7 +984,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lblAddOrAntallBoxes;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label lblAddOrAntallSteems;
+        private System.Windows.Forms.Label lblAddOrAntallStems;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label lblAddOrAntallPrice;
         private System.Windows.Forms.Label lblAddOrAntallBuckets;

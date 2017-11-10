@@ -227,7 +227,7 @@ namespace INN_CSHARP
              * length 7
              * pak_rate 8
              * boxes 9
-             * steems 10
+             * stems 10
              * buckets 11
             */
             dataGridViewO1.Columns[0].Visible = false; //order_id
@@ -240,25 +240,28 @@ namespace INN_CSHARP
             dataGridViewO1.Columns[7].DisplayIndex = 7; //length
             dataGridViewO1.Columns[8].DisplayIndex = 8; //pak_rate
             dataGridViewO1.Columns[9].DisplayIndex = 9; //boxes
-            dataGridViewO1.Columns[10].DisplayIndex = 10; //steems
+            dataGridViewO1.Columns[10].DisplayIndex = 10; //stems
             dataGridViewO1.Columns[11].DisplayIndex = 11; //buckets
 
-            lblDeparture.Text = dataGridViewO1.Rows[0].Cells[1].Value.ToString();
-            lblArrival.Text = dataGridViewO1.Rows[0].Cells[2].Value.ToString();
+            lblDeparture.Text = dataGridViewO1.Rows[0].Cells[1].Value.ToString().Substring(0, 10);
+            lblArrival.Text = dataGridViewO1.Rows[0].Cells[2].Value.ToString().Substring(0, 10);
             lblDatecode.Text = dataGridViewO1.Rows[0].Cells[3].Value.ToString();
 
             int sumBoxes = 0;
-            int sumSteems = 0;
+            int sumStems = 0;
             int sumBucket = 0;
+            decimal sumPrice = 0;
             for (int i = 0; i < dataGridViewO1.Rows.Count; ++i)
             {
-                sumBoxes += Convert.ToInt32(dataGridViewO1.Rows[i].Cells[9].Value);
-                sumSteems += Convert.ToInt32(dataGridViewO1.Rows[i].Cells[10].Value);
-                sumBucket += Convert.ToInt32(dataGridViewO1.Rows[i].Cells[11].Value);
+                sumBoxes += Convert.ToInt32(dataGridViewO1.Rows[i].Cells["boxes"].Value);
+                sumStems += Convert.ToInt32(dataGridViewO1.Rows[i].Cells["stems"].Value);
+                sumBucket += Convert.ToInt32(dataGridViewO1.Rows[i].Cells["buckets"].Value);
+                sumPrice += Convert.ToDecimal(dataGridViewO1.Rows[i].Cells["price"].Value);
             }
             lblAmountBoxes.Text = sumBoxes.ToString();
-            lblAmountSteems.Text = sumSteems.ToString();
+            lblAmountStems.Text = sumStems.ToString();
             lblAmountBuckets.Text = sumBucket.ToString();
+            lblAmountPrice.Text = sumPrice.ToString();
         }
 
         private void btnAddOr_Click(object sender, EventArgs e)

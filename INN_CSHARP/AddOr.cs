@@ -14,7 +14,7 @@ namespace INN_CSHARP
 {
     public partial class AddOr : Form
     {
-        //TODO: 4 labeles like antall buckets fob steems boxes
+        //TODO: 4 labeles like antall buckets fob stems boxes
         public AddOr()
         {
             InitializeComponent();
@@ -29,27 +29,25 @@ namespace INN_CSHARP
         string date_created;
         string insertFltoOrder;
         string selectOrder;
-        private void btnAdd_Click(object sender, EventArgs e)
+
+        void addFlowerToOrder()
         {
             //TODO: check if fl_id is not exist in that order
             var mySql = new mySql();
             createSQLSelelct();
             createSQLInsert();
-
             mySql.GetData(insertFltoOrder, bindingSourceOrders);
             dataGridViewAON.DataSource = bindingSourceOrders;
             mySql.GetData(selectOrder, bindingSourceOrders);
             dataGridViewAON.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //int i = 0;
-            //while (i < 5)
-            //{
-            //    dataGridViewAON.Columns[i].Visible = false;//TODO Erro when 543 order number
-            //    i++;
-            //}
             lblAddOrAntallBoxes.Text = mySql.sumColumn(dataGridViewAON, "boxes");
-            lblAddOrAntallSteems.Text = mySql.sumColumn(dataGridViewAON, "stems");
+            lblAddOrAntallStems.Text = mySql.sumColumn(dataGridViewAON, "stems");
             lblAddOrAntallPrice.Text = mySql.sumColumn(dataGridViewAON, "price");
             lblAddOrAntallBuckets.Text = mySql.sumColumn(dataGridViewAON, "buckets");
+        }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            addFlowerToOrder();
         }
         void createSQLInsert()
         {
@@ -175,6 +173,7 @@ namespace INN_CSHARP
             mySql.GetData(CBselect, bindingSource1);
             mySql.updateAntall(lblAddOrAntalFl, dataGridViewOA);
         }
+        
         private void btnSaveOrder_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtOrderNumber.Text)) MessageBox.Show("Legg in Ordrenummer", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -342,10 +341,27 @@ namespace INN_CSHARP
             }
         }
 
+        private void dataGridViewOA_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            int i = dataGridViewOA.CurrentRow.Index;
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                dataGridViewOA.CurrentCell = dataGridViewOA.Rows[i-1].Cells[5];
+                e.Handled = true;
+                addFlowerToOrder();
+                //dataGridView1.CurrentCell = dataGridView1.Rows[newRow].Cells[newColumn];
+            }
+
+            
 
 
+        }
 
-        
-
+        private void dataGridViewOA_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("Test");
+            addFlowerToOrder();
+        }
     }
 }

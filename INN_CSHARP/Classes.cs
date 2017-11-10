@@ -80,7 +80,7 @@ namespace INN_CSHARP
              * length 7
              * pak_rate 8
              * boxes 9
-             * steems 10
+             * stems 10
              * buckets 11
             */
             loadOrdersStatement = @"
@@ -94,8 +94,10 @@ namespace INN_CSHARP
             ,flowers.plu as 'PLU'
             ,lengths.length as 'Lenght'
             ,flowers.pak_rate as 'pak rate'
+            ,flowers.fob as 'FOB'
             ,orders.boxes
             ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
+            ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) * (SELECT flowers.fob) as price
             , ((SELECT orders.boxes) * (SELECT flowers.pak_rate) / (SELECT flowers.stems_pr_bunch) / (SELECT flowers.bunch_pr_bucket))as buckets
           FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY farm_name, length";
@@ -119,9 +121,10 @@ namespace INN_CSHARP
             ,flowers.sleeve_with as 'With sleeves'
             ,flowers.fairtrade as 'Fairtrade'
             ,flowers.bunch_pr_bucket as 'Bunch pr bucket'
-              ,flowers.stems_pr_bunch as 'Stems pr bunch'
-
+              ,flowers.stems_pr_bunch as 'Stems pr bunch',flowers.stems_pr_bunch as 'Stems pr bunch'
+            ,orders.boxes as 'Boxes'
             ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
+        ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) * (SELECT flowers.fob) as price
             , ((SELECT orders.boxes) * (SELECT flowers.pak_rate) / (SELECT flowers.stems_pr_bunch) / (SELECT flowers.bunch_pr_bucket))as buckets
 
           FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
@@ -167,6 +170,28 @@ namespace INN_CSHARP
             while (DR.Read()) cb.Items.Add(DR[0]);
             cb.SelectedIndex = 0;
             conn.Close();
+        }
+        public void fillupLabels(Label a1, Label a2, Label a3, Label a4, Label a5, Label a6, Label a7, DataGridView dg)
+        {
+            a1.Text = dg.Rows[0].Cells[1].Value.ToString().Substring(0, 10);
+            a2.Text = dg.Rows[0].Cells[2].Value.ToString().Substring(0, 10);
+            a3.Text = dg.Rows[0].Cells[3].Value.ToString();
+
+            int sumBoxes = 0;
+            int sumStems = 0;
+            int sumBucket = 0;
+            decimal sumPrice = 0;
+            for (int i = 0; i < dg.Rows.Count; ++i)
+            {
+                sumBoxes += Convert.ToInt32(dg.Rows[i].Cells["boxes"].Value);
+                sumStems += Convert.ToInt32(dg.Rows[i].Cells["stems"].Value);
+                sumBucket += Convert.ToInt32(dg.Rows[i].Cells["buckets"].Value);
+                sumPrice += Convert.ToDecimal(dg.Rows[i].Cells["price"].Value);
+            }
+            a4.Text = sumBoxes.ToString();
+            a5.Text = sumStems.ToString();
+            a6.Text = sumBucket.ToString();
+            a7.Text = sumPrice.ToString();
         }
         
         public string findCbValue(ComboBox cb, string wh, Button bt, DataGridView dgv, string sqlCondition, TextBox t)

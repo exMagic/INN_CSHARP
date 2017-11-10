@@ -55,13 +55,16 @@
             this.btnFEdit = new System.Windows.Forms.Button();
             this.btnFDelete = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.lblAmountPrice = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnButikkdata = new System.Windows.Forms.Button();
             this.btnAddOr = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.lblAmountBuckets = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.lblAmountSteems = new System.Windows.Forms.Label();
+            this.lblAmountStems = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblAmountBoxes = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -87,7 +90,6 @@
             this.bindingSourceFarms = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
-            this.btnButikkdata = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFlMain)).BeginInit();
@@ -430,6 +432,8 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.lblAmountPrice);
+            this.tabPage6.Controls.Add(this.label12);
             this.tabPage6.Controls.Add(this.btnButikkdata);
             this.tabPage6.Controls.Add(this.btnAddOr);
             this.tabPage6.Controls.Add(this.button7);
@@ -437,7 +441,7 @@
             this.tabPage6.Controls.Add(this.button9);
             this.tabPage6.Controls.Add(this.lblAmountBuckets);
             this.tabPage6.Controls.Add(this.label11);
-            this.tabPage6.Controls.Add(this.lblAmountSteems);
+            this.tabPage6.Controls.Add(this.lblAmountStems);
             this.tabPage6.Controls.Add(this.label10);
             this.tabPage6.Controls.Add(this.lblAmountBoxes);
             this.tabPage6.Controls.Add(this.label9);
@@ -457,6 +461,34 @@
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
             this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
+            // 
+            // lblAmountPrice
+            // 
+            this.lblAmountPrice.AutoSize = true;
+            this.lblAmountPrice.Location = new System.Drawing.Point(726, 70);
+            this.lblAmountPrice.Name = "lblAmountPrice";
+            this.lblAmountPrice.Size = new System.Drawing.Size(10, 13);
+            this.lblAmountPrice.TabIndex = 34;
+            this.lblAmountPrice.Text = "-";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(658, 70);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(62, 13);
+            this.label12.TabIndex = 33;
+            this.label12.Text = "Antall price:";
+            // 
+            // btnButikkdata
+            // 
+            this.btnButikkdata.Location = new System.Drawing.Point(21, 188);
+            this.btnButikkdata.Name = "btnButikkdata";
+            this.btnButikkdata.Size = new System.Drawing.Size(121, 33);
+            this.btnButikkdata.TabIndex = 32;
+            this.btnButikkdata.Text = "Butikkdata";
+            this.btnButikkdata.UseVisualStyleBackColor = true;
+            this.btnButikkdata.Click += new System.EventHandler(this.btnButkikkdata_Click);
             // 
             // btnAddOr
             // 
@@ -530,52 +562,52 @@
             // lblAmountBuckets
             // 
             this.lblAmountBuckets.AutoSize = true;
-            this.lblAmountBuckets.Location = new System.Drawing.Point(715, 137);
+            this.lblAmountBuckets.Location = new System.Drawing.Point(726, 44);
             this.lblAmountBuckets.Name = "lblAmountBuckets";
-            this.lblAmountBuckets.Size = new System.Drawing.Size(35, 13);
+            this.lblAmountBuckets.Size = new System.Drawing.Size(10, 13);
             this.lblAmountBuckets.TabIndex = 27;
-            this.lblAmountBuckets.Text = "label8";
+            this.lblAmountBuckets.Text = "-";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(641, 137);
+            this.label11.Location = new System.Drawing.Point(643, 44);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 13);
             this.label11.TabIndex = 26;
             this.label11.Text = "Antall buckets:";
             // 
-            // lblAmountSteems
+            // lblAmountStems
             // 
-            this.lblAmountSteems.AutoSize = true;
-            this.lblAmountSteems.Location = new System.Drawing.Point(716, 116);
-            this.lblAmountSteems.Name = "lblAmountSteems";
-            this.lblAmountSteems.Size = new System.Drawing.Size(35, 13);
-            this.lblAmountSteems.TabIndex = 25;
-            this.lblAmountSteems.Text = "label8";
+            this.lblAmountStems.AutoSize = true;
+            this.lblAmountStems.Location = new System.Drawing.Point(726, 98);
+            this.lblAmountStems.Name = "lblAmountStems";
+            this.lblAmountStems.Size = new System.Drawing.Size(10, 13);
+            this.lblAmountStems.TabIndex = 25;
+            this.lblAmountStems.Text = "-";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(649, 116);
+            this.label10.Location = new System.Drawing.Point(648, 96);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 13);
+            this.label10.Size = new System.Drawing.Size(66, 13);
             this.label10.TabIndex = 24;
-            this.label10.Text = "Antall steems:";
+            this.label10.Text = "Antall stems:";
             // 
             // lblAmountBoxes
             // 
             this.lblAmountBoxes.AutoSize = true;
-            this.lblAmountBoxes.Location = new System.Drawing.Point(716, 92);
+            this.lblAmountBoxes.Location = new System.Drawing.Point(726, 122);
             this.lblAmountBoxes.Name = "lblAmountBoxes";
-            this.lblAmountBoxes.Size = new System.Drawing.Size(35, 13);
+            this.lblAmountBoxes.Size = new System.Drawing.Size(10, 13);
             this.lblAmountBoxes.TabIndex = 23;
-            this.lblAmountBoxes.Text = "label8";
+            this.lblAmountBoxes.Text = "-";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(649, 92);
+            this.label9.Location = new System.Drawing.Point(649, 122);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 13);
             this.label9.TabIndex = 22;
@@ -822,16 +854,6 @@
             // 
             this.bindingSourceOrders.DataSource = typeof(INN_CSHARP.orders);
             // 
-            // btnButikkdata
-            // 
-            this.btnButikkdata.Location = new System.Drawing.Point(21, 188);
-            this.btnButikkdata.Name = "btnButikkdata";
-            this.btnButikkdata.Size = new System.Drawing.Size(121, 33);
-            this.btnButikkdata.TabIndex = 32;
-            this.btnButikkdata.Text = "Butikkdata";
-            this.btnButikkdata.UseVisualStyleBackColor = true;
-            this.btnButikkdata.Click += new System.EventHandler(this.btnButkikkdata_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -917,7 +939,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblAmountBoxes;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblAmountSteems;
+        private System.Windows.Forms.Label lblAmountStems;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblAmountBuckets;
         private System.Windows.Forms.Label label11;
@@ -931,6 +953,8 @@
         private System.Windows.Forms.DataGridView dataGridViewTest;
         private System.Windows.Forms.DataGridView dataGridViewTest2;
         private System.Windows.Forms.Button btnButikkdata;
+        private System.Windows.Forms.Label lblAmountPrice;
+        private System.Windows.Forms.Label label12;
     }
 }
 
