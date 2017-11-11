@@ -107,7 +107,7 @@ namespace INN_CSHARP
         {
             loadButikkStatement = @"
         SELECT
-            orders.order_id
+            orders.order_number
             ,orders.departure
             ,orders.arrival
             ,orders.datecode
@@ -171,8 +171,9 @@ namespace INN_CSHARP
             cb.SelectedIndex = 0;
             conn.Close();
         }
-        public void fillupLabels(Label a1, Label a2, Label a3, Label a4, Label a5, Label a6, Label a7, DataGridView dg)
+        public void fillupLabels(Label a0, Label a1, Label a2, Label a3, Label a4, Label a5, Label a6, Label a7, DataGridView dg)
         {
+            a0.Text = dg.Rows[0].Cells[0].Value.ToString();
             a1.Text = dg.Rows[0].Cells[1].Value.ToString().Substring(0, 10);
             a2.Text = dg.Rows[0].Cells[2].Value.ToString().Substring(0, 10);
             a3.Text = dg.Rows[0].Cells[3].Value.ToString();

@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Butikkdata));
             this.dataGridViewTest = new System.Windows.Forms.DataGridView();
             this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTest2 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnButikkExport = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblAmountPrice = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -51,10 +52,17 @@
             this.lblDeparture = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnButikkSkriv = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.lblOrdreNumber = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTest2)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewTest
@@ -66,14 +74,14 @@
             this.dataGridViewTest.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dataGridViewTest.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewTest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTest.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTest.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTest.GridColor = System.Drawing.Color.DarkGray;
             this.dataGridViewTest.Location = new System.Drawing.Point(9, 599);
             this.dataGridViewTest.Name = "dataGridViewTest";
@@ -96,14 +104,14 @@
             this.dataGridViewTest2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dataGridViewTest2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewTest2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTest2.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTest2.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTest2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewTest2.GridColor = System.Drawing.Color.DarkGray;
             this.dataGridViewTest2.Location = new System.Drawing.Point(0, 0);
@@ -113,15 +121,15 @@
             this.dataGridViewTest2.Size = new System.Drawing.Size(814, 610);
             this.dataGridViewTest2.TabIndex = 3;
             // 
-            // button1
+            // btnButikkExport
             // 
-            this.button1.Location = new System.Drawing.Point(9, 232);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 50);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Eksportere til Excel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnButikkExport.Location = new System.Drawing.Point(9, 232);
+            this.btnButikkExport.Name = "btnButikkExport";
+            this.btnButikkExport.Size = new System.Drawing.Size(92, 50);
+            this.btnButikkExport.TabIndex = 4;
+            this.btnButikkExport.Text = "Eksportere til Excel";
+            this.btnButikkExport.UseVisualStyleBackColor = true;
+            this.btnButikkExport.Click += new System.EventHandler(this.btnButikkExport_Click);
             // 
             // panel1
             // 
@@ -261,11 +269,67 @@
             // 
             this.saveFileDialog1.Filter = "Excel Files (*.xlsx)|*.xlsx";
             // 
+            // btnButikkSkriv
+            // 
+            this.btnButikkSkriv.Location = new System.Drawing.Point(9, 297);
+            this.btnButikkSkriv.Name = "btnButikkSkriv";
+            this.btnButikkSkriv.Size = new System.Drawing.Size(92, 50);
+            this.btnButikkSkriv.TabIndex = 49;
+            this.btnButikkSkriv.Text = "Skriv ut";
+            this.btnButikkSkriv.UseVisualStyleBackColor = true;
+            this.btnButikkSkriv.Click += new System.EventHandler(this.btnButikkSkriv_Click);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // lblOrdreNumber
+            // 
+            this.lblOrdreNumber.AutoSize = true;
+            this.lblOrdreNumber.Location = new System.Drawing.Point(84, 12);
+            this.lblOrdreNumber.Name = "lblOrdreNumber";
+            this.lblOrdreNumber.Size = new System.Drawing.Size(10, 13);
+            this.lblOrdreNumber.TabIndex = 51;
+            this.lblOrdreNumber.Text = "-";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 13);
+            this.label2.TabIndex = 50;
+            this.label2.Text = "Ordre nummer:";
+            // 
+            // picLogo
+            // 
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.Location = new System.Drawing.Point(9, 561);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(240, 61);
+            this.picLogo.TabIndex = 52;
+            this.picLogo.TabStop = false;
+            this.picLogo.Visible = false;
+            // 
             // Butikkdata
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 634);
+            this.Controls.Add(this.picLogo);
+            this.Controls.Add(this.lblOrdreNumber);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnButikkSkriv);
             this.Controls.Add(this.lblAmountPrice);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.lblAmountBuckets);
@@ -281,7 +345,7 @@
             this.Controls.Add(this.lblDeparture);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnButikkExport);
             this.Controls.Add(this.dataGridViewTest);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -294,6 +358,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTest2)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,7 +368,7 @@
         private System.Windows.Forms.DataGridView dataGridViewTest;
         private System.Windows.Forms.BindingSource bindingSourceOrders;
         private System.Windows.Forms.DataGridView dataGridViewTest2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnButikkExport;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblAmountPrice;
         private System.Windows.Forms.Label label12;
@@ -320,5 +385,11 @@
         private System.Windows.Forms.Label lblDeparture;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button btnButikkSkriv;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.Label lblOrdreNumber;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox picLogo;
     }
 }

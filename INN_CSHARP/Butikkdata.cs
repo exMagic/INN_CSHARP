@@ -67,12 +67,12 @@ namespace INN_CSHARP
             dataGridViewTest2.Columns[2].Visible = false;
             dataGridViewTest2.Columns[3].Visible = false;
 
-            mySql.fillupLabels(lblDeparture, lblArrival, lblDatecode, lblAmountBoxes, lblAmountStems, lblAmountBuckets, lblAmountPrice, dataGridViewTest2);
+            mySql.fillupLabels(lblOrdreNumber, lblDeparture, lblArrival, lblDatecode, lblAmountBoxes, lblAmountStems, lblAmountBuckets, lblAmountPrice, dataGridViewTest2);
 
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnButikkExport_Click(object sender, EventArgs e)
         {
             _Application excel = new Microsoft.Office.Interop.Excel.Application();
             _Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -81,6 +81,8 @@ namespace INN_CSHARP
             {
                 worksheet = workbook.ActiveSheet;
                 worksheet.Name = "Butikkdata_order_ " + lblDatecode.Text;
+                worksheet.Range["A1"].Value2 = "Ordre nummer:";
+                worksheet.Range["B1"].Value2 = lblOrdreNumber.Text.ToString();
                 worksheet.Range["A2"].Value2 = "Departure:";
                 worksheet.Range["B2"].Value2 = lblDeparture.Text.ToString();
                 worksheet.Range["A3"].Value2 = "Arrival:";
@@ -110,7 +112,7 @@ namespace INN_CSHARP
                 worksheet.Range[string.Format("L{0}:O{1}", lastRow.ToString(), lastRow.ToString())].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
                 worksheet.Columns[1].ColumnWidth = 40;
                 worksheet.Rows[6].Font.Bold = true;
-                worksheet.Range["A2:B4"].Font.Bold = true;
+                worksheet.Range["A1:B4"].Font.Bold = true;
                 string file = @"C:\innkjop\butikk_orders\butikkdata_order_" + lblDatecode.Text.ToString() + ".xlsx";
                 workbook.SaveAs(file);
                 Process.Start("excel.exe", file);
@@ -127,7 +129,30 @@ namespace INN_CSHARP
             }
         }
 
+        private void btnButikkSkriv_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.ShowDialog();
+        }
 
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            var drawPoint = new PointF(150.0F, 150.0F);
+            var drawFont = new System.Drawing.Font("Arial", 16);
+            var drawBrush = new SolidBrush(Color.Black);
+            string s1 = "Ordre nummer: " + lblOrdreNumber.Text.ToString();
+            var drawPoint1 = new PointF(150.0F, 150.0F);
+            e.Graphics.DrawString(s1, drawFont, drawBrush, drawPoint1);
 
+            string s2 = "Antall boxes: " + lblAmountBoxes.Text.ToString();
+            var drawPoint2 = new PointF(150.0F, 190.0F);
+            e.Graphics.DrawString(s2, drawFont, drawBrush, drawPoint2);
+
+            string s3 = "Table view coming soon";
+            var drawPoint3 = new PointF(150.0F, 300.0F);
+            e.Graphics.DrawString(s3, drawFont, drawBrush, drawPoint3);
+            var drawPoint4 = new PointF(150.0F, 50.0F);
+            e.Graphics.DrawImage(picLogo.Image, drawPoint4);
+        }
     }
 }
