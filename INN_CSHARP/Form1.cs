@@ -25,18 +25,17 @@ namespace INN_CSHARP
         public Form1()
         {
             InitializeComponent();
-
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
             var mySql = new mySql();
-            resBtn();
-            Color _leftBG = System.Drawing.ColorTranslator.FromHtml("#3b3a3f");
-            pictureBox1.BackColor = _leftBG;
-            Color _selected = System.Drawing.ColorTranslator.FromHtml("#2a292e");
+            var menu = new Design();
+            menu.resBtn(button1, button2, button3, button4, menuArrow1, menuArrow2, menuArrow3, menuArrow4);
+            Color _selected = System.Drawing.ColorTranslator.FromHtml("#243240");
             button1.BackColor = _selected;
+            menuArrow1.Visible = true;
             dataGridViewFL.DataSource = bindingSource3;
             mySql.GetData(mySql.loadLengthsStatement, bindingSource3);
             dataGridViewFF.DataSource = bindingSourceFarms;
@@ -78,37 +77,37 @@ namespace INN_CSHARP
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
         }
         ///////////////////////  MENU  //////////////////////////////////////////////////////////////////////
-        public void resBtn()
-        {
-            Color _leftBG = System.Drawing.ColorTranslator.FromHtml("#3b3a3f");
-            button1.BackColor = _leftBG;
-            button2.BackColor = _leftBG;
-            button3.BackColor = _leftBG;
-            button4.BackColor = _leftBG;
-        }
+        //public void resBtn()
+        //{
+        //    Color _leftBG = System.Drawing.ColorTranslator.FromHtml("#2c3e50");
+        //    button1.BackColor = _leftBG;
+        //    button2.BackColor = _leftBG;
+        //    button3.BackColor = _leftBG;
+        //    button4.BackColor = _leftBG;
+        //}
         private void button1_Click(object sender, EventArgs e)
         {
-            resBtn();
             var menu = new Design();
-            menu.colorBtn(button1, tabControl1, 0);
+            menu.resBtn(button1, button2, button3, button4, menuArrow1, menuArrow2, menuArrow3, menuArrow4);
+            menu.colorBtn(button1, tabControl1, 0, menuArrow1);
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            resBtn();
             var menu = new Design();
-            menu.colorBtn(button2, tabControl1, 1);
+            menu.resBtn(button1, button2, button3, button4, menuArrow1, menuArrow2, menuArrow3, menuArrow4);
+            menu.colorBtn(button2, tabControl1, 1, menuArrow2);
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            resBtn();
             var menu = new Design();
-            menu.colorBtn(button3, tabControl1, 2);
+            menu.resBtn(button1, button2, button3, button4, menuArrow1, menuArrow2, menuArrow3, menuArrow4);
+            menu.colorBtn(button3, tabControl1, 2, menuArrow3);
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            resBtn();
             var menu = new Design();
-            menu.colorBtn(button4, tabControl1, 3);
+            menu.resBtn(button1, button2, button3, button4, menuArrow1, menuArrow2, menuArrow3, menuArrow4);
+            menu.colorBtn(button4, tabControl1, 3, menuArrow4);
         }
         /////////////////////// END MENU  //////////////////////////////////////////////////////////////////////
 
@@ -342,7 +341,84 @@ namespace INN_CSHARP
             Butikkdata frm = new Butikkdata(Convert.ToInt32(cbOrders.SelectedItem));
             frm.Show();
         }
-       
 
+        private void txtTopSearch_Click(object sender, EventArgs e)
+        {
+            txtTopSearch.Text = "";
+        }
+
+        private void txtTopSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                e.Handled = true;
+                MessageBox.Show("You are trying search \"" + txtTopSearch.Text.ToString() + "\", but search engine is not ready yet... Sorry :)", "Coming soon", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                button1.Focus();
+                txtTopSearch.Text = "Søk";
+            }
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            btnClose.Visible = !btnClose.Visible;
+            panel2.Visible = false;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnClose_MouseLeave(object sender, EventArgs e)
+        {
+            btnClose.Visible = false;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            panel2.Visible = false;
+            MessageBox.Show("Notifications system is not ready yet", "Coming soon", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+
+
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = !panel2.Visible;
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            btnClose.Visible = false;
+        }
+        private void pictureBox3_MouseEnter(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            btnClose.Visible = false;
+        }
+        private void tabPage5_MouseEnter(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            btnClose.Visible = false;
+        }
+
+        private void tabPage8_MouseEnter(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            btnClose.Visible = false;
+        }
+
+        private void tabPage7_MouseEnter(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            btnClose.Visible = false;
+        }
+
+        private void tabPage6_MouseEnter(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            btnClose.Visible = false;
+        }
     }
 }

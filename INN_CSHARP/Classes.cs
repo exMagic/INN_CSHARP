@@ -236,11 +236,24 @@ namespace INN_CSHARP
     }
     public class Design
     {
-        public void colorBtn(Button b, TabControl t, int index)
+        public void colorBtn(Button b, TabControl t, int index, PictureBox p)
         {
-            Color _selected = System.Drawing.ColorTranslator.FromHtml("#2a292e");
+            Color _selected = System.Drawing.ColorTranslator.FromHtml("#243240");
             b.BackColor = _selected;
             t.SelectedIndex = index;
+            p.Visible = true;
+        }
+        public void resBtn(Button b1, Button b2, Button b3, Button b4, PictureBox p1, PictureBox p2, PictureBox p3, PictureBox p4)
+        {
+            Color _leftBG = System.Drawing.ColorTranslator.FromHtml("#2c3e50");
+            b1.BackColor = _leftBG;
+            b2.BackColor = _leftBG;
+            b3.BackColor = _leftBG;
+            b4.BackColor = _leftBG;
+            p1.Visible = false;
+            p2.Visible = false;
+            p3.Visible = false;
+            p4.Visible = false;
         }
     }
     public class CB
