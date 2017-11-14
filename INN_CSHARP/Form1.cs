@@ -20,6 +20,7 @@ namespace INN_CSHARP
         public string whFarm;
         public string whLen;
         public string selectionStatement4;
+        bool loaded = false;
 
 
         public Form1()
@@ -43,8 +44,41 @@ namespace INN_CSHARP
 
             dataGridViewFlMain.DataSource = bindingSource1;
             mySql.GetData(mySql.FlowersMainStatement, bindingSource1);
+
             dataGridViewFlMain.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewFlMain.Columns[0].Visible = false;
+
+           // flowers.fl_id
+           //   ,flowers.variety as 'Variety'
+           //   ,flowers.sticker_text as 'Sticker text'
+           //   ,colours.colour as 'Colour'
+           //   ,flowers.plu as 'PLU'
+
+           //   ,farms.farm_name as 'Farm'
+           //   ,lengths.length as 'Lenght'
+
+           //,flowers.mix as 'MIX'
+
+           //   ,sleeves.sleeve as 'Sleeve'
+           //     ,flowers.sleeve_with as 'With sleeves'
+           //   ,flowers.fob as 'FOB'
+           //   ,flowers.fairtrade as 'Fairtrade'
+           //   ,flowers.bunch_pr_bucket as 'Bunch pr bucket'
+           //   ,flowers.stems_pr_bunch as 'Stems pr bunch'
+           //   ,flowers.pak_rate as 'pak rate'
+
+
+            dataGridViewFlMain.Columns["fl_id"].Visible = false;
+            dataGridViewFlMain.Columns["Variety"].Width = 100;
+
+            dataGridViewFlMain.Columns["Sticker text"].Visible = false;
+            dataGridViewFlMain.Columns["Colour"].Width = 60;
+            dataGridViewFlMain.Columns["PLU"].Width = 40;
+            dataGridViewFlMain.Columns["Farm"].Width = 40;
+            //dataGridViewFlMain.Columns["mix"].Visible = false;
+            dataGridViewFlMain.Columns["Sleeve"].Visible = false;
+            //dataGridViewFlMain.Columns["With sleeves"].Visible = false;
+            dataGridViewFlMain.Columns["fob"].Visible = false;
+
             tabControl1.Appearance = TabAppearance.Buttons;
             tabControl1.ItemSize = new Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
@@ -75,6 +109,7 @@ namespace INN_CSHARP
             cbLength.SelectedIndex = 0;
             conn.Close();
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
+            loaded = true;
         }
         ///////////////////////  MENU  //////////////////////////////////////////////////////////////////////
         //public void resBtn()
@@ -215,20 +250,7 @@ namespace INN_CSHARP
             dataGridViewO1.DataSource = bindingSourceOrders;
             mySql.GetData(mySql.loadOrdersStatement, bindingSourceOrders);
             dataGridViewO1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            /*
-             * order_id 0
-             * departure 1
-             * arrival 2
-             * datecode 3
-             * variety 4
-             * farm_name 5
-             * plu 6
-             * length 7
-             * pak_rate 8
-             * boxes 9
-             * stems 10
-             * buckets 11
-            */
+
             dataGridViewO1.Columns[0].Visible = false; //order_id
             dataGridViewO1.Columns[1].Visible = false; //departure
             dataGridViewO1.Columns[2].Visible = false; //arrival
@@ -361,7 +383,7 @@ namespace INN_CSHARP
         private void pictureBox5_Click(object sender, EventArgs e)
         {
             btnClose.Visible = !btnClose.Visible;
-            panel2.Visible = false;
+            PnNotifi.Visible = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -376,7 +398,7 @@ namespace INN_CSHARP
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            panel2.Visible = false;
+            PnNotifi.Visible = false;
             MessageBox.Show("Notifications system is not ready yet", "Coming soon", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
 
 
@@ -384,41 +406,65 @@ namespace INN_CSHARP
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            panel2.Visible = !panel2.Visible;
+            PnNotifi.Visible = !PnNotifi.Visible;
+            PnNotifi.Height = 215;
         }
 
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
         {
-            panel2.Visible = false;
+            PnNotifi.Visible = false;
             btnClose.Visible = false;
         }
         private void pictureBox3_MouseEnter(object sender, EventArgs e)
         {
-            panel2.Visible = false;
+            PnNotifi.Visible = false;
             btnClose.Visible = false;
         }
         private void tabPage5_MouseEnter(object sender, EventArgs e)
         {
-            panel2.Visible = false;
+            PnNotifi.Visible = false;
             btnClose.Visible = false;
         }
 
         private void tabPage8_MouseEnter(object sender, EventArgs e)
         {
-            panel2.Visible = false;
+            PnNotifi.Visible = false;
             btnClose.Visible = false;
         }
 
         private void tabPage7_MouseEnter(object sender, EventArgs e)
         {
-            panel2.Visible = false;
+            PnNotifi.Visible = false;
             btnClose.Visible = false;
         }
 
         private void tabPage6_MouseEnter(object sender, EventArgs e)
         {
-            panel2.Visible = false;
+            PnNotifi.Visible = false;
             btnClose.Visible = false;
+        }
+
+        private void PnInspector_MouseEnter(object sender, EventArgs e)
+        {
+            PnNotifi.Visible = false;
+            btnClose.Visible = false;
+        }
+
+        private void dataGridViewFlMain_SelectionChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+
+                int row = dataGridViewFlMain.CurrentCell.RowIndex;
+                lblInsFob.Text = dataGridViewFlMain.Rows[row].Cells["Fob"].Value.ToString();
+                lblInsSticker.Text = dataGridViewFlMain.Rows[row].Cells["Sticker text"].Value.ToString();
+                lblInsSleeve.Text = dataGridViewFlMain.Rows[row].Cells["Sleeve"].Value.ToString();
+                cheInsWtSleeve.Checked = (dataGridViewFlMain.Rows[row].Cells["With sleeves"].Value.ToString() == "True") ? true : false;
+                cheInsMix.Checked = (dataGridViewFlMain.Rows[row].Cells["mix"].Value.ToString() == "True") ? true : false;
+
+
+
+            }
         }
     }
 }
