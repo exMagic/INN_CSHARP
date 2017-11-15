@@ -33,6 +33,7 @@ namespace INN_CSHARP
         {
             var mySql = new mySql();
             var menu = new Design();
+            
             menu.resBtn(button1, button2, button3, button4, menuArrow1, menuArrow2, menuArrow3, menuArrow4);
             Color _selected = System.Drawing.ColorTranslator.FromHtml("#243240");
             button1.BackColor = _selected;
@@ -41,30 +42,13 @@ namespace INN_CSHARP
             mySql.GetData(mySql.loadLengthsStatement, bindingSource3);
             dataGridViewFF.DataSource = bindingSourceFarms;
             mySql.GetData(mySql.loadFarmsStatement, bindingSourceFarms);
+           
 
             dataGridViewFlMain.DataSource = bindingSource1;
             mySql.GetData(mySql.FlowersMainStatement, bindingSource1);
 
             dataGridViewFlMain.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-           // flowers.fl_id
-           //   ,flowers.variety as 'Variety'
-           //   ,flowers.sticker_text as 'Sticker text'
-           //   ,colours.colour as 'Colour'
-           //   ,flowers.plu as 'PLU'
-
-           //   ,farms.farm_name as 'Farm'
-           //   ,lengths.length as 'Lenght'
-
-           //,flowers.mix as 'MIX'
-
-           //   ,sleeves.sleeve as 'Sleeve'
-           //     ,flowers.sleeve_with as 'With sleeves'
-           //   ,flowers.fob as 'FOB'
-           //   ,flowers.fairtrade as 'Fairtrade'
-           //   ,flowers.bunch_pr_bucket as 'Bunch pr bucket'
-           //   ,flowers.stems_pr_bunch as 'Stems pr bunch'
-           //   ,flowers.pak_rate as 'pak rate'
 
 
             dataGridViewFlMain.Columns["fl_id"].Visible = false;
@@ -109,17 +93,30 @@ namespace INN_CSHARP
             cbLength.SelectedIndex = 0;
             conn.Close();
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
+
+            int fl_id = Convert.ToInt32(dataGridViewFlMain.Rows[0].Cells[0].Value);
+            string loadOrdersStatement2 = @"
+        SELECT top 1
+            orders.order_id
+            ,orders.departure
+            ,orders.order_number
+            ,orders.arrival
+            ,orders.datecode
+            ,flowers.variety as 'Variety'
+            
+            ,orders.boxes
+           
+          FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
+          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.fl_id = " + fl_id + "  ORDER BY arrival desc";
+            dataGridViewFlOr.DataSource = bindingSourceOrders;
+            mySql.GetData(loadOrdersStatement2, bindingSourceOrders);
+
+
             loaded = true;
         }
         ///////////////////////  MENU  //////////////////////////////////////////////////////////////////////
         //public void resBtn()
-        //{
-        //    Color _leftBG = System.Drawing.ColorTranslator.FromHtml("#2c3e50");
-        //    button1.BackColor = _leftBG;
-        //    button2.BackColor = _leftBG;
-        //    button3.BackColor = _leftBG;
-        //    button4.BackColor = _leftBG;
-        //}
+
         private void button1_Click(object sender, EventArgs e)
         {
             var menu = new Design();
@@ -247,6 +244,7 @@ namespace INN_CSHARP
         {
             var mySql = new mySql();
             mySql.loadOrders(Convert.ToInt32(cbOrders.SelectedItem));
+
             dataGridViewO1.DataSource = bindingSourceOrders;
             mySql.GetData(mySql.loadOrdersStatement, bindingSourceOrders);
             dataGridViewO1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -454,16 +452,27 @@ namespace INN_CSHARP
         {
             if (loaded)
             {
-
                 int row = dataGridViewFlMain.CurrentCell.RowIndex;
+                var mySql = new mySql();
+                int fl_id = Convert.ToInt32(dataGridViewFlMain.Rows[row].Cells[0].Value);
+                string loadOrdersStatement2 = @"
+                SELECT top 1
+                    orders.order_id
+                    ,orders.departure
+                    ,orders.order_number
+                    ,orders.arrival
+                    ,orders.boxes
+                  FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
+                  WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.fl_id = " + fl_id + "  ORDER BY arrival desc";
+                dataGridViewFlOr.DataSource = bindingSourceOrders;
+                mySql.GetData(loadOrdersStatement2, bindingSourceOrders);
                 lblInsFob.Text = dataGridViewFlMain.Rows[row].Cells["Fob"].Value.ToString();
                 lblInsSticker.Text = dataGridViewFlMain.Rows[row].Cells["Sticker text"].Value.ToString();
                 lblInsSleeve.Text = dataGridViewFlMain.Rows[row].Cells["Sleeve"].Value.ToString();
                 cheInsWtSleeve.Checked = (dataGridViewFlMain.Rows[row].Cells["With sleeves"].Value.ToString() == "True") ? true : false;
                 cheInsMix.Checked = (dataGridViewFlMain.Rows[row].Cells["mix"].Value.ToString() == "True") ? true : false;
-
-
-
+                lblInsSisteOr.Text = (dataGridViewFlOr.Rows.Count<2) ? "aldri": dataGridViewFlOr.Rows[0].Cells["order_number"].Value.ToString();
+                lblInsBoxes.Text = (dataGridViewFlOr.Rows.Count<2) ? "aldri": dataGridViewFlOr.Rows[0].Cells["boxes"].Value.ToString();
             }
         }
     }

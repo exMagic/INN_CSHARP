@@ -43,7 +43,8 @@
             this.dataGridViewFlMain = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnRemoveFL = new System.Windows.Forms.Button();
+            this.PnMainTableBottomBorder = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
             this.btnRemoveFF = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,6 +52,8 @@
             this.button5 = new System.Windows.Forms.Button();
             this.btnFEdit = new System.Windows.Forms.Button();
             this.btnFDelete = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRemoveFL = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.lblAmountPrice = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -107,33 +110,32 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.PnInspector = new System.Windows.Forms.Panel();
-            this.PnInspectorBorder = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
-            this.PnInspectorSeparator1 = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.PnInspectorSeparator2 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.PnMainTableBottomBorder = new System.Windows.Forms.Panel();
-            this.PnInspectorFooter = new System.Windows.Forms.Panel();
-            this.label23 = new System.Windows.Forms.Label();
+            this.cheInsMix = new System.Windows.Forms.CheckBox();
+            this.cheInsWtSleeve = new System.Windows.Forms.CheckBox();
             this.lblInsBoxes = new System.Windows.Forms.Label();
             this.lblInsSisteOr = new System.Windows.Forms.Label();
             this.lblInsFob = new System.Windows.Forms.Label();
             this.lblInsSleeve = new System.Windows.Forms.Label();
             this.lblInsSticker = new System.Windows.Forms.Label();
-            this.cheInsWtSleeve = new System.Windows.Forms.CheckBox();
-            this.cheInsMix = new System.Windows.Forms.CheckBox();
+            this.PnInspectorFooter = new System.Windows.Forms.Panel();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.PnInspectorSeparator2 = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.PnInspectorSeparator1 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.PnInspectorBorder = new System.Windows.Forms.Panel();
+            this.dataGridViewFlOr = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFlMain)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewO1)).BeginInit();
             this.tabPage7.SuspendLayout();
@@ -157,8 +159,8 @@
             this.PnNotifi.SuspendLayout();
             this.PnFooter.SuspendLayout();
             this.PnInspector.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.PnInspectorFooter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFlOr)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -274,6 +276,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.dataGridViewFlOr);
             this.tabPage5.Controls.Add(this.PnMainTableBottomBorder);
             this.tabPage5.Controls.Add(this.label22);
             this.tabPage5.Controls.Add(this.btnRemoveFF);
@@ -300,23 +303,25 @@
             this.tabPage5.UseVisualStyleBackColor = true;
             this.tabPage5.MouseEnter += new System.EventHandler(this.tabPage5_MouseEnter);
             // 
-            // btnRemoveFL
+            // PnMainTableBottomBorder
             // 
-            this.btnRemoveFL.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemoveFL.BackgroundImage")));
-            this.btnRemoveFL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnRemoveFL.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRemoveFL.FlatAppearance.BorderSize = 0;
-            this.btnRemoveFL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveFL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveFL.ForeColor = System.Drawing.Color.Gray;
-            this.btnRemoveFL.Location = new System.Drawing.Point(317, 14);
-            this.btnRemoveFL.Name = "btnRemoveFL";
-            this.btnRemoveFL.Size = new System.Drawing.Size(21, 20);
-            this.btnRemoveFL.TabIndex = 15;
-            this.btnRemoveFL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolTip1.SetToolTip(this.btnRemoveFL, "fjern filter");
-            this.btnRemoveFL.UseVisualStyleBackColor = true;
-            this.btnRemoveFL.Click += new System.EventHandler(this.btnRemoveFL_Click);
+            this.PnMainTableBottomBorder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.PnMainTableBottomBorder.BackColor = System.Drawing.Color.LightGray;
+            this.PnMainTableBottomBorder.Location = new System.Drawing.Point(45, 608);
+            this.PnMainTableBottomBorder.Name = "PnMainTableBottomBorder";
+            this.PnMainTableBottomBorder.Size = new System.Drawing.Size(701, 1);
+            this.PnMainTableBottomBorder.TabIndex = 19;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(54)))), ((int)(((byte)(69)))));
+            this.label22.Location = new System.Drawing.Point(41, 36);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(315, 33);
+            this.label22.TabIndex = 16;
+            this.label22.Text = "Alle Blomster database";
             // 
             // btnRemoveFF
             // 
@@ -430,6 +435,33 @@
             this.btnFDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFDelete.UseVisualStyleBackColor = true;
             this.btnFDelete.Click += new System.EventHandler(this.btnFDelete_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(199)))), ((int)(((byte)(199)))));
+            this.panel1.Controls.Add(this.btnRemoveFL);
+            this.panel1.Location = new System.Drawing.Point(45, 91);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(701, 45);
+            this.panel1.TabIndex = 17;
+            // 
+            // btnRemoveFL
+            // 
+            this.btnRemoveFL.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemoveFL.BackgroundImage")));
+            this.btnRemoveFL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnRemoveFL.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRemoveFL.FlatAppearance.BorderSize = 0;
+            this.btnRemoveFL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveFL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveFL.ForeColor = System.Drawing.Color.Gray;
+            this.btnRemoveFL.Location = new System.Drawing.Point(317, 14);
+            this.btnRemoveFL.Name = "btnRemoveFL";
+            this.btnRemoveFL.Size = new System.Drawing.Size(21, 20);
+            this.btnRemoveFL.TabIndex = 15;
+            this.btnRemoveFL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnRemoveFL, "fjern filter");
+            this.btnRemoveFL.UseVisualStyleBackColor = true;
+            this.btnRemoveFL.Click += new System.EventHandler(this.btnRemoveFL_Click);
             // 
             // tabPage6
             // 
@@ -1154,147 +1186,23 @@
             this.PnInspector.TabIndex = 23;
             this.PnInspector.MouseEnter += new System.EventHandler(this.PnInspector_MouseEnter);
             // 
-            // PnInspectorBorder
+            // cheInsMix
             // 
-            this.PnInspectorBorder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnInspectorBorder.BackColor = System.Drawing.Color.LightGray;
-            this.PnInspectorBorder.Location = new System.Drawing.Point(0, 0);
-            this.PnInspectorBorder.Name = "PnInspectorBorder";
-            this.PnInspectorBorder.Size = new System.Drawing.Size(1, 696);
-            this.PnInspectorBorder.TabIndex = 16;
+            this.cheInsMix.AutoSize = true;
+            this.cheInsMix.Location = new System.Drawing.Point(90, 185);
+            this.cheInsMix.Name = "cheInsMix";
+            this.cheInsMix.Size = new System.Drawing.Size(15, 14);
+            this.cheInsMix.TabIndex = 33;
+            this.cheInsMix.UseVisualStyleBackColor = true;
             // 
-            // label15
+            // cheInsWtSleeve
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(46, 133);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(43, 13);
-            this.label15.TabIndex = 17;
-            this.label15.Text = "Sticker:";
-            // 
-            // PnInspectorSeparator1
-            // 
-            this.PnInspectorSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnInspectorSeparator1.BackColor = System.Drawing.Color.LightGray;
-            this.PnInspectorSeparator1.Location = new System.Drawing.Point(20, 101);
-            this.PnInspectorSeparator1.Name = "PnInspectorSeparator1";
-            this.PnInspectorSeparator1.Size = new System.Drawing.Size(180, 1);
-            this.PnInspectorSeparator1.TabIndex = 17;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(46, 151);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(43, 13);
-            this.label16.TabIndex = 18;
-            this.label16.Text = "Sleeve:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(21, 168);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(68, 13);
-            this.label17.TabIndex = 19;
-            this.label17.Text = "With Sleeve:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(63, 185);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(26, 13);
-            this.label18.TabIndex = 20;
-            this.label18.Text = "Mix:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(58, 115);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(31, 13);
-            this.label19.TabIndex = 21;
-            this.label19.Text = "FOB:";
-            // 
-            // PnInspectorSeparator2
-            // 
-            this.PnInspectorSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnInspectorSeparator2.BackColor = System.Drawing.Color.LightGray;
-            this.PnInspectorSeparator2.Location = new System.Drawing.Point(20, 214);
-            this.PnInspectorSeparator2.Name = "PnInspectorSeparator2";
-            this.PnInspectorSeparator2.Size = new System.Drawing.Size(180, 1);
-            this.PnInspectorSeparator2.TabIndex = 18;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(35, 229);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(54, 13);
-            this.label20.TabIndex = 22;
-            this.label20.Text = "Sist ordre:";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(50, 246);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(39, 13);
-            this.label21.TabIndex = 23;
-            this.label21.Text = "Boxes:";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(54)))), ((int)(((byte)(69)))));
-            this.label22.Location = new System.Drawing.Point(41, 36);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(315, 33);
-            this.label22.TabIndex = 16;
-            this.label22.Text = "Alle Blomster database";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(199)))), ((int)(((byte)(199)))));
-            this.panel1.Controls.Add(this.btnRemoveFL);
-            this.panel1.Location = new System.Drawing.Point(45, 91);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(701, 45);
-            this.panel1.TabIndex = 17;
-            // 
-            // PnMainTableBottomBorder
-            // 
-            this.PnMainTableBottomBorder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.PnMainTableBottomBorder.BackColor = System.Drawing.Color.LightGray;
-            this.PnMainTableBottomBorder.Location = new System.Drawing.Point(45, 608);
-            this.PnMainTableBottomBorder.Name = "PnMainTableBottomBorder";
-            this.PnMainTableBottomBorder.Size = new System.Drawing.Size(701, 1);
-            this.PnMainTableBottomBorder.TabIndex = 19;
-            // 
-            // PnInspectorFooter
-            // 
-            this.PnInspectorFooter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnInspectorFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
-            this.PnInspectorFooter.Controls.Add(this.label23);
-            this.PnInspectorFooter.Location = new System.Drawing.Point(0, 639);
-            this.PnInspectorFooter.Name = "PnInspectorFooter";
-            this.PnInspectorFooter.Size = new System.Drawing.Size(226, 53);
-            this.PnInspectorFooter.TabIndex = 24;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(108)))), ((int)(((byte)(119)))));
-            this.label23.Location = new System.Drawing.Point(78, 9);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(63, 16);
-            this.label23.TabIndex = 2;
-            this.label23.Text = "Inspectør";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.cheInsWtSleeve.AutoSize = true;
+            this.cheInsWtSleeve.Location = new System.Drawing.Point(90, 168);
+            this.cheInsWtSleeve.Name = "cheInsWtSleeve";
+            this.cheInsWtSleeve.Size = new System.Drawing.Size(15, 14);
+            this.cheInsWtSleeve.TabIndex = 32;
+            this.cheInsWtSleeve.UseVisualStyleBackColor = true;
             // 
             // lblInsBoxes
             // 
@@ -1341,23 +1249,130 @@
             this.lblInsSticker.TabIndex = 25;
             this.lblInsSticker.Text = "-";
             // 
-            // cheInsWtSleeve
+            // PnInspectorFooter
             // 
-            this.cheInsWtSleeve.AutoSize = true;
-            this.cheInsWtSleeve.Location = new System.Drawing.Point(90, 168);
-            this.cheInsWtSleeve.Name = "cheInsWtSleeve";
-            this.cheInsWtSleeve.Size = new System.Drawing.Size(15, 14);
-            this.cheInsWtSleeve.TabIndex = 32;
-            this.cheInsWtSleeve.UseVisualStyleBackColor = true;
+            this.PnInspectorFooter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnInspectorFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
+            this.PnInspectorFooter.Controls.Add(this.label23);
+            this.PnInspectorFooter.Location = new System.Drawing.Point(0, 639);
+            this.PnInspectorFooter.Name = "PnInspectorFooter";
+            this.PnInspectorFooter.Size = new System.Drawing.Size(226, 53);
+            this.PnInspectorFooter.TabIndex = 24;
             // 
-            // cheInsMix
+            // label23
             // 
-            this.cheInsMix.AutoSize = true;
-            this.cheInsMix.Location = new System.Drawing.Point(90, 185);
-            this.cheInsMix.Name = "cheInsMix";
-            this.cheInsMix.Size = new System.Drawing.Size(15, 14);
-            this.cheInsMix.TabIndex = 33;
-            this.cheInsMix.UseVisualStyleBackColor = true;
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(108)))), ((int)(((byte)(119)))));
+            this.label23.Location = new System.Drawing.Point(78, 9);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(63, 16);
+            this.label23.TabIndex = 2;
+            this.label23.Text = "Inspectør";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(50, 246);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(39, 13);
+            this.label21.TabIndex = 23;
+            this.label21.Text = "Boxes:";
+            // 
+            // PnInspectorSeparator2
+            // 
+            this.PnInspectorSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnInspectorSeparator2.BackColor = System.Drawing.Color.LightGray;
+            this.PnInspectorSeparator2.Location = new System.Drawing.Point(20, 214);
+            this.PnInspectorSeparator2.Name = "PnInspectorSeparator2";
+            this.PnInspectorSeparator2.Size = new System.Drawing.Size(180, 1);
+            this.PnInspectorSeparator2.TabIndex = 18;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(35, 229);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(54, 13);
+            this.label20.TabIndex = 22;
+            this.label20.Text = "Sist ordre:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(58, 115);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(31, 13);
+            this.label19.TabIndex = 21;
+            this.label19.Text = "FOB:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(63, 185);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(26, 13);
+            this.label18.TabIndex = 20;
+            this.label18.Text = "Mix:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(21, 168);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(68, 13);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "With Sleeve:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(46, 151);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(43, 13);
+            this.label16.TabIndex = 18;
+            this.label16.Text = "Sleeve:";
+            // 
+            // PnInspectorSeparator1
+            // 
+            this.PnInspectorSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnInspectorSeparator1.BackColor = System.Drawing.Color.LightGray;
+            this.PnInspectorSeparator1.Location = new System.Drawing.Point(20, 101);
+            this.PnInspectorSeparator1.Name = "PnInspectorSeparator1";
+            this.PnInspectorSeparator1.Size = new System.Drawing.Size(180, 1);
+            this.PnInspectorSeparator1.TabIndex = 17;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(46, 133);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(43, 13);
+            this.label15.TabIndex = 17;
+            this.label15.Text = "Sticker:";
+            // 
+            // PnInspectorBorder
+            // 
+            this.PnInspectorBorder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnInspectorBorder.BackColor = System.Drawing.Color.LightGray;
+            this.PnInspectorBorder.Location = new System.Drawing.Point(0, 0);
+            this.PnInspectorBorder.Name = "PnInspectorBorder";
+            this.PnInspectorBorder.Size = new System.Drawing.Size(1, 696);
+            this.PnInspectorBorder.TabIndex = 16;
+            // 
+            // dataGridViewFlOr
+            // 
+            this.dataGridViewFlOr.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewFlOr.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridViewFlOr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFlOr.Location = new System.Drawing.Point(6, 49);
+            this.dataGridViewFlOr.Name = "dataGridViewFlOr";
+            this.dataGridViewFlOr.RowHeadersVisible = false;
+            this.dataGridViewFlOr.Size = new System.Drawing.Size(22, 19);
+            this.dataGridViewFlOr.TabIndex = 20;
+            this.dataGridViewFlOr.Visible = false;
             // 
             // Form1
             // 
@@ -1393,6 +1408,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewO1)).EndInit();
@@ -1420,9 +1436,9 @@
             this.PnFooter.PerformLayout();
             this.PnInspector.ResumeLayout(false);
             this.PnInspector.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.PnInspectorFooter.ResumeLayout(false);
             this.PnInspectorFooter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFlOr)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1527,6 +1543,7 @@
         private System.Windows.Forms.Label lblInsSticker;
         private System.Windows.Forms.CheckBox cheInsMix;
         private System.Windows.Forms.CheckBox cheInsWtSleeve;
+        private System.Windows.Forms.DataGridView dataGridViewFlOr;
     }
 }
 
