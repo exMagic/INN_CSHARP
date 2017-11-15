@@ -58,9 +58,9 @@ namespace INN_CSHARP
             dataGridViewFlMain.Columns["Colour"].Width = 60;
             dataGridViewFlMain.Columns["PLU"].Width = 40;
             dataGridViewFlMain.Columns["Farm"].Width = 40;
-            //dataGridViewFlMain.Columns["mix"].Visible = false;
+            dataGridViewFlMain.Columns["mix"].Visible = false;
             dataGridViewFlMain.Columns["Sleeve"].Visible = false;
-            //dataGridViewFlMain.Columns["With sleeves"].Visible = false;
+            dataGridViewFlMain.Columns["With sleeves"].Visible = false;
             dataGridViewFlMain.Columns["fob"].Visible = false;
 
             tabControl1.Appearance = TabAppearance.Buttons;
@@ -137,6 +137,7 @@ namespace INN_CSHARP
             selectionStatement4 = mySql.FlowersMainStatement + whFarm + whLen;
             mySql.GetData(selectionStatement4, bindingSource1);
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
+            fillUpInspectorFl();
         }
         private void btnRemoveFF_Click(object sender, EventArgs e) { cbFarm.SelectedIndex = 0; }
         // Flowers - LENGTH FILTER ///////////
@@ -148,6 +149,7 @@ namespace INN_CSHARP
             selectionStatement4 = mySql.FlowersMainStatement + whFarm + whLen;
             mySql.GetData(selectionStatement4, bindingSource1);
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
+            fillUpInspectorFl();
         }
         private void btnRemoveFL_Click(object sender, EventArgs e) { cbLength.SelectedIndex = 0; }
 
@@ -436,10 +438,12 @@ namespace INN_CSHARP
         }
         public void fillUpInspectorFl()
         {
-            int row = dataGridViewFlMain.CurrentCell.RowIndex;
-            var mySql = new mySql();
-            int fl_id = Convert.ToInt32(dataGridViewFlMain.Rows[row].Cells[0].Value);
-            string loadOrdersStatement2 = @"
+            if (dataGridViewFlMain.Rows.Count > 1)
+            {
+                int row = dataGridViewFlMain.CurrentCell.RowIndex;
+                var mySql = new mySql();
+                int fl_id = Convert.ToInt32(dataGridViewFlMain.Rows[row].Cells[0].Value);
+                string loadOrdersStatement2 = @"
                 SELECT top 1
                     orders.order_id
                     ,orders.departure
@@ -448,15 +452,26 @@ namespace INN_CSHARP
                     ,orders.boxes
                   FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
                   WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.fl_id = " + fl_id + "  ORDER BY arrival desc";
-            dataGridViewFlOr.DataSource = bindingSourceOrders;
-            mySql.GetData(loadOrdersStatement2, bindingSourceOrders);
-            lblInsFob.Text = dataGridViewFlMain.Rows[row].Cells["Fob"].Value.ToString();
-            lblInsSticker.Text = dataGridViewFlMain.Rows[row].Cells["Sticker text"].Value.ToString();
-            lblInsSleeve.Text = dataGridViewFlMain.Rows[row].Cells["Sleeve"].Value.ToString();
-            cheInsWtSleeve.Checked = (dataGridViewFlMain.Rows[row].Cells["With sleeves"].Value.ToString() == "True") ? true : false;
-            cheInsMix.Checked = (dataGridViewFlMain.Rows[row].Cells["mix"].Value.ToString() == "True") ? true : false;
-            lblInsSisteOr.Text = (dataGridViewFlOr.Rows.Count < 2) ? "aldri" : dataGridViewFlOr.Rows[0].Cells["order_number"].Value.ToString();
-            lblInsBoxes.Text = (dataGridViewFlOr.Rows.Count < 2) ? "aldri" : dataGridViewFlOr.Rows[0].Cells["boxes"].Value.ToString();
+                dataGridViewFlOr.DataSource = bindingSourceOrders;
+                mySql.GetData(loadOrdersStatement2, bindingSourceOrders);
+                lblInsFob.Text = dataGridViewFlMain.Rows[row].Cells["Fob"].Value.ToString();
+                lblInsSticker.Text = dataGridViewFlMain.Rows[row].Cells["Sticker text"].Value.ToString();
+                lblInsSleeve.Text = dataGridViewFlMain.Rows[row].Cells["Sleeve"].Value.ToString();
+                cheInsWtSleeve.Checked = (dataGridViewFlMain.Rows[row].Cells["With sleeves"].Value.ToString() == "True") ? true : false;
+                cheInsMix.Checked = (dataGridViewFlMain.Rows[row].Cells["mix"].Value.ToString() == "True") ? true : false;
+                lblInsSisteOr.Text = (dataGridViewFlOr.Rows.Count < 2) ? "aldri" : dataGridViewFlOr.Rows[0].Cells["order_number"].Value.ToString();
+                lblInsBoxes.Text = (dataGridViewFlOr.Rows.Count < 2) ? "aldri" : dataGridViewFlOr.Rows[0].Cells["boxes"].Value.ToString();
+            }
+            else
+            {
+                lblInsFob.Text = "-";
+                lblInsSticker.Text = "-";
+                lblInsSleeve.Text = "-";
+                cheInsWtSleeve.Checked = false;
+                cheInsMix.Checked = false;
+                lblInsSisteOr.Text = "-";
+                lblInsBoxes.Text = "-";
+            }
         }
         private void dataGridViewFlMain_SelectionChanged(object sender, EventArgs e)
         {
