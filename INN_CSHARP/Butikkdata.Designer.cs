@@ -316,7 +316,7 @@
             this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
             this.picLogo.Location = new System.Drawing.Point(9, 561);
             this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(240, 61);
+            this.picLogo.Size = new System.Drawing.Size(79, 61);
             this.picLogo.TabIndex = 52;
             this.picLogo.TabStop = false;
             this.picLogo.Visible = false;

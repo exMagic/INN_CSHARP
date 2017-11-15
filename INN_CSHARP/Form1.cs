@@ -94,24 +94,9 @@ namespace INN_CSHARP
             conn.Close();
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
 
-            int fl_id = Convert.ToInt32(dataGridViewFlMain.Rows[0].Cells[0].Value);
-            string loadOrdersStatement2 = @"
-        SELECT top 1
-            orders.order_id
-            ,orders.departure
-            ,orders.order_number
-            ,orders.arrival
-            ,orders.datecode
-            ,flowers.variety as 'Variety'
-            
-            ,orders.boxes
-           
-          FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
-          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.fl_id = " + fl_id + "  ORDER BY arrival desc";
-            dataGridViewFlOr.DataSource = bindingSourceOrders;
-            mySql.GetData(loadOrdersStatement2, bindingSourceOrders);
 
 
+            fillUpInspectorFl();
             loaded = true;
         }
         ///////////////////////  MENU  //////////////////////////////////////////////////////////////////////
@@ -234,10 +219,7 @@ namespace INN_CSHARP
             }
             conn.Close();
         }
-        private void tabPage6_Enter(object sender, EventArgs e)
-        {
-            updateCbOrders();
-        }
+
 
 
         private void cbOrders_SelectedIndexChanged(object sender, EventArgs e)
@@ -281,6 +263,7 @@ namespace INN_CSHARP
             lblAmountStems.Text = sumStems.ToString();
             lblAmountBuckets.Text = sumBucket.ToString();
             lblAmountPrice.Text = sumPrice.ToString();
+            btnButikkdata.Visible = true;
         }
 
         private void btnAddOr_Click(object sender, EventArgs e)
@@ -288,6 +271,10 @@ namespace INN_CSHARP
             AddOr frm = new AddOr();
             frm.FormClosing += new FormClosingEventHandler(this.AddOr_FormClosing);
             frm.Show();
+        }
+        private void tabPage6_Enter_1(object sender, EventArgs e)
+        {
+            updateCbOrders();
         }
         private void AddOr_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -447,15 +434,12 @@ namespace INN_CSHARP
             PnNotifi.Visible = false;
             btnClose.Visible = false;
         }
-
-        private void dataGridViewFlMain_SelectionChanged(object sender, EventArgs e)
+        public void fillUpInspectorFl()
         {
-            if (loaded)
-            {
-                int row = dataGridViewFlMain.CurrentCell.RowIndex;
-                var mySql = new mySql();
-                int fl_id = Convert.ToInt32(dataGridViewFlMain.Rows[row].Cells[0].Value);
-                string loadOrdersStatement2 = @"
+            int row = dataGridViewFlMain.CurrentCell.RowIndex;
+            var mySql = new mySql();
+            int fl_id = Convert.ToInt32(dataGridViewFlMain.Rows[row].Cells[0].Value);
+            string loadOrdersStatement2 = @"
                 SELECT top 1
                     orders.order_id
                     ,orders.departure
@@ -464,16 +448,27 @@ namespace INN_CSHARP
                     ,orders.boxes
                   FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
                   WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.fl_id = " + fl_id + "  ORDER BY arrival desc";
-                dataGridViewFlOr.DataSource = bindingSourceOrders;
-                mySql.GetData(loadOrdersStatement2, bindingSourceOrders);
-                lblInsFob.Text = dataGridViewFlMain.Rows[row].Cells["Fob"].Value.ToString();
-                lblInsSticker.Text = dataGridViewFlMain.Rows[row].Cells["Sticker text"].Value.ToString();
-                lblInsSleeve.Text = dataGridViewFlMain.Rows[row].Cells["Sleeve"].Value.ToString();
-                cheInsWtSleeve.Checked = (dataGridViewFlMain.Rows[row].Cells["With sleeves"].Value.ToString() == "True") ? true : false;
-                cheInsMix.Checked = (dataGridViewFlMain.Rows[row].Cells["mix"].Value.ToString() == "True") ? true : false;
-                lblInsSisteOr.Text = (dataGridViewFlOr.Rows.Count<2) ? "aldri": dataGridViewFlOr.Rows[0].Cells["order_number"].Value.ToString();
-                lblInsBoxes.Text = (dataGridViewFlOr.Rows.Count<2) ? "aldri": dataGridViewFlOr.Rows[0].Cells["boxes"].Value.ToString();
+            dataGridViewFlOr.DataSource = bindingSourceOrders;
+            mySql.GetData(loadOrdersStatement2, bindingSourceOrders);
+            lblInsFob.Text = dataGridViewFlMain.Rows[row].Cells["Fob"].Value.ToString();
+            lblInsSticker.Text = dataGridViewFlMain.Rows[row].Cells["Sticker text"].Value.ToString();
+            lblInsSleeve.Text = dataGridViewFlMain.Rows[row].Cells["Sleeve"].Value.ToString();
+            cheInsWtSleeve.Checked = (dataGridViewFlMain.Rows[row].Cells["With sleeves"].Value.ToString() == "True") ? true : false;
+            cheInsMix.Checked = (dataGridViewFlMain.Rows[row].Cells["mix"].Value.ToString() == "True") ? true : false;
+            lblInsSisteOr.Text = (dataGridViewFlOr.Rows.Count < 2) ? "aldri" : dataGridViewFlOr.Rows[0].Cells["order_number"].Value.ToString();
+            lblInsBoxes.Text = (dataGridViewFlOr.Rows.Count < 2) ? "aldri" : dataGridViewFlOr.Rows[0].Cells["boxes"].Value.ToString();
+        }
+        private void dataGridViewFlMain_SelectionChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                fillUpInspectorFl();
             }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PnInsFl.Visible = (tabControl1.SelectedIndex == 0) ? true : false;
         }
     }
 }
