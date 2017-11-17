@@ -62,6 +62,13 @@ namespace INN_CSHARP
             dataGridViewFlMain.Columns["Sleeve"].Visible = false;
             dataGridViewFlMain.Columns["With sleeves"].Visible = false;
             dataGridViewFlMain.Columns["fob"].Visible = false;
+            int s = 41;
+            dataGridViewFlMain.Columns["Fairtrade"].Width = s;
+            dataGridViewFlMain.Columns["Bunch_pr bucket"].Width = s;
+            dataGridViewFlMain.Columns["Stems_pr bunch"].Width = s;
+            dataGridViewFlMain.Columns["pak rate"].Width = 48;
+
+
 
             tabControl1.Appearance = TabAppearance.Buttons;
             tabControl1.ItemSize = new Size(0, 1);
@@ -129,6 +136,10 @@ namespace INN_CSHARP
         /////////////////////// END MENU  //////////////////////////////////////////////////////////////////////
 
         // Flowers - FARM FILTER ///////////
+        public void setWidth()
+        {
+            dataGridViewFlMain.Width = (dataGridViewFlMain.Rows.Count > 22) ? 717: 701;
+        }
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)// FARM FILTER ///////////
         {
             var CB = new CB();
@@ -138,6 +149,7 @@ namespace INN_CSHARP
             mySql.GetData(selectionStatement4, bindingSource1);
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
             fillUpInspectorFl();
+            setWidth();
         }
         private void btnRemoveFF_Click(object sender, EventArgs e) { cbFarm.SelectedIndex = 0; }
         // Flowers - LENGTH FILTER ///////////
@@ -150,6 +162,7 @@ namespace INN_CSHARP
             mySql.GetData(selectionStatement4, bindingSource1);
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
             fillUpInspectorFl();
+            setWidth();
         }
         private void btnRemoveFL_Click(object sender, EventArgs e) { cbLength.SelectedIndex = 0; }
 

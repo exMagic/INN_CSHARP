@@ -250,15 +250,14 @@
             this.dataGridViewFlMain.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewFlMain.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            //this.dataGridViewFlMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewFlMain.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridViewFlMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFlMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewFlMain.ColumnHeadersHeight = 49;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -441,6 +440,7 @@
             this.btnFAdd.Name = "btnFAdd";
             this.btnFAdd.Size = new System.Drawing.Size(49, 49);
             this.btnFAdd.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.btnFAdd, "legg til ny blomst");
             this.btnFAdd.UseVisualStyleBackColor = false;
             this.btnFAdd.Click += new System.EventHandler(this.btnFAdd_Click);
             // 
@@ -460,12 +460,13 @@
             this.btnFDelete.Size = new System.Drawing.Size(49, 49);
             this.btnFDelete.TabIndex = 8;
             this.btnFDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnFDelete, "slett blomst");
             this.btnFDelete.UseVisualStyleBackColor = false;
             this.btnFDelete.Click += new System.EventHandler(this.btnFDelete_Click);
             // 
             // button5
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(185)))), ((int)(((byte)(60)))));
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -474,16 +475,17 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.Gray;
-            this.button5.Location = new System.Drawing.Point(553, 0);
+            this.button5.Location = new System.Drawing.Point(602, 0);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(49, 49);
             this.button5.TabIndex = 10;
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.button5, "lagre som kopi");
             this.button5.UseVisualStyleBackColor = false;
             // 
             // btnFEdit
             // 
-            this.btnFEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(185)))), ((int)(((byte)(60)))));
+            this.btnFEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.btnFEdit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFEdit.BackgroundImage")));
             this.btnFEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnFEdit.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -492,11 +494,12 @@
             this.btnFEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFEdit.ForeColor = System.Drawing.Color.Gray;
-            this.btnFEdit.Location = new System.Drawing.Point(602, 0);
+            this.btnFEdit.Location = new System.Drawing.Point(553, 0);
             this.btnFEdit.Name = "btnFEdit";
             this.btnFEdit.Size = new System.Drawing.Size(49, 49);
             this.btnFEdit.TabIndex = 9;
             this.btnFEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnFEdit, "rediger blomst");
             this.btnFEdit.UseVisualStyleBackColor = false;
             this.btnFEdit.Click += new System.EventHandler(this.btnFEdit_Click);
             // 
@@ -1535,7 +1538,12 @@
 
         #endregion
 
+        /// <summary>
+        /// /////////////////////
 
+        /// 
+        /// 
+        /// </summary>
 
         private System.Windows.Forms.DataGridView dataGridViewFlMain;
         private System.Windows.Forms.BindingSource bindingSource1;
