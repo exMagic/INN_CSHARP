@@ -62,12 +62,27 @@ namespace INN_CSHARP
                     }
                 }
             }
+            dataGridViewTest2.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("arial", 7);
             dataGridViewTest2.Columns[0].Visible = false;
             dataGridViewTest2.Columns[1].Visible = false;
             dataGridViewTest2.Columns[2].Visible = false;
             dataGridViewTest2.Columns[3].Visible = false;
+            dataGridViewTest2.Columns["variety"].Width = 100;
+            dataGridViewTest2.Columns["length"].Width = 45;
+            dataGridViewTest2.Columns["mix"].Width = 45;
+            dataGridViewTest2.Columns["sleeve"].Width = 80;
+            dataGridViewTest2.Columns["with sleeves"].Width = 40;
+            dataGridViewTest2.Columns["fairtrade"].Width = 40;
+            dataGridViewTest2.Columns["bunch pr bucket"].Width = 40;
+            dataGridViewTest2.Columns["stems pr bunch"].Width = 40;
+            dataGridViewTest2.Columns["plu"].Width = 50;
+            dataGridViewTest2.Columns["boxes"].Width = 45;
+            dataGridViewTest2.Columns["stems"].Width = 45;
+            dataGridViewTest2.Columns["price"].Width = 45;
+            dataGridViewTest2.Columns["buckets"].Width = 45;
 
             mySql.fillupLabels(lblOrdreNumber, lblDeparture, lblArrival, lblDatecode, lblAmountBoxes, lblAmountStems, lblAmountBuckets, lblAmountPrice, dataGridViewTest2);
+            lblOrderNumberTitle.Text = lblOrdreNumber.Text;
 
 
         }
@@ -154,5 +169,6 @@ namespace INN_CSHARP
             var drawPoint4 = new PointF(150.0F, 50.0F);
             e.Graphics.DrawImage(picLogo.Image, drawPoint4);
         }
+
     }
 }

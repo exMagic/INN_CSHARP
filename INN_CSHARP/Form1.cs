@@ -484,6 +484,9 @@ namespace INN_CSHARP
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             PnInsFl.Visible = (tabControl1.SelectedIndex == 0) ? true : false;
+            PnInspector.Visible = (tabControl1.SelectedIndex == 1) ? true : false;
         }
+
+
     }
 }

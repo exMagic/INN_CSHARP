@@ -57,8 +57,8 @@ namespace INN_CSHARP
                 ,flowers.sleeve_with as 'With sleeves'
               ,flowers.fob as 'FOB'
               ,flowers.fairtrade as 'Fairtrade'
-              ,flowers.bunch_pr_bucket as 'Bunch pr bucket'
-              ,flowers.stems_pr_bunch as 'Stems pr bunch'
+              ,flowers.bunch_pr_bucket as 'Bunch_pr bucket'
+              ,flowers.stems_pr_bunch as 'Stems_pr bunch'
               ,flowers.pak_rate as 'pak rate'
           FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves]
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id ";
@@ -139,13 +139,13 @@ namespace INN_CSHARP
             ,flowers.sticker_text as 'Sticker text'
             ,farms.farm_name as 'Farm'
             ,flowers.plu as 'PLU'
-            ,lengths.length as 'Lenght'
+            ,lengths.length as 'Length'
             ,flowers.mix as 'MIX'
             ,sleeves.sleeve as 'Sleeve'
             ,flowers.sleeve_with as 'With sleeves'
             ,flowers.fairtrade as 'Fairtrade'
             ,flowers.bunch_pr_bucket as 'Bunch pr bucket'
-              ,flowers.stems_pr_bunch as 'Stems pr bunch',flowers.stems_pr_bunch as 'Stems pr bunch'
+              ,flowers.stems_pr_bunch as 'Stems pr bunch'
             ,orders.boxes as 'Boxes'
             ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
         ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) * (SELECT flowers.fob) as price
