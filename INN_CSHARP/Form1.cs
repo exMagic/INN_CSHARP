@@ -488,5 +488,11 @@ namespace INN_CSHARP
             }
            
         }
+
+        private void btnAvvik_Click(object sender, EventArgs e)
+        {
+            var frm = new Avvik(Convert.ToInt32(dataGridViewO1[0, dataGridViewO1.CurrentRow.Index].Value));
+            frm.Show();
+        }
     }
 }

@@ -58,6 +58,12 @@
     <Compile Include="AddFl.Designer.cs">
       <DependentUpon>AddFl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Avvik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Avvik.Designer.cs">
+      <DependentUpon>Avvik.cs</DependentUpon>
+    </Compile>
     <Compile Include="Butikkdata.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddFl.resx">
       <DependentUpon>AddFl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Avvik.resx">
+      <DependentUpon>Avvik.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Butikkdata.resx">
       <DependentUpon>Butikkdata.cs</DependentUpon>
