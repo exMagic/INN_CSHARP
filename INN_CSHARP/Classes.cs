@@ -70,20 +70,7 @@ namespace INN_CSHARP
 
         public void loadOrders(int orderNumber)
         {
-            /*
-             * order_id 0
-             * departure 1
-             * arrival 2
-             * datecode 3
-             * variety 4
-             * farm_name 5
-             * plu 6
-             * length 7
-             * pak_rate 8
-             * boxes 9
-             * stems 10
-             * buckets 11
-            */
+
             loadOrdersStatement = @"
         SELECT
             orders.order_id
@@ -94,11 +81,14 @@ namespace INN_CSHARP
             ,farms.farm_name as 'Farm'
             ,flowers.plu as 'PLU'
             ,lengths.length as 'Lenght'
-            ,flowers.pak_rate as 'pak rate'
             ,flowers.fob as 'FOB'
+            ,flowers.pak_rate as 'pak rate'
+            ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) * (SELECT flowers.fob) as price
+
+
             ,orders.boxes
             ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
-            ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) * (SELECT flowers.fob) as price
+
             , ((SELECT orders.boxes) * (SELECT flowers.pak_rate) / (SELECT flowers.stems_pr_bunch) / (SELECT flowers.bunch_pr_bucket))as buckets
           FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY farm_name, length";
@@ -154,7 +144,47 @@ namespace INN_CSHARP
           FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY plu, length";
         }
+        public void updateOrderInspecor(DataGridView t1, DataGridView t2,BindingSource bs, Label l1, Label l2, Label l3, Label l4, Label l5, Label l6)
+        {
+            string orderNumber = t1.Rows[t1.CurrentRow.Index].Cells[0].Value.ToString();
+            string Sql2 = @"
+        SELECT
+            orders.order_number
+,orders.date_created
+,orders.date_modified
+            
+            ,orders.boxes as 'Boxes'
+            ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
+        ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) * (SELECT flowers.fob) as price
+            , ((SELECT orders.boxes) * (SELECT flowers.pak_rate) / (SELECT flowers.stems_pr_bunch) / (SELECT flowers.bunch_pr_bucket))as buckets
 
+          FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
+          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY plu, length";
+            t2.DataSource = bs;
+            GetData(Sql2, bs);
+            //MessageBox.Show("EE");
+
+            int sumBoxes = 0;
+            int sumStems = 0;
+            int sumBucket = 0;
+            decimal sumPrice = 0;
+            for (int i = 0; i < t2.Rows.Count; ++i)
+            {
+                sumBoxes += Convert.ToInt32(t2.Rows[i].Cells["boxes"].Value);
+                sumStems += Convert.ToInt32(t2.Rows[i].Cells["stems"].Value);
+                sumBucket += Convert.ToInt32(t2.Rows[i].Cells["buckets"].Value);
+                sumPrice += Convert.ToDecimal(t2.Rows[i].Cells["price"].Value);
+            }
+
+
+            l1.Text = t2.Rows[0].Cells["date_created"].Value.ToString();
+            l2.Text = t2.Rows[0].Cells["date_modified"].Value.ToString();
+            l3.Text = sumBucket.ToString();
+            l4.Text = sumPrice.ToString();
+            l5.Text = sumStems.ToString();
+            l6.Text = sumBoxes.ToString();
+
+        }
         //
         public string select = @"SELECT * FROM [MG_inkjop].[dbo].[farms]";
         public string selectLengths = @"SELECT * FROM [MG_inkjop].[dbo].[lengths]";

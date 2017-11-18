@@ -21,6 +21,7 @@ namespace INN_CSHARP
         public string whLen;
         public string selectionStatement4;
         bool loaded = false;
+        bool loadOrders = false;
 
 
         public Form1()
@@ -104,6 +105,7 @@ namespace INN_CSHARP
 
 
             fillUpInspectorFl();
+           
             loaded = true;
         }
         ///////////////////////  MENU  //////////////////////////////////////////////////////////////////////
@@ -136,9 +138,9 @@ namespace INN_CSHARP
         /////////////////////// END MENU  //////////////////////////////////////////////////////////////////////
 
         // Flowers - FARM FILTER ///////////
-        public void setWidth()
+        public void setWidth(DataGridView dg)
         {
-            dataGridViewFlMain.Width = (dataGridViewFlMain.Rows.Count > 22) ? 717: 701;
+            dg.Width = (dg.Rows.Count > 22) ? 718: 701;
         }
         private void cbFarm_SelectedIndexChanged(object sender, EventArgs e)// FARM FILTER ///////////
         {
@@ -149,7 +151,7 @@ namespace INN_CSHARP
             mySql.GetData(selectionStatement4, bindingSource1);
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
             fillUpInspectorFl();
-            setWidth();
+            setWidth(dataGridViewFlMain);
         }
         private void btnRemoveFF_Click(object sender, EventArgs e) { cbFarm.SelectedIndex = 0; }
         // Flowers - LENGTH FILTER ///////////
@@ -162,7 +164,7 @@ namespace INN_CSHARP
             mySql.GetData(selectionStatement4, bindingSource1);
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
             fillUpInspectorFl();
-            setWidth();
+            setWidth(dataGridViewFlMain);
         }
         private void btnRemoveFL_Click(object sender, EventArgs e) { cbLength.SelectedIndex = 0; }
 
@@ -219,67 +221,55 @@ namespace INN_CSHARP
             mySql.GetData(selectionStatement4, bindingSource1);
         }
         /// -------------------------------------------------- ORDERS---------------------------------
-        void updateCbOrders()
-        {
-            var mySql = new mySql();
-            cbOrders.Items.Clear();
-            string Sql = "select order_number from [MG_inkjop].[dbo].[orders] group by order_number";
-            SqlConnection conn = new SqlConnection(mySql.connString);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(Sql, conn);
-            SqlDataReader DR = cmd.ExecuteReader();
-            while (DR.Read())
-            {
-                cbOrders.Items.Add(DR[0]);
-            }
-            conn.Close();
-        }
 
 
 
-        private void cbOrders_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var mySql = new mySql();
-            mySql.loadOrders(Convert.ToInt32(cbOrders.SelectedItem));
 
-            dataGridViewO1.DataSource = bindingSourceOrders;
-            mySql.GetData(mySql.loadOrdersStatement, bindingSourceOrders);
-            dataGridViewO1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        //private void cbOrders_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    var mySql = new mySql();
 
-            dataGridViewO1.Columns[0].Visible = false; //order_id
-            dataGridViewO1.Columns[1].Visible = false; //departure
-            dataGridViewO1.Columns[2].Visible = false; //arrival
-            dataGridViewO1.Columns[3].Visible = false; //datecode
-            dataGridViewO1.Columns[4].DisplayIndex = 5; //variety
-            dataGridViewO1.Columns[5].DisplayIndex = 4; //farm_name
-            dataGridViewO1.Columns[6].DisplayIndex = 6; //plu
-            dataGridViewO1.Columns[7].DisplayIndex = 7; //length
-            dataGridViewO1.Columns[8].DisplayIndex = 8; //pak_rate
-            dataGridViewO1.Columns[9].DisplayIndex = 9; //boxes
-            dataGridViewO1.Columns[10].DisplayIndex = 10; //stems
-            dataGridViewO1.Columns[11].DisplayIndex = 11; //buckets
 
-            lblDeparture.Text = dataGridViewO1.Rows[0].Cells[1].Value.ToString().Substring(0, 10);
-            lblArrival.Text = dataGridViewO1.Rows[0].Cells[2].Value.ToString().Substring(0, 10);
-            lblDatecode.Text = dataGridViewO1.Rows[0].Cells[3].Value.ToString();
+        //    dataGridViewO1.DataSource = bindingSourceOrders;
+        //    mySql.GetData(mySql.loadOrdersStatement, bindingSourceOrders);
+        //    dataGridViewO1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        //    dataGridViewO2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            int sumBoxes = 0;
-            int sumStems = 0;
-            int sumBucket = 0;
-            decimal sumPrice = 0;
-            for (int i = 0; i < dataGridViewO1.Rows.Count; ++i)
-            {
-                sumBoxes += Convert.ToInt32(dataGridViewO1.Rows[i].Cells["boxes"].Value);
-                sumStems += Convert.ToInt32(dataGridViewO1.Rows[i].Cells["stems"].Value);
-                sumBucket += Convert.ToInt32(dataGridViewO1.Rows[i].Cells["buckets"].Value);
-                sumPrice += Convert.ToDecimal(dataGridViewO1.Rows[i].Cells["price"].Value);
-            }
-            lblAmountBoxes.Text = sumBoxes.ToString();
-            lblAmountStems.Text = sumStems.ToString();
-            lblAmountBuckets.Text = sumBucket.ToString();
-            lblAmountPrice.Text = sumPrice.ToString();
-            btnButikkdata.Visible = true;
-        }
+        //    dataGridViewO1.Columns["order_id"].Visible = false; //order_id
+        //    dataGridViewO1.Columns["departure"].Visible = false; //departure
+        //    dataGridViewO1.Columns["arrival"].Visible = false; //arrival
+        //    dataGridViewO1.Columns["datecode"].Visible = false; //datecode
+        //    dataGridViewO1.Columns["variety"].Width = 110; //variety
+        //    //dataGridViewO1.Columns["farm"].DisplayIndex = 4; //farm_name
+        //    //dataGridViewO1.Columns["plu"].DisplayIndex = 6; //plu
+        //    //dataGridViewO1.Columns["length"].DisplayIndex = 7; //length
+        //    //dataGridViewO1.Columns["pak_rate"].DisplayIndex = 8; //pak_rate
+        //    dataGridViewO1.Columns["boxes"].DisplayIndex = 13; //boxes
+        //    //dataGridViewO1.Columns["stems"].DisplayIndex = 10; //stems
+        //    //dataGridViewO1.Columns["buckets"].DisplayIndex = 11; //buckets
+
+        //    lblDateCreated.Text = dataGridViewO1.Rows[0].Cells[1].Value.ToString().Substring(0, 10);
+        //    lblDateModified.Text = dataGridViewO1.Rows[0].Cells[2].Value.ToString().Substring(0, 10);
+
+        //    int sumBoxes = 0;
+        //    int sumStems = 0;
+        //    int sumBucket = 0;
+        //    decimal sumPrice = 0;
+        //    for (int i = 0; i < dataGridViewO1.Rows.Count; ++i)
+        //    {
+        //        sumBoxes += Convert.ToInt32(dataGridViewO1.Rows[i].Cells["boxes"].Value);
+        //        sumStems += Convert.ToInt32(dataGridViewO1.Rows[i].Cells["stems"].Value);
+        //        sumBucket += Convert.ToInt32(dataGridViewO1.Rows[i].Cells["buckets"].Value);
+        //        sumPrice += Convert.ToDecimal(dataGridViewO1.Rows[i].Cells["price"].Value);
+        //    }
+        //    lblAmountBoxes.Text = sumBoxes.ToString();
+        //    lblAmountStems.Text = sumStems.ToString();
+        //    lblAmountBuckets.Text = sumBucket.ToString();
+        //    lblAmountPrice.Text = sumPrice.ToString();
+        //    btnButikkdata.Visible = true;
+        //    PnButtonsOrderTabel.Visible = true;
+        //    PnInsOrdre.Visible = true;
+        //}
 
         private void btnAddOr_Click(object sender, EventArgs e)
         {
@@ -287,13 +277,11 @@ namespace INN_CSHARP
             frm.FormClosing += new FormClosingEventHandler(this.AddOr_FormClosing);
             frm.Show();
         }
-        private void tabPage6_Enter_1(object sender, EventArgs e)
-        {
-            updateCbOrders();
-        }
+
+
         private void AddOr_FormClosing(object sender, FormClosingEventArgs e)
         {
-            updateCbOrders();
+            
         }
         string st = @"
         SELECT
@@ -319,49 +307,12 @@ namespace INN_CSHARP
 
         private void button6_Click(object sender, EventArgs e)
         {
-            //var mySql = new mySql();
-            //dataGridViewTest.DataSource = bindingSourceOrders;
-            //mySql.GetData(st, bindingSourceOrders);
-            //for (int c = 0; c < dataGridViewTest.Columns.Count; ++c)
-            //{
-            //    dataGridViewTest2.Columns.Add(dataGridViewTest.Columns[c].HeaderText, dataGridViewTest.Columns[c].HeaderText);
-            //}
-            //int Nindex = 0;
-            //for (int i = 0; i < dataGridViewTest.Rows.Count; i++)//each row
-            //{
-            //    if (i < 1)
-            //    {
-            //        dataGridViewTest2.Rows.Add();
-            //        for (int j = 0; j < dataGridViewTest.Columns.Count; ++j)//each cell in row
-            //        {
-            //            dataGridViewTest2.Rows[Nindex].Cells[j].Value = dataGridViewTest.Rows[i].Cells[j].Value;
-            //        }
-            //        Nindex++;
-            //    }
-            //    else
-            //    {
-            //        //MessageBox.Show(dataGridViewTest.Rows[i].Cells["plu"].Value.ToString() + " xx " + dataGridViewTest.Rows[i - 1].Cells["plu"].Value.ToString());
-            //        if (dataGridViewTest.Rows[i].Cells["plu"].Value.ToString() == dataGridViewTest.Rows[i - 1].Cells["plu"].Value.ToString() & dataGridViewTest.Rows[i].Cells["farm"].Value.ToString() == dataGridViewTest.Rows[i - 1].Cells["farm"].Value.ToString())//if above is the same
-            //        {
-            //            MessageBox.Show("dodaje "+ Convert.ToInt32(dataGridViewTest2.Rows[Nindex - 1].Cells[10].Value) + " + " + Convert.ToInt32(dataGridViewTest.Rows[Nindex].Cells[10].Value));
-            //            dataGridViewTest2.Rows[Nindex - 1].Cells[10].Value = Convert.ToInt32(dataGridViewTest2.Rows[Nindex - 1].Cells[10].Value) + Convert.ToInt32(dataGridViewTest.Rows[Nindex].Cells[10].Value);
-            //        }
-            //        else
-            //        {
-            //            dataGridViewTest2.Rows.Add();
-            //            for (int j = 0; j < dataGridViewTest.Columns.Count; ++j)//each cell in row
-            //            {
-            //                dataGridViewTest2.Rows[Nindex].Cells[j].Value = dataGridViewTest.Rows[i].Cells[j].Value;
-            //            }
-            //            Nindex++;
-            //        }
-            //    }
-            //}
+            
         }
         private void btnButkikkdata_Click(object sender, EventArgs e)
         {
-            Butikkdata frm = new Butikkdata(Convert.ToInt32(cbOrders.SelectedItem));
-            frm.Show();
+            //Butikkdata frm = new Butikkdata(Convert.ToInt32(cbOrders.SelectedItem));
+            //frm.Show();
         }
 
         private void txtTopSearch_Click(object sender, EventArgs e)
@@ -465,8 +416,8 @@ namespace INN_CSHARP
                     ,orders.boxes
                   FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
                   WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.fl_id = " + fl_id + "  ORDER BY arrival desc";
-                dataGridViewFlOr.DataSource = bindingSourceOrders;
-                mySql.GetData(loadOrdersStatement2, bindingSourceOrders);
+                dataGridViewFlOr.DataSource = bindingSourceOrders3;
+                mySql.GetData(loadOrdersStatement2, bindingSourceOrders3);
                 lblInsFob.Text = dataGridViewFlMain.Rows[row].Cells["Fob"].Value.ToString();
                 lblInsSticker.Text = dataGridViewFlMain.Rows[row].Cells["Sticker text"].Value.ToString();
                 lblInsSleeve.Text = dataGridViewFlMain.Rows[row].Cells["Sleeve"].Value.ToString();
@@ -494,12 +445,43 @@ namespace INN_CSHARP
             }
         }
 
+
+
+
+
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PnInsFl.Visible = (tabControl1.SelectedIndex == 0) ? true : false;
-            PnInspector.Visible = (tabControl1.SelectedIndex == 1) ? true : false;
+            if (tabControl1.SelectedIndex == 1)
+            {
+                var mySql = new mySql();
+
+                string Sql1 = " select distinct orders.order_number as 'Order number', departure as 'Departure', arrival as 'Arrival', datecode as 'Datecode' from orders";
+                dataGridViewO1.DataSource = bindingSourceOrders;
+                mySql.GetData(Sql1, bindingSourceOrders);
+                mySql.updateOrderInspecor(dataGridViewO1, dataGridViewO2, bindingSourceOrders2, lblDateCreated, lblDateModified, lblAmountBuckets, lblAmountPrice, lblAmountStems, lblAmountBoxes);
+                
+                dataGridViewO1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dataGridViewO2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                //dataGridViewO1.Rows[0].Selected = () ? false : true;
+                setWidth(dataGridViewO1);
+                loadOrders = true;
+            }
         }
 
+        private void tabPage6_Enter(object sender, EventArgs e)
+        {
+            
+        }
 
+        private void dataGridViewO1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (loadOrders)
+            {
+                var mySql = new mySql();
+                mySql.updateOrderInspecor(dataGridViewO1, dataGridViewO2, bindingSourceOrders2, lblDateCreated, lblDateModified, lblAmountBuckets, lblAmountPrice, lblAmountStems, lblAmountBoxes);
+
+            }
+           
+        }
     }
 }
