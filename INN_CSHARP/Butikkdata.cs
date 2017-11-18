@@ -67,7 +67,7 @@ namespace INN_CSHARP
             dataGridViewTest2.Columns[1].Visible = false;
             dataGridViewTest2.Columns[2].Visible = false;
             dataGridViewTest2.Columns[3].Visible = false;
-            dataGridViewTest2.Columns["variety"].Width = 100;
+            dataGridViewTest2.Columns["variety"].Visible = false;
             dataGridViewTest2.Columns["length"].Width = 45;
             dataGridViewTest2.Columns["mix"].Width = 45;
             dataGridViewTest2.Columns["sleeve"].Width = 80;
@@ -87,7 +87,7 @@ namespace INN_CSHARP
 
         }
 
-        private void btnButikkExport_Click(object sender, EventArgs e)
+        private void btnButikkExport_Click(object sender, EventArgs e)//---------------excel export
         {
             _Application excel = new Microsoft.Office.Interop.Excel.Application();
             _Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -118,13 +118,13 @@ namespace INN_CSHARP
                     }
                 }
                 int lastRow = dataGridViewTest2.Rows.Count + 6;
+                worksheet.Cells[dataGridViewTest2.Rows.Count + 7, 11].Formula = "=sum(K7:K" + lastRow + ")";
                 worksheet.Cells[dataGridViewTest2.Rows.Count + 7, 12].Formula = "=sum(L7:L" + lastRow + ")";
-                worksheet.Cells[dataGridViewTest2.Rows.Count + 7, 13].Formula = "=sum(M7:M" + lastRow + ")";
-                worksheet.Cells[dataGridViewTest2.Rows.Count + 7, 14].Formula = lblAmountPrice.Text.ToString();
-                worksheet.Cells[dataGridViewTest2.Rows.Count + 7, 15].Formula = "=sum(O7:O" + lastRow + ")";
+                worksheet.Cells[dataGridViewTest2.Rows.Count + 7, 13].Formula = lblAmountPrice.Text.ToString();
+                worksheet.Cells[dataGridViewTest2.Rows.Count + 7, 14].Formula = "=sum(N7:N" + lastRow + ")";
                 lastRow++;
-                worksheet.Range[string.Format("L{0}:O{1}", lastRow.ToString(), lastRow.ToString())].Font.Bold = true;
-                worksheet.Range[string.Format("L{0}:O{1}", lastRow.ToString(), lastRow.ToString())].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
+                worksheet.Range[string.Format("K{0}:N{1}", lastRow.ToString(), lastRow.ToString())].Font.Bold = true;
+                worksheet.Range[string.Format("K{0}:N{1}", lastRow.ToString(), lastRow.ToString())].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
                 worksheet.Columns[1].ColumnWidth = 40;
                 worksheet.Rows[6].Font.Bold = true;
                 worksheet.Range["A1:B4"].Font.Bold = true;

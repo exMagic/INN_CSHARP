@@ -281,7 +281,12 @@ namespace INN_CSHARP
 
         private void AddOr_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            var mySql = new mySql();
+
+            string Sql1 = " select distinct orders.order_number as 'Order number', departure as 'Departure', arrival as 'Arrival', datecode as 'Datecode' from orders";
+            dataGridViewO1.DataSource = bindingSourceOrders;
+            mySql.GetData(Sql1, bindingSourceOrders);
+            mySql.updateOrderInspecor(dataGridViewO1, dataGridViewO2, bindingSourceOrders2, lblDateCreated, lblDateModified, lblAmountBuckets, lblAmountPrice, lblAmountStems, lblAmountBoxes);
         }
         string st = @"
         SELECT
@@ -311,8 +316,8 @@ namespace INN_CSHARP
         }
         private void btnButkikkdata_Click(object sender, EventArgs e)
         {
-            //Butikkdata frm = new Butikkdata(Convert.ToInt32(cbOrders.SelectedItem));
-            //frm.Show();
+            var frm = new Butikkdata(Convert.ToInt32(dataGridViewO1[0, dataGridViewO1.CurrentRow.Index].Value));
+            frm.Show();
         }
 
         private void txtTopSearch_Click(object sender, EventArgs e)
