@@ -148,7 +148,6 @@ namespace INN_CSHARP
             printPreviewDialog1.Document = printDocument1;
             printPreviewDialog1.ShowDialog();
         }
-
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             var drawPoint = new PointF(150.0F, 150.0F);
@@ -159,7 +158,7 @@ namespace INN_CSHARP
             e.Graphics.DrawString(s1, drawFont, drawBrush, drawPoint1);
 
 
-            string s3 = "Table view coming soon";
+            string s3 = "Butikkdata table view coming soon";
             var drawPoint3 = new PointF(150.0F, 300.0F);
             e.Graphics.DrawString(s3, drawFont, drawBrush, drawPoint3);
             var drawPoint4 = new PointF(150.0F, 50.0F);

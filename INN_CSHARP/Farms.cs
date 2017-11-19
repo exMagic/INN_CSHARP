@@ -66,7 +66,6 @@ namespace INN_CSHARP
         private void dataGridViewFarms_SelectionChanged(object sender, EventArgs e)
         {
             updateFarmsForm();
-            MessageBox.Show("Test"+ dataGridViewFarms.Rows[dataGridViewFarms.CurrentRow.Index].Cells[0].Value.ToString() +"Test");
         }
 
         private void btnButikkExport_Click(object sender, EventArgs e)
@@ -101,18 +100,20 @@ namespace INN_CSHARP
                     }
                 }
                 int lastRow = dataGridViewFarmBestilling.Rows.Count + 6;
-                worksheet.Cells[dataGridViewFarmBestilling.Rows.Count + 7, 12].Formula = "=sum(L7:L" + lastRow + ")";
+                worksheet.Cells[dataGridViewFarmBestilling.Rows.Count + 7, 13] = lblAmountBoxes.Text.ToString();
+                worksheet.Cells[dataGridViewFarmBestilling.Rows.Count + 7, 10] = lblAmountPrice.Text.ToString();
                 lastRow++;
-                worksheet.Range[string.Format("L{0}", lastRow.ToString(), lastRow.ToString())].Font.Bold = true;
-                worksheet.Range[string.Format("L{0}", lastRow.ToString(), lastRow.ToString())].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
+                worksheet.Range[string.Format("J{0}", lastRow.ToString(), lastRow.ToString())].Font.Bold = true;
+                worksheet.Range[string.Format("J{0}", lastRow.ToString(), lastRow.ToString())].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
+                worksheet.Range[string.Format("M{0}", lastRow.ToString(), lastRow.ToString())].Font.Bold = true;
+                worksheet.Range[string.Format("M{0}", lastRow.ToString(), lastRow.ToString())].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
+
                 worksheet.Columns[1].ColumnWidth = 16;
                 worksheet.Columns[2].ColumnWidth = 30;
                 worksheet.Rows[6].Font.Bold = true;
                 worksheet.Range["A1:B4"].Font.Bold = true;
                 worksheet.Range["B1:B4"].Style.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
                 string file = @"C:\innkjop\farms_orders\" + farm_name + "_order_" + lblDatecode.Text.ToString() + ".xlsx";
-                MessageBox.Show("xxx" + farm_name + "xxx");
-                MessageBox.Show(file);
                 workbook.SaveAs(file);
                 Process.Start("excel.exe", file);
             }
@@ -126,6 +127,28 @@ namespace INN_CSHARP
                 workbook = null;
                 excel = null;
             }
+        }
+
+        private void btnButikkSkriv_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.ShowDialog();
+        }
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            var drawPoint = new PointF(150.0F, 150.0F);
+            var drawFont = new System.Drawing.Font("Arial", 16);
+            var drawBrush = new SolidBrush(Color.Black);
+            string s1 = "Ordre nummer: " + lblOrdreNumber.Text.ToString();
+            var drawPoint1 = new PointF(150.0F, 150.0F);
+            e.Graphics.DrawString(s1, drawFont, drawBrush, drawPoint1);
+
+
+            string s3 = "Farms table view coming soon";
+            var drawPoint3 = new PointF(150.0F, 300.0F);
+            e.Graphics.DrawString(s3, drawFont, drawBrush, drawPoint3);
+            var drawPoint4 = new PointF(150.0F, 50.0F);
+            e.Graphics.DrawImage(picLogo.Image, drawPoint4);
         }
     }
 }

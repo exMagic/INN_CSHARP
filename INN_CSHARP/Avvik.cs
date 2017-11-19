@@ -93,5 +93,27 @@ namespace INN_CSHARP
                 excel = null;
             }
         }
+
+        private void btnButikkSkriv_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.ShowDialog();
+        }
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            var drawPoint = new PointF(150.0F, 150.0F);
+            var drawFont = new System.Drawing.Font("Arial", 16);
+            var drawBrush = new SolidBrush(Color.Black);
+            string s1 = "Ordre nummer: " + lblOrdreNumber.Text.ToString();
+            var drawPoint1 = new PointF(150.0F, 150.0F);
+            e.Graphics.DrawString(s1, drawFont, drawBrush, drawPoint1);
+
+
+            string s3 = "Avviksskjema table view coming soon";
+            var drawPoint3 = new PointF(150.0F, 300.0F);
+            e.Graphics.DrawString(s3, drawFont, drawBrush, drawPoint3);
+            var drawPoint4 = new PointF(150.0F, 50.0F);
+            e.Graphics.DrawImage(picLogo.Image, drawPoint4);
+        }
     }
 }
