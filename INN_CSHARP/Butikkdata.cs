@@ -125,6 +125,7 @@ namespace INN_CSHARP
                 worksheet.Range[string.Format("K{0}:L{1}", lastRow.ToString(), lastRow.ToString())].Font.Bold = true;
                 worksheet.Range[string.Format("K{0}:L{1}", lastRow.ToString(), lastRow.ToString())].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
                 worksheet.Columns[1].ColumnWidth = 40;
+                worksheet.Columns[2].ColumnWidth = 20;
                 worksheet.Rows[6].Font.Bold = true;
                 worksheet.Range["A1:B4"].Font.Bold = true;
                 string file = @"C:\innkjop\butikk_orders\butikkdata_order_" + lblDatecode.Text.ToString() + ".xlsx";

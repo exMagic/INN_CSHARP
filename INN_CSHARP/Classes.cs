@@ -15,9 +15,9 @@ namespace INN_CSHARP
     {
         SqlDataAdapter dataAdapter;
         System.Data.DataTable table;
-        /**///PC
+        /*///PC
         public string connString = @"Data Source=DESKTOP-PC\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        /*WINMAC/
+        /*WINMAC*/
         public string connString = @"Data Source=MACBOOKW10\SQLEXPRESS;Initial Catalog=MG_inkjop;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //*/
         public void GetData(string selectCommand, BindingSource bin)
