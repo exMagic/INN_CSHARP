@@ -68,6 +68,8 @@ namespace INN_CSHARP
         public string loadOrdersStatement2;
         public string loadButikkStatement;
         public string loadAvvikStatement;
+        public string farmsLoadFarmsStatement;
+        public string farmsLoadOneFarmStatement;
 
         public void loadOrders(int orderNumber)
         {
@@ -173,6 +175,43 @@ namespace INN_CSHARP
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY  farm, length desc, variety";
         }
 
+        public void loadOneFarm(int orderNumber, int farm_id)
+        {
+            farmsLoadOneFarmStatement = @"
+        SELECT
+            orders.order_number
+            ,orders.departure
+            ,orders.arrival
+            ,orders.datecode
+
+            ,farms.farm_name as 'Farm'
+            ,flowers.variety as 'Variety'
+			,lengths.length as 'Length'
+            ,colours.colour as 'Colour'
+            ,flowers.plu as 'PLU'
+			,flowers.mix as 'MIX'
+			,flowers.fairtrade as 'Fairtrade'
+			,sleeves.sleeve as 'Sleeve'
+            ,flowers.sleeve_with as 'With sleeves'
+            ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) * (SELECT flowers.fob) as price
+            ,flowers.stems_pr_bunch as 'Stems_pr bunch'
+            ,flowers.pak_rate as 'Pak rate'
+            ,orders.boxes as 'Boxes'
+
+
+          FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
+          WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber +" and farms.farm_id = "+ farm_id +"  ORDER BY  length desc, variety";
+        }
+
+        public void loadFarms(int orderNumber)
+        {
+            farmsLoadFarmsStatement = @"
+            SELECT distinct
+            farm_name, farms.farm_id
+            FROM [MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[orders]
+            WHERE flowers.farm_id = farms.farm_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber;
+        }
+
         public void updateOrderInspecor(DataGridView t1, DataGridView t2,BindingSource bs, Label l1, Label l2, Label l3, Label l4, Label l5, Label l6)
         {
             string orderNumber = t1.Rows[t1.CurrentRow.Index].Cells[0].Value.ToString();
@@ -254,7 +293,7 @@ namespace INN_CSHARP
             cb.SelectedIndex = 0;
             conn.Close();
         }
-        public void fillupLabels(Label a0, Label a1, Label a2, Label a3, Label a4, Label a5, Label a6, Label a7, DataGridView dg)
+        public void fillupLabelsButikk(Label a0, Label a1, Label a2, Label a3, Label a4, Label a5, Label a6, Label a7, DataGridView dg)
         {
             a0.Text = dg.Rows[0].Cells[0].Value.ToString();
             a1.Text = dg.Rows[0].Cells[1].Value.ToString().Substring(0, 10);
@@ -277,7 +316,20 @@ namespace INN_CSHARP
             a6.Text = sumBucket.ToString();
             a7.Text = sumPrice.ToString();
         }
-        
+        public void fillupLabelsAvvik(Label a0, Label a1, Label a2, Label a3, Label a4, DataGridView dg)
+        {
+            a0.Text = dg.Rows[0].Cells[0].Value.ToString();
+            a1.Text = dg.Rows[0].Cells[1].Value.ToString().Substring(0, 10);
+            a2.Text = dg.Rows[0].Cells[2].Value.ToString().Substring(0, 10);
+            a3.Text = dg.Rows[0].Cells[3].Value.ToString();
+            int sumBoxes = 0;
+            for (int i = 0; i < dg.Rows.Count; ++i)
+            {
+                sumBoxes += Convert.ToInt32(dg.Rows[i].Cells["boxes"].Value);
+            }
+            a4.Text = sumBoxes.ToString();
+        }
+
         public string findCbValue(ComboBox cb, string wh, Button bt, DataGridView dgv, string sqlCondition, TextBox t)
         {
             t.Text = "";

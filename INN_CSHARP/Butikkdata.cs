@@ -81,7 +81,7 @@ namespace INN_CSHARP
             dataGridViewTest2.Columns["price"].Width = 45;
             dataGridViewTest2.Columns["buckets"].Width = 45;
 
-            mySql.fillupLabels(lblOrdreNumber, lblDeparture, lblArrival, lblDatecode, lblAmountBoxes, lblAmountStems, lblAmountBuckets, lblAmountPrice, dataGridViewTest2);
+            mySql.fillupLabelsButikk(lblOrdreNumber, lblDeparture, lblArrival, lblDatecode, lblAmountBoxes, lblAmountStems, lblAmountBuckets, lblAmountPrice, dataGridViewTest2);
             lblOrderNumberTitle.Text = lblOrdreNumber.Text;
 
 
