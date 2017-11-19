@@ -76,12 +76,12 @@ namespace INN_CSHARP
             dataGridViewTest2.Columns["bunch pr bucket"].Width = 40;
             dataGridViewTest2.Columns["stems pr bunch"].Width = 40;
             dataGridViewTest2.Columns["plu"].Width = 50;
-            dataGridViewTest2.Columns["boxes"].Width = 45;
+            //dataGridViewTest2.Columns["boxes"].Visible = false;
             dataGridViewTest2.Columns["stems"].Width = 45;
-            dataGridViewTest2.Columns["price"].Width = 45;
+            //dataGridViewTest2.Columns["price"].Width = 45;
             dataGridViewTest2.Columns["buckets"].Width = 45;
 
-            mySql.fillupLabelsButikk(lblOrdreNumber, lblDeparture, lblArrival, lblDatecode, lblAmountBoxes, lblAmountStems, lblAmountBuckets, lblAmountPrice, dataGridViewTest2);
+            mySql.fillupLabelsButikk(lblOrdreNumber, lblDeparture, lblArrival, lblDatecode, lblAmountStems, lblAmountBuckets, dataGridViewTest2);
             lblOrderNumberTitle.Text = lblOrdreNumber.Text;
 
 
@@ -120,11 +120,10 @@ namespace INN_CSHARP
                 int lastRow = dataGridViewTest2.Rows.Count + 6;
                 worksheet.Cells[dataGridViewTest2.Rows.Count + 7, 11].Formula = "=sum(K7:K" + lastRow + ")";
                 worksheet.Cells[dataGridViewTest2.Rows.Count + 7, 12].Formula = "=sum(L7:L" + lastRow + ")";
-                worksheet.Cells[dataGridViewTest2.Rows.Count + 7, 13].Formula = lblAmountPrice.Text.ToString();
-                worksheet.Cells[dataGridViewTest2.Rows.Count + 7, 14].Formula = "=sum(N7:N" + lastRow + ")";
+
                 lastRow++;
-                worksheet.Range[string.Format("K{0}:N{1}", lastRow.ToString(), lastRow.ToString())].Font.Bold = true;
-                worksheet.Range[string.Format("K{0}:N{1}", lastRow.ToString(), lastRow.ToString())].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
+                worksheet.Range[string.Format("K{0}:L{1}", lastRow.ToString(), lastRow.ToString())].Font.Bold = true;
+                worksheet.Range[string.Format("K{0}:L{1}", lastRow.ToString(), lastRow.ToString())].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
                 worksheet.Columns[1].ColumnWidth = 40;
                 worksheet.Rows[6].Font.Bold = true;
                 worksheet.Range["A1:B4"].Font.Bold = true;
@@ -159,9 +158,6 @@ namespace INN_CSHARP
             var drawPoint1 = new PointF(150.0F, 150.0F);
             e.Graphics.DrawString(s1, drawFont, drawBrush, drawPoint1);
 
-            string s2 = "Antall boxes: " + lblAmountBoxes.Text.ToString();
-            var drawPoint2 = new PointF(150.0F, 190.0F);
-            e.Graphics.DrawString(s2, drawFont, drawBrush, drawPoint2);
 
             string s3 = "Table view coming soon";
             var drawPoint3 = new PointF(150.0F, 300.0F);

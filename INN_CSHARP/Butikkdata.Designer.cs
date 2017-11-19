@@ -35,14 +35,10 @@
             this.dataGridViewTest = new System.Windows.Forms.DataGridView();
             this.bindingSourceOrders = new System.Windows.Forms.BindingSource(this.components);
             this.btnButikkExport = new System.Windows.Forms.Button();
-            this.lblAmountPrice = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.lblAmountBuckets = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblAmountStems = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.lblAmountBoxes = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.lblDatecode = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblArrival = new System.Windows.Forms.Label();
@@ -112,28 +108,10 @@
             this.btnButikkExport.UseVisualStyleBackColor = true;
             this.btnButikkExport.Click += new System.EventHandler(this.btnButikkExport_Click);
             // 
-            // lblAmountPrice
-            // 
-            this.lblAmountPrice.AutoSize = true;
-            this.lblAmountPrice.Location = new System.Drawing.Point(101, 185);
-            this.lblAmountPrice.Name = "lblAmountPrice";
-            this.lblAmountPrice.Size = new System.Drawing.Size(10, 13);
-            this.lblAmountPrice.TabIndex = 48;
-            this.lblAmountPrice.Text = "-";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(34, 185);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(62, 13);
-            this.label12.TabIndex = 47;
-            this.label12.Text = "Antall price:";
-            // 
             // lblAmountBuckets
             // 
             this.lblAmountBuckets.AutoSize = true;
-            this.lblAmountBuckets.Location = new System.Drawing.Point(101, 159);
+            this.lblAmountBuckets.Location = new System.Drawing.Point(101, 184);
             this.lblAmountBuckets.Name = "lblAmountBuckets";
             this.lblAmountBuckets.Size = new System.Drawing.Size(10, 13);
             this.lblAmountBuckets.TabIndex = 46;
@@ -142,7 +120,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(19, 159);
+            this.label11.Location = new System.Drawing.Point(19, 184);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 13);
             this.label11.TabIndex = 45;
@@ -151,7 +129,7 @@
             // lblAmountStems
             // 
             this.lblAmountStems.AutoSize = true;
-            this.lblAmountStems.Location = new System.Drawing.Point(101, 213);
+            this.lblAmountStems.Location = new System.Drawing.Point(101, 163);
             this.lblAmountStems.Name = "lblAmountStems";
             this.lblAmountStems.Size = new System.Drawing.Size(10, 13);
             this.lblAmountStems.TabIndex = 44;
@@ -160,29 +138,11 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(30, 211);
+            this.label10.Location = new System.Drawing.Point(30, 161);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(66, 13);
             this.label10.TabIndex = 43;
             this.label10.Text = "Antall stems:";
-            // 
-            // lblAmountBoxes
-            // 
-            this.lblAmountBoxes.AutoSize = true;
-            this.lblAmountBoxes.Location = new System.Drawing.Point(101, 237);
-            this.lblAmountBoxes.Name = "lblAmountBoxes";
-            this.lblAmountBoxes.Size = new System.Drawing.Size(10, 13);
-            this.lblAmountBoxes.TabIndex = 42;
-            this.lblAmountBoxes.Text = "-";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 237);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(71, 13);
-            this.label9.TabIndex = 41;
-            this.label9.Text = "Antall bokser:";
             // 
             // lblDatecode
             // 
@@ -318,16 +278,12 @@
             this.PnInsFl.Controls.Add(this.label3);
             this.PnInsFl.Controls.Add(this.lblDeparture);
             this.PnInsFl.Controls.Add(this.label7);
-            this.PnInsFl.Controls.Add(this.lblAmountPrice);
             this.PnInsFl.Controls.Add(this.lblArrival);
-            this.PnInsFl.Controls.Add(this.label12);
             this.PnInsFl.Controls.Add(this.label8);
             this.PnInsFl.Controls.Add(this.lblAmountBuckets);
             this.PnInsFl.Controls.Add(this.lblDatecode);
             this.PnInsFl.Controls.Add(this.label11);
-            this.PnInsFl.Controls.Add(this.label9);
             this.PnInsFl.Controls.Add(this.lblAmountStems);
-            this.PnInsFl.Controls.Add(this.lblAmountBoxes);
             this.PnInsFl.Controls.Add(this.label10);
             this.PnInsFl.Location = new System.Drawing.Point(17, 73);
             this.PnInsFl.Name = "PnInsFl";
@@ -442,14 +398,10 @@
         private System.Windows.Forms.DataGridView dataGridViewTest;
         private System.Windows.Forms.BindingSource bindingSourceOrders;
         private System.Windows.Forms.Button btnButikkExport;
-        private System.Windows.Forms.Label lblAmountPrice;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblAmountBuckets;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblAmountStems;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lblAmountBoxes;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblDatecode;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblArrival;

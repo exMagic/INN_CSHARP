@@ -788,11 +788,11 @@
             this.dataGridViewO2.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewO2.EnableHeadersVisualStyles = false;
             this.dataGridViewO2.GridColor = System.Drawing.Color.DarkGray;
-            this.dataGridViewO2.Location = new System.Drawing.Point(6, 50);
+            this.dataGridViewO2.Location = new System.Drawing.Point(6, 95);
             this.dataGridViewO2.Name = "dataGridViewO2";
             this.dataGridViewO2.ReadOnly = true;
             this.dataGridViewO2.RowHeadersVisible = false;
-            this.dataGridViewO2.Size = new System.Drawing.Size(24, 38);
+            this.dataGridViewO2.Size = new System.Drawing.Size(14, 53);
             this.dataGridViewO2.TabIndex = 36;
             this.dataGridViewO2.Visible = false;
             // 

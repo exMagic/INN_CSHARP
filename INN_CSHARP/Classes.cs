@@ -139,15 +139,16 @@ namespace INN_CSHARP
             ,flowers.fairtrade as 'Fairtrade'
             ,flowers.bunch_pr_bucket as 'Bunch pr bucket'
               ,flowers.stems_pr_bunch as 'Stems pr bunch'
-            ,orders.boxes as 'Boxes'
+
             ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) as stems
-        ,(SELECT orders.boxes) * (SELECT flowers.pak_rate) * (SELECT flowers.fob) as price
+
             , ((SELECT orders.boxes) * (SELECT flowers.pak_rate) / (SELECT flowers.stems_pr_bunch) / (SELECT flowers.bunch_pr_bucket))as buckets
 
           FROM[MG_inkjop].[dbo].[flowers], [MG_inkjop].[dbo].[farms], [MG_inkjop].[dbo].[lengths], [MG_inkjop].[dbo].[colours], [MG_inkjop].[dbo].[sleeves], [MG_inkjop].[dbo].[orders]
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY length desc, sticker_text";
         }
-
+        //            ,orders.boxes as 'Boxes'
+        //,(SELECT orders.boxes) * (SELECT flowers.pak_rate) * (SELECT flowers.fob) as price
         public void loadAvvik(int orderNumber)
         {
             loadAvvikStatement = @"
@@ -230,7 +231,6 @@ namespace INN_CSHARP
           WHERE flowers.farm_id = farms.farm_id and flowers.length_id = lengths.length_id and flowers.colour_id = colours.colour_id and flowers.sleeve_id = sleeves.sleeve_id and flowers.fl_id = orders.fl_id and orders.order_number = " + orderNumber + "  ORDER BY plu, length";
             t2.DataSource = bs;
             GetData(Sql2, bs);
-            //MessageBox.Show("EE");
 
             int sumBoxes = 0;
             int sumStems = 0;
@@ -293,28 +293,22 @@ namespace INN_CSHARP
             cb.SelectedIndex = 0;
             conn.Close();
         }
-        public void fillupLabelsButikk(Label a0, Label a1, Label a2, Label a3, Label a4, Label a5, Label a6, Label a7, DataGridView dg)
+        public void fillupLabelsButikk(Label a0, Label a1, Label a2, Label a3, Label a4, Label a5, DataGridView dg)
         {
             a0.Text = dg.Rows[0].Cells[0].Value.ToString();
             a1.Text = dg.Rows[0].Cells[1].Value.ToString().Substring(0, 10);
             a2.Text = dg.Rows[0].Cells[2].Value.ToString().Substring(0, 10);
             a3.Text = dg.Rows[0].Cells[3].Value.ToString();
 
-            int sumBoxes = 0;
             int sumStems = 0;
             int sumBucket = 0;
-            decimal sumPrice = 0;
             for (int i = 0; i < dg.Rows.Count; ++i)
             {
-                sumBoxes += Convert.ToInt32(dg.Rows[i].Cells["boxes"].Value);
                 sumStems += Convert.ToInt32(dg.Rows[i].Cells["stems"].Value);
                 sumBucket += Convert.ToInt32(dg.Rows[i].Cells["buckets"].Value);
-                sumPrice += Convert.ToDecimal(dg.Rows[i].Cells["price"].Value);
             }
-            a4.Text = sumBoxes.ToString();
-            a5.Text = sumStems.ToString();
-            a6.Text = sumBucket.ToString();
-            a7.Text = sumPrice.ToString();
+            a4.Text = sumStems.ToString();
+            a5.Text = sumBucket.ToString();
         }
         public void fillupLabelsAvvik(Label a0, Label a1, Label a2, Label a3, Label a4, DataGridView dg)
         {
