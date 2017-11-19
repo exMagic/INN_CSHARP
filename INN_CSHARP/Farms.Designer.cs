@@ -339,23 +339,35 @@
             // 
             // btnButikkExport
             // 
+            this.btnButikkExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(112)))), ((int)(((byte)(68)))));
+            this.btnButikkExport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnButikkExport.BackgroundImage")));
+            this.btnButikkExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnButikkExport.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnButikkExport.Location = new System.Drawing.Point(17, 354);
             this.btnButikkExport.Name = "btnButikkExport";
             this.btnButikkExport.Size = new System.Drawing.Size(198, 50);
             this.btnButikkExport.TabIndex = 4;
             this.btnButikkExport.Text = "Eksportere til Excel";
-            this.btnButikkExport.UseVisualStyleBackColor = true;
+            this.btnButikkExport.UseVisualStyleBackColor = false;
             this.btnButikkExport.Click += new System.EventHandler(this.btnButikkExport_Click);
             // 
             // btnButikkSkriv
             // 
+            this.btnButikkSkriv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(72)))), ((int)(((byte)(112)))));
+            this.btnButikkSkriv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnButikkSkriv.BackgroundImage")));
+            this.btnButikkSkriv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnButikkSkriv.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnButikkSkriv.Location = new System.Drawing.Point(17, 410);
             this.btnButikkSkriv.Name = "btnButikkSkriv";
             this.btnButikkSkriv.Size = new System.Drawing.Size(198, 50);
             this.btnButikkSkriv.TabIndex = 49;
             this.btnButikkSkriv.Text = "Skriv ut";
-            this.btnButikkSkriv.UseVisualStyleBackColor = true;
+            this.btnButikkSkriv.UseVisualStyleBackColor = false;
             this.btnButikkSkriv.Click += new System.EventHandler(this.btnButikkSkriv_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "Excel Files (*.xlsx)|*.xlsx";
             // 
             // printDocument1
             // 
@@ -370,11 +382,6 @@
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.Filter = "Excel Files (*.xlsx)|*.xlsx";
-
             // 
             // Farms
             // 

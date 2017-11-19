@@ -205,7 +205,7 @@ namespace INN_CSHARP
             var mySql = new mySql();
             mySql.GetData(selectionStatement4, bindingSource1);
             label2.Text = dataGridViewFlMain.RowCount.ToString();//count amount of rows
-            dataGridViewFlMain.CurrentCell = dataGridViewFlMain.Rows[dataGridViewFlMain.RowCount - 1].Cells[8];
+            dataGridViewFlMain.CurrentCell = dataGridViewFlMain.Rows[dataGridViewFlMain.RowCount - 1].Cells["plu"];
         }
         // DELETE Flower///////////////////////////////////////////////////////////////
         private void btnFDelete_Click(object sender, EventArgs e)

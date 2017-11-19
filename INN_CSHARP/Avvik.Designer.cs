@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Avvik));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PnInspector = new System.Windows.Forms.Panel();
             this.PnInsFl = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -227,37 +227,31 @@
             // 
             // btnButikkExport
             // 
+            this.btnButikkExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(112)))), ((int)(((byte)(68)))));
+            this.btnButikkExport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnButikkExport.BackgroundImage")));
+            this.btnButikkExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnButikkExport.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnButikkExport.Location = new System.Drawing.Point(17, 354);
             this.btnButikkExport.Name = "btnButikkExport";
             this.btnButikkExport.Size = new System.Drawing.Size(198, 50);
             this.btnButikkExport.TabIndex = 4;
             this.btnButikkExport.Text = "Eksportere til Excel";
-            this.btnButikkExport.UseVisualStyleBackColor = true;
+            this.btnButikkExport.UseVisualStyleBackColor = false;
             this.btnButikkExport.Click += new System.EventHandler(this.btnButikkExport_Click);
             // 
             // btnButikkSkriv
             // 
+            this.btnButikkSkriv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(72)))), ((int)(((byte)(112)))));
+            this.btnButikkSkriv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnButikkSkriv.BackgroundImage")));
+            this.btnButikkSkriv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnButikkSkriv.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnButikkSkriv.Location = new System.Drawing.Point(17, 410);
             this.btnButikkSkriv.Name = "btnButikkSkriv";
             this.btnButikkSkriv.Size = new System.Drawing.Size(198, 50);
             this.btnButikkSkriv.TabIndex = 49;
             this.btnButikkSkriv.Text = "Skriv ut";
-            this.btnButikkSkriv.UseVisualStyleBackColor = true;
+            this.btnButikkSkriv.UseVisualStyleBackColor = false;
             this.btnButikkSkriv.Click += new System.EventHandler(this.btnButikkSkriv_Click);
-            // 
-            // printDocument1
-            // 
-            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
-            // 
-            // printPreviewDialog1
-            // 
-            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog1.Enabled = true;
-            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-            this.printPreviewDialog1.Name = "printPreviewDialog1";
-            this.printPreviewDialog1.Visible = false;
             // 
             // label1
             // 
@@ -290,14 +284,14 @@
             this.dataGridViewTest.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dataGridViewTest.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewTest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.GrayText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTest.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.GrayText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTest.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTest.GridColor = System.Drawing.Color.DarkGray;
             this.dataGridViewTest.Location = new System.Drawing.Point(26, 80);
             this.dataGridViewTest.Name = "dataGridViewTest";
@@ -313,6 +307,10 @@
             // bindingSourceOrders
             // 
             this.bindingSourceOrders.DataSource = typeof(INN_CSHARP.orders);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
             // printPreviewDialog1
             // 
