@@ -26,6 +26,13 @@ namespace INN_CSHARP
             mySql.loadAvvik(x);
             dataGridViewTest.DataSource = bindingSourceOrders;
             mySql.GetData(mySql.loadAvvikStatement, bindingSourceOrders);
+
+            dataGridViewTest.Columns[0].Visible = false;
+            dataGridViewTest.Columns[1].Visible = false;
+            dataGridViewTest.Columns[2].Visible = false;
+            dataGridViewTest.Columns[3].Visible = false;
+            dataGridViewTest.Columns["variety"].Width = 200;
+            dataGridViewTest.Columns["boxes"].DisplayIndex = 15;
         }
     }
 }
